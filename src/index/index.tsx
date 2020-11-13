@@ -4,6 +4,7 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 
 import 'bootstrap/dist/css/bootstrap.css'
+import '@/index/fonts.css'
 import '@/index/style.css'
 
 ReactDOM.render(<App />, document.getElementById('root'))
