@@ -1,0 +1,174 @@
+.margin-top25 {
+    margin-top: 25px;
+}
+
+.main-title {
+    font-family: 'AlegreyaSansSC';
+    font-weight: 700;
+    font-style: normal;
+}
+
+.columns-wrapper {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 6fr 4fr;
+    margin-top: 55px;
+    grid-gap: 10px;
+    align-items: flex-start;
+}
+
+.column-wrapper-managment {
+    display: grid;
+    grid-gap: 10px;
+    grid-auto-flow: row;
+}
+
+.column-title {
+    font-family: 'AlegreyaSansSC';
+    font-weight: 500;
+    font-style: normal;
+}
+
+.column {
+    display: grid;
+    min-height: 300px;
+}
+
+.column>h3 {
+    justify-self: center;
+}
+
+.get-column-content {
+    list-style: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+/* Style for items */
+
+.type-item-title {
+    font-family: 'AlegreyaSansSC';
+    font-weight: 500;
+    font-style: italic;
+}
+
+.item {
+    position: relative;
+    width: 100%;
+    border-radius: 4px;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.35);
+    margin-top: 10px;
+}
+
+.item>h5 {
+    margin-top: 5px;
+    padding-top: 7px;
+    margin-left: 20px;
+    margin-right: 142px;
+    color: white;
+    z-index: 2;
+    position: absolute;
+}
+
+.item>span {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    padding: 4px 6px;
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: sans-serif;
+    cursor: default;
+}
+
+.item>div {
+    color: white;
+    margin-left: 20px;
+    z-index: 2;
+    position: absolute;
+    margin-top: 40px;
+}
+
+.item-img-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: auto;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.item>button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.pink-background {
+    background: #ff9ff3;
+}
+
+.green-background {
+    background: #00d2d3;
+}
+
+.blue-background {
+    background: #54a0ff;
+}
+
+.remove-btn-for-item {
+    width: 35px !important;
+    height: 35px;
+    align-self: center;
+    justify-self: center;
+    border: none;
+    outline: none;
+    padding: 0px !important;
+    background-color: rgba(238, 82, 83, 1.0);
+    color: white;
+}
+
+
+/* Style for each separate column */
+
+.get-column {
+    background-color: #1dd1a1;
+    grid-template-rows: 55px 1fr;
+}
+
+.add-column {
+    background-color: #feca57;
+}
+
+.update-column {
+    background-color: #feca57;
+}
+
+.delete-column {
+    background-color: #ff6b6b;
+}
+
+.white-bg {
+    background: white;
+}
+
+
+/* For tags */
+
+.favorites-bg-color {
+    background-color: rgba(0, 210, 211, .3) !important;
+}
+
+.mention-bg-color {
+    background-color: rgba(131, 149, 167, .3) !important;
+}
+
+.not-favorites-bg-color {
+    background-color: rgba(255, 159, 67, .3) !important;
+}

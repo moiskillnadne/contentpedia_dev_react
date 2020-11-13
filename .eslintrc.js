@@ -3,6 +3,7 @@
 module.exports = {
     plugins: ['import'],
     rules: {
+        "jsx-a11y/label-has-associated-control": "off",
         'import/no-unresolved': 'error',
         'no-param-reassign': 'off',
         'default-case': 'off',
