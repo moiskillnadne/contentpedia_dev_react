@@ -4,6 +4,10 @@ export type StageActionTypes = {
   SUCCESS: string
 }
 
+type Errorable = {
+  error: string
+}
+
 export type ApiAction<Body = unknown> = {
   type: string
   url: string
@@ -17,23 +21,31 @@ export type ApiAction<Body = unknown> = {
   onSuccess?: onStatus<any>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onFail?: onStatus<any>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  query?: any
 }
 
-export type onStatus<ResponseData = unknown> = (responseData: ResponseData, response: Response) => void
+export type OnStatus<ResponseData = unknown> = (responseData: ResponseData, response: Response) => void
 
-export interface ApiEndAction<D = unknown> {
+export type ApiOnStatusAction<ResponseData = unknown> = {
   type: string
   payload: {
-    body: {
-      error?: string
-      data?: D
+    body?: {
+      data?: ResponseData
+      error?: ''
     }
-    action: ApiAction
+    action: ApiAction<ApiActionBody>
     response?: Response
+    abortController?: AbortController
   }
 }
 
 export type Settings = {
+  onRequestAbort?: () => void
+  onResposeHasError?: () => void
   refreshActionTypes: StageActionTypes
-  devHostname?: string
 }
+
+export type ResBody = UnexpectedServerErrorRes | { error: string }
+
+export type UnexpectedServerErrorRes = string

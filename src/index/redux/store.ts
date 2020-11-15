@@ -7,7 +7,6 @@ import createRootReducer from './reducers'
 
 const api = new Api({
   refreshActionTypes: REFRESH,
-  devHostname: process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : undefined,
 })
 
 const composeEnhancer =

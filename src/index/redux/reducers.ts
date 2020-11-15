@@ -1,6 +1,6 @@
 import { combineReducers, Reducer } from 'redux'
 
-import { RootState } from '@/types/reducer.d'
+import { RootState } from '@/types/state.d'
 
 function importAllReducers(): Record<keyof RootState, Reducer> {
   const r = require.context('@/store/reducers', true, /\.ts$/)
