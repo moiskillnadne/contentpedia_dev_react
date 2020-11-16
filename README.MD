@@ -15,11 +15,11 @@ I do not like lybraries for making request because there is always something you
 ### `add`
 
 ```bash
-git subtree add --prefix=src/index/redux/middlewares https://github.com/savchenko91/ts-redux-rest-api-middleware.git main
+git subtree add --prefix=src/index/redux/middlewares/api https://github.com/savchenko91/ts-redux-rest-api-middleware.git main
 ```
 
 ### `pull`
 
 ```bash
-git subtree pull --prefix=src/index/redux/middlewares https://github.com/savchenko91/ts-redux-rest-api-middleware.git main
+git subtree pull --prefix=src/index/redux/middlewares/api https://github.com/savchenko91/ts-redux-rest-api-middleware.git main
 ```
