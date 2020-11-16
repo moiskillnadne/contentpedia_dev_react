@@ -8,7 +8,7 @@ export type UserState = Requestable & {
 
 export type VideoState = Requestable & {
   VideoList: VideoModel[]
-  Video: VideoModel
+  Video: VideoModel | null
 }
 
 export type RootState = {

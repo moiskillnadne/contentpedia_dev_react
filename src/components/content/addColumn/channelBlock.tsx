@@ -8,7 +8,7 @@ const ChannelBlock = (): JSX.Element => {
         <label htmlFor="form-channel-name">
           Choose the channel
           <select className="form-control" id="form-channel-name">
-            <option value="none" selected>
+            <option value="none" defaultValue="true">
               None
             </option>
             <option value="vdud">вДудь</option>
