@@ -19,7 +19,7 @@ export type UserModel = DeepReadonly<{
 }>
 
 export type VideoModel = DeepReadonly<{
-  id: 0
+  _id: string
   channel: {
     name: string
   }
