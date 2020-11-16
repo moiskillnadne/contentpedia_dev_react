@@ -15,8 +15,8 @@ const GetColumn = (): JSX.Element => {
       <h3 className="column-title">All items</h3>
       <ol className="get-column-content">
         {videoState.VideoList.map(
-          (item): JSX.Element => (
-            <VideoItem item={item} key={item._id} />
+          (iVideo): JSX.Element => (
+            <VideoItem Video={iVideo} key={iVideo._id} />
           ),
         )}
       </ol>

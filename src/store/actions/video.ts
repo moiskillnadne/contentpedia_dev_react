@@ -1,5 +1,5 @@
 import { REST_API } from '@/index/redux/middlewares/api'
-import { ApiAction, OnStatus } from '@/index/redux/middlewares/api.d'
+import { ApiAction, OnStatus } from '@/index/redux/middlewares/api/type.d'
 
 import { GET_VIDEO_LIST, GET_VIDEO, REMOVE_VIDEO } from '@/store/constants/video'
 

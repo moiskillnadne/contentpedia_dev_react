@@ -1,19 +1,22 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { useDispatch } from 'react-redux'
 import * as videoActions from '@/store/actions/video'
+import { VideoModel } from '@/types/model'
 
-const VideoItem = (props: any): JSX.Element => {
+type VideoItemProps = { Video: VideoModel }
+
+const VideoItem: FC<VideoItemProps> = (props): JSX.Element => {
   const dsp = useDispatch()
-  const { item } = props
+  const { Video } = props
 
   return (
     <li className="item">
-      <h5>{item.video.name.substr(0, 41)}</h5>
-      <div>{item.channel.name}</div>
-      <img src={item.video.previewUrl} alt="" className="item-img-bg" />
-      <span>{item.channel.name ? item.channel.name : 'Канал не был выбран'}</span>
-      <div>{item.general.description}</div>
-      <button type="button" className="btn btn-danger btn-sm" onClick={() => onRemoveItemClick(item._id)}>
+      <h5>{Video.video.name.substr(0, 41)}</h5>
+      <div>{Video.channel.name}</div>
+      <img src={Video.video.previewUrl} alt="" className="item-img-bg" />
+      <span>{Video.channel.name ? Video.channel.name : 'Канал не был выбран'}</span>
+      <div>{Video.general.description}</div>
+      <button type="button" className="btn btn-danger btn-sm" onClick={() => onRemoveItemClick(Video._id)}>
         Delete
       </button>
     </li>
@@ -21,7 +24,7 @@ const VideoItem = (props: any): JSX.Element => {
 
   function onRemoveItemClick(id: string): void {
     dsp(
-      videoActions.remove(id, function onSuccess(res) {
+      videoActions.remove(id, function onSuccess() {
         dsp(videoActions.getList())
       }),
     )

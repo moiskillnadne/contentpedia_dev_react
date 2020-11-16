@@ -2,7 +2,7 @@ import { Action } from '@/types/common.d'
 import { VideoState } from '@/types/state.d'
 import { combine } from '@/helper/redux'
 
-import { ApiOnStatusAction } from '@/index/redux/middlewares/api.d'
+import { ApiOnStatusAction } from '@/index/redux/middlewares/api/type.d'
 import { VideoModel } from '@/types/model'
 import { GET_VIDEO_LIST, SET_VIDEO } from '../constants/video'
 
