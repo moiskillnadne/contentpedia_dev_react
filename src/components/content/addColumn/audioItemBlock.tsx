@@ -1,59 +1,117 @@
 import React from 'react'
+import { Field } from 'react-final-form'
 
 const AudioItemBlock = (): JSX.Element => {
+  const subsSettings = {
+    value: true,
+    error: true,
+    active: true,
+    touched: true,
+  }
+
+  const exampleArray = ['string1', 'string2']
   return (
     <>
       <h5 className="text-center margin-top25 type-item-title">Audio block</h5>
-      <ul className="list-group white-bg" id="list-of-audio-items" />
+      <ul className="list-group white-bg" id="list-of-audio-items">
+        {exampleArray.map((item) => (
+          <li className="list-group-item" key={item}>
+            <div className="row">
+              <span className="col">{item}</span>
+              <span className="col">{item}</span>
+              <a href={item} className="col">
+                Timecode url
+              </a>
+              <button
+                type="button"
+                className="col-1 remove-btn-for-item"
+                // onClick={() => console.log('Should remove item')}
+              >
+                X
+              </button>
+            </div>
+          </li>
+        ))}
+      </ul>
       <div className="margin-top25" />
 
       <div className="form-group">
         <label htmlFor="form-audio-content-type">Audio content type</label>
-        <input type="text" className="form-control" id="form-audio-content-type" />
+        <Field<string>
+          type="text"
+          name="form-audio-content-type"
+          className="form-control"
+          placeholder="Album"
+          component="input"
+          subscription={subsSettings}
+        />
         <small id="emailHelp" className="form-text text-muted">
           Example: Artist, Album, Podcast, Book and etc.
         </small>
       </div>
 
       <div className="form-group">
-        <label htmlFor="form-audio-content-type">Audio content title</label>
-        <input type="text" className="form-control" id="form-audio-content-title" />
+        <label htmlFor="form-audio-content-title">Audio content title</label>
+        <Field<string>
+          type="text"
+          name="form-audio-content-title"
+          className="form-control"
+          placeholder="Красность"
+          component="input"
+          subscription={subsSettings}
+        />
       </div>
 
       <div className="form-group">
         <label htmlFor="form-audio-content-timecode">Timecode url</label>
-        <input type="text" className="form-control" id="form-audio-content-timecode" />
+        <Field<string>
+          type="text"
+          name="form-audio-content-timecode"
+          className="form-control"
+          placeholder="https://youtu.be/WoSzy-4mviQ?t=2135"
+          component="input"
+          subscription={subsSettings}
+        />
       </div>
 
       <div className="form-group">
         <label htmlFor="form-audio-source">Url on source</label>
-        <input type="text" className="form-control" id="form-audio-source" />
+        <Field<string>
+          type="text"
+          name="form-audio-source"
+          className="form-control"
+          placeholder="https://music.yandex.ru/album/12327623"
+          component="input"
+          subscription={subsSettings}
+        />
       </div>
 
       <div className="form-group">
         <label htmlFor="form-audio-comments">Comments</label>
-        <input type="text" className="form-control" id="form-audio-comments" />
+        <Field<string>
+          type="text"
+          name="form-audio-comments"
+          className="form-control"
+          component="input"
+          subscription={subsSettings}
+        />
       </div>
 
-      <div className="form-check">
-        <input className="form-check-input" type="checkbox" value="favorites" id="audio-favorites" />
-        <label className="form-check-label" htmlFor="audio-favorites">
-          Favorites
-        </label>
-      </div>
-
-      <div className="form-check">
-        <input className="form-check-input" type="checkbox" value="mention" id="audio-mention" />
-        <label className="form-check-label" htmlFor="audio-mention">
-          Mention
-        </label>
-      </div>
-
-      <div className="form-check">
-        <input className="form-check-input" type="checkbox" value="notFavorites" id="audio-notFavorites" />
-        <label className="form-check-label" htmlFor="audio-notFavorites">
-          Not favorites
-        </label>
+      <div className="form-group">
+        <Field<string>
+          type="select"
+          name="form-audio-label"
+          className="form-control"
+          component="select"
+          subscription={subsSettings}
+        >
+          <option value="none" defaultValue="true">
+            Choose the label
+          </option>
+          <option value="favorites">Favorites</option>
+          <option value="mention">Mention</option>
+          <option value="notFavorites">Not favorites</option>
+        </Field>
       </div>
 
       <button type="button" className="btn btn-primary margin-top25" id="form-button-add-audio-item">

@@ -1,6 +1,6 @@
 import { Action } from '@/types/common.d'
 import { VideoState } from '@/types/state.d'
-import { combine } from '@/helper/redux'
+import { combine } from '@/index/redux/middlewares/api/helper'
 
 import { ApiOnStatusAction } from '@/index/redux/middlewares/api/type.d'
 import { VideoModel } from '@/types/model'

@@ -1,15 +1,50 @@
 import React from 'react'
+import { Field } from 'react-final-form'
 
 const TextItemBlock = (): JSX.Element => {
+  const subsSettings = {
+    value: true,
+    error: true,
+    active: true,
+    touched: true,
+  }
+
+  const exampleArray = ['string1', 'string2']
   return (
     <>
       <h5 className="text-center margin-top25 type-item-title">Text block</h5>
-      <ul className="list-group white-bg" id="list-of-text-items" />
+      <ul className="list-group white-bg">
+        {exampleArray.map((item) => (
+          <li className="list-group-item" key={item}>
+            <div className="row">
+              <span className="col">{item}</span>
+              <span className="col">{item}</span>
+              <a href={item} className="col">
+                Timecode url
+              </a>
+              <button
+                type="button"
+                className="col-1 remove-btn-for-item"
+                // onClick={() => console.log('Should remove item')}
+              >
+                X
+              </button>
+            </div>
+          </li>
+        ))}
+      </ul>
       <div className="margin-top25" />
 
       <div className="form-group">
         <label htmlFor="form-text-content-type">Text content type</label>
-        <input type="text" className="form-control" id="form-text-content-type" />
+        <Field<string>
+          type="text"
+          name="form-text-content-type"
+          className="form-control"
+          placeholder="Book"
+          component="input"
+          subscription={subsSettings}
+        />
         <small id="emailHelp" className="form-text text-muted">
           Example: Book, Magazine, Article and etc.
         </small>
@@ -17,46 +52,74 @@ const TextItemBlock = (): JSX.Element => {
 
       <div className="form-group">
         <label htmlFor="form-text-content-title">Text content title</label>
-        <input type="text" className="form-control" id="form-text-content-title" />
+        <Field<string>
+          type="text"
+          name="form-text-content-title"
+          className="form-control"
+          placeholder="Harry Potter and the Philosopher’s Stone"
+          component="input"
+          subscription={subsSettings}
+        />
       </div>
 
       <div className="form-group">
         <label htmlFor="form-text-content-timecode">Timecode url</label>
-        <input type="text" className="form-control" id="form-text-content-timecode" />
+        <Field<string>
+          type="text"
+          name="form-text-content-timecode"
+          className="form-control"
+          placeholder="https://youtu.be/WoSzy-4mviQ?t=2135"
+          component="input"
+          subscription={subsSettings}
+        />
       </div>
 
       <div className="form-group">
         <label htmlFor="form-text-source">Url on source</label>
-        <input type="text" className="form-control" id="form-text-source" />
+        <Field<string>
+          type="text"
+          name="form-text-source"
+          className="form-control"
+          placeholder="https://www.bookvoed.ru/book?id=6155724&gclid=Cj0KCQiAhs79BRD0ARIsAC6XpaW06_Fe8M0VHPsb2-ulc3aIyKpU68X_W8P54qKcqFhbqhinEGBDVKAaAsvpEALw_wcB"
+          component="input"
+          subscription={subsSettings}
+        />
       </div>
 
       <div className="form-group">
         <label htmlFor="form-text-comments">Comments</label>
-        <input type="text" className="form-control" id="form-text-comments" />
+        <Field<string>
+          type="text"
+          name="form-text-comments"
+          className="form-control"
+          component="input"
+          subscription={subsSettings}
+        />
       </div>
 
-      <div className="form-check">
-        <input className="form-check-input" type="checkbox" value="favorites" id="text-favorites" />
-        <label className="form-check-label" htmlFor="text-favorites">
-          Favorites
-        </label>
+      <div className="form-group">
+        <Field<string>
+          type="select"
+          name="form-text-label"
+          className="form-control"
+          placeholder="Book"
+          component="select"
+          subscription={subsSettings}
+        >
+          <option value="none" defaultValue="true">
+            Choose the label
+          </option>
+          <option value="favorites">Favorites</option>
+          <option value="mention">Mention</option>
+          <option value="notFavorites">Not favorites</option>
+        </Field>
       </div>
 
-      <div className="form-check">
-        <input className="form-check-input" type="checkbox" value="mention" id="text-mention" />
-        <label className="form-check-label" htmlFor="text-mention">
-          Mention
-        </label>
-      </div>
-
-      <div className="form-check">
-        <input className="form-check-input" type="checkbox" value="notFavorites" id="text-notFavorites" />
-        <label className="form-check-label" htmlFor="text-notFavorites">
-          Not favorites
-        </label>
-      </div>
-
-      <button type="button" className="btn btn-primary margin-top25" id="form-button-add-text-item">
+      <button
+        type="button"
+        className="btn btn-primary margin-top25"
+        // onClick={() => console.log('Should add in list')}
+      >
         Add text item
       </button>
     </>
