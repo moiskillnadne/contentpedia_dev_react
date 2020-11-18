@@ -33,9 +33,9 @@ export type VideoModel = DeepReadonly<{
     age: number
     profession: string
     recommendation: {
-      videoContent: Content
-      audioContent: Content
-      textContent: Content
+      videoContent: Content[] | []
+      audioContent: Content[] | []
+      textContent: Content[] | []
     }
   }
   general: {
@@ -44,11 +44,12 @@ export type VideoModel = DeepReadonly<{
   timestamp: string
 }>
 
-type Content = {
+export type Content = DeepReadonly<{
+  id: string
   type: string
   name: string
   timecode: string
-  url: string
-  comment: string
+  url?: string
+  comment?: string
   tags: string[]
-}
+}>

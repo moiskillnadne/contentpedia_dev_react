@@ -1,21 +1,19 @@
 import React from 'react'
 import { Form, Field } from 'react-final-form'
 
-import ChannelBlock from '@/components/content/addColumn/channelBlock'
-import GuestBlock from '@/components/content/addColumn/guestBlock'
-import VideoItemBlock from '@/components/content/addColumn/videoItemBlock'
-import AudioItemBlock from '@/components/content/addColumn/audioItemBlock'
-import TextItemBlock from '@/components/content/addColumn/textItemBlock'
+import ChannelBlock from '@/components/content/add/channelBlock'
+import GuestBlock from '@/components/content/add/guestBlock'
+import VideoItemBlock from '@/components/content/add/videoItemBlock'
+import AudioItemBlock from '@/components/content/add/audioItemBlock'
+import TextItemBlock from '@/components/content/add/textItemBlock'
+import { SubscriptionSettigns } from '@/types/common'
 
 const AddColumn = (): JSX.Element => {
-  const subsSettings = {
+  const subsSettings: SubscriptionSettigns = {
     value: true,
     error: true,
     active: true,
     touched: true,
-  }
-  function onSubmitForm(e: any): void {
-    console.log(e)
   }
 
   return (
@@ -29,11 +27,11 @@ const AddColumn = (): JSX.Element => {
           }}
           render={({ handleSubmit }) => (
             <form id="add-item-form" onSubmit={handleSubmit}>
-              <ChannelBlock />
-              <GuestBlock />
-              <VideoItemBlock />
-              <AudioItemBlock />
-              <TextItemBlock />
+              <ChannelBlock subs={subsSettings} />
+              <GuestBlock subs={subsSettings} />
+              <VideoItemBlock subs={subsSettings} />
+              <AudioItemBlock subs={subsSettings} />
+              <TextItemBlock subs={subsSettings} />
 
               <h5 className="text-center margin-top25 type-item-title">General</h5>
               <div className="form-group">
@@ -66,6 +64,9 @@ const AddColumn = (): JSX.Element => {
       </div>
     </div>
   )
+  function onSubmitForm(e: any): void {
+    console.log(e)
+  }
 }
 
 export default AddColumn

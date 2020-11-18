@@ -1,7 +1,7 @@
 import { REST_API } from '@/index/redux/middlewares/api'
 import { ApiAction, OnStatus } from '@/index/redux/middlewares/api/type.d'
 
-import { GET_VIDEO_LIST, GET_VIDEO, REMOVE_VIDEO } from '@/store/constants/video'
+import { GET_VIDEO_LIST, GET_VIDEO, REMOVE_VIDEO, ADD_VIDEO } from '@/store/constants/video'
 
 const url = '/api/db'
 
@@ -17,6 +17,13 @@ export const getList = (): ApiAction => ({
   stageActionTypes: GET_VIDEO_LIST,
   url,
   method: 'get',
+})
+
+export const add = (): ApiAction => ({
+  type: REST_API,
+  stageActionTypes: ADD_VIDEO,
+  url: `${url}`,
+  method: 'post',
 })
 
 export const remove = (id: string, onSuccess: OnStatus): ApiAction => ({

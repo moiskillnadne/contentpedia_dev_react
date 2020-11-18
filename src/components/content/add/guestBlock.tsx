@@ -1,13 +1,14 @@
-import React from 'react'
+import { SubscriptionSettigns } from '@/types/common'
+import React, { FC } from 'react'
 import { Field } from 'react-final-form'
 
-const GuestBlock = (): JSX.Element => {
-  const subsSettings = {
-    value: true,
-    error: true,
-    active: true,
-    touched: true,
-  }
+type GuestBlockProps = {
+  subs: SubscriptionSettigns
+}
+
+const GuestBlock: FC<GuestBlockProps> = (props): JSX.Element => {
+  const { subs } = props
+
   return (
     <>
       <h5 className="text-center margin-top25 type-item-title">Guest block</h5>
@@ -19,7 +20,7 @@ const GuestBlock = (): JSX.Element => {
           className="form-control"
           placeholder="Example: Victor Ryabkov"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
 
@@ -31,7 +32,7 @@ const GuestBlock = (): JSX.Element => {
           className="form-control"
           placeholder="Example: 20"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
 
@@ -43,7 +44,7 @@ const GuestBlock = (): JSX.Element => {
           className="form-control"
           placeholder="Example: Developer"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
     </>

@@ -1,36 +1,28 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Field } from 'react-final-form'
+import { SubscriptionSettigns } from '@/types/common'
 
-const VideoItemBlock = (): JSX.Element => {
-  const subsSettings = {
-    value: true,
-    error: true,
-    active: true,
-    touched: true,
-  }
+import { Content } from '@/types/model'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '@/types/state'
 
-  const exampleArray = ['string1', 'string2']
+import VideoItem from './smallItem'
+
+type VideoItemBlockProps = {
+  subs: SubscriptionSettigns
+}
+
+const VideoItemBlock: FC<VideoItemBlockProps> = (props): JSX.Element => {
+  const { subs } = props
+  const videoState = useSelector((s: RootState) => s.contentState.videoContent)
+  const dsp = useDispatch()
+
   return (
     <>
       <h5 className="text-center margin-top25 type-item-title">Video block</h5>
       <ul className="list-group white-bg">
-        {exampleArray.map((item) => (
-          <li className="list-group-item" key={item}>
-            <div className="row">
-              <span className="col">{item}</span>
-              <span className="col">{item}</span>
-              <a href={item} className="col">
-                Timecode url
-              </a>
-              <button
-                type="button"
-                className="col-1 remove-btn-for-item"
-                // onClick={() => console.log('Should remove item')}
-              >
-                X
-              </button>
-            </div>
-          </li>
+        {videoState.map((item) => (
+          <VideoItem item={item} key={item.id} />
         ))}
       </ul>
       <div className="margin-top25" />
@@ -43,7 +35,7 @@ const VideoItemBlock = (): JSX.Element => {
           className="form-control"
           placeholder="Film"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
         <small id="emailHelp" className="form-text text-muted">
           Example: Film, Video, Clip, Tv-show and etc.
@@ -58,7 +50,7 @@ const VideoItemBlock = (): JSX.Element => {
           className="form-control"
           placeholder="Green Mile"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
 
@@ -70,7 +62,7 @@ const VideoItemBlock = (): JSX.Element => {
           className="form-control"
           placeholder="https://youtu.be/WoSzy-4mviQ?t=2135"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
 
@@ -82,7 +74,7 @@ const VideoItemBlock = (): JSX.Element => {
           className="form-control"
           placeholder="https://www.amazon.com/Green-Mile-Tom-Hanks/dp/B001EBWIPY"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
 
@@ -93,7 +85,7 @@ const VideoItemBlock = (): JSX.Element => {
           name="form-video-comments"
           className="form-control"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
 
@@ -103,7 +95,7 @@ const VideoItemBlock = (): JSX.Element => {
           name="form-video-label"
           className="form-control"
           component="select"
-          subscription={subsSettings}
+          subscription={subs}
         >
           <option value="none" defaultValue="true">
             Choose the label
@@ -114,15 +106,15 @@ const VideoItemBlock = (): JSX.Element => {
         </Field>
       </div>
 
-      <button
-        type="button"
-        className="btn btn-primary margin-top25"
-        // onClick={}
-      >
+      <button type="button" className="btn btn-primary margin-top25" onClick={addItemToList}>
         Add video item
       </button>
     </>
   )
+
+  function addItemToList(e: any) {
+    // dsp()
+  }
 }
 
 export default VideoItemBlock

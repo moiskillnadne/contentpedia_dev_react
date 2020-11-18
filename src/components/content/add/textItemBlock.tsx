@@ -1,13 +1,13 @@
-import React from 'react'
+import { SubscriptionSettigns } from '@/types/common'
+import React, { FC } from 'react'
 import { Field } from 'react-final-form'
 
-const TextItemBlock = (): JSX.Element => {
-  const subsSettings = {
-    value: true,
-    error: true,
-    active: true,
-    touched: true,
-  }
+type TextItemBlockProps = {
+  subs: SubscriptionSettigns
+}
+
+const TextItemBlock: FC<TextItemBlockProps> = (props): JSX.Element => {
+  const { subs } = props
 
   const exampleArray = ['string1', 'string2']
   return (
@@ -43,7 +43,7 @@ const TextItemBlock = (): JSX.Element => {
           className="form-control"
           placeholder="Book"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
         <small id="emailHelp" className="form-text text-muted">
           Example: Book, Magazine, Article and etc.
@@ -58,7 +58,7 @@ const TextItemBlock = (): JSX.Element => {
           className="form-control"
           placeholder="Harry Potter and the Philosopher’s Stone"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
 
@@ -70,7 +70,7 @@ const TextItemBlock = (): JSX.Element => {
           className="form-control"
           placeholder="https://youtu.be/WoSzy-4mviQ?t=2135"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
 
@@ -82,7 +82,7 @@ const TextItemBlock = (): JSX.Element => {
           className="form-control"
           placeholder="https://www.bookvoed.ru/book?id=6155724&gclid=Cj0KCQiAhs79BRD0ARIsAC6XpaW06_Fe8M0VHPsb2-ulc3aIyKpU68X_W8P54qKcqFhbqhinEGBDVKAaAsvpEALw_wcB"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
 
@@ -93,7 +93,7 @@ const TextItemBlock = (): JSX.Element => {
           name="form-text-comments"
           className="form-control"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
 
@@ -104,7 +104,7 @@ const TextItemBlock = (): JSX.Element => {
           className="form-control"
           placeholder="Book"
           component="select"
-          subscription={subsSettings}
+          subscription={subs}
         >
           <option value="none" defaultValue="true">
             Choose the label

@@ -1,13 +1,13 @@
-import React from 'react'
+import { SubscriptionSettigns } from '@/types/common'
+import React, { FC } from 'react'
 import { Field } from 'react-final-form'
 
-const AudioItemBlock = (): JSX.Element => {
-  const subsSettings = {
-    value: true,
-    error: true,
-    active: true,
-    touched: true,
-  }
+type AudioItemBlockProps = {
+  subs: SubscriptionSettigns
+}
+
+const AudioItemBlock: FC<AudioItemBlockProps> = (props): JSX.Element => {
+  const { subs } = props
 
   const exampleArray = ['string1', 'string2']
   return (
@@ -43,7 +43,7 @@ const AudioItemBlock = (): JSX.Element => {
           className="form-control"
           placeholder="Album"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
         <small id="emailHelp" className="form-text text-muted">
           Example: Artist, Album, Podcast, Book and etc.
@@ -58,7 +58,7 @@ const AudioItemBlock = (): JSX.Element => {
           className="form-control"
           placeholder="Красность"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
 
@@ -70,7 +70,7 @@ const AudioItemBlock = (): JSX.Element => {
           className="form-control"
           placeholder="https://youtu.be/WoSzy-4mviQ?t=2135"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
 
@@ -82,7 +82,7 @@ const AudioItemBlock = (): JSX.Element => {
           className="form-control"
           placeholder="https://music.yandex.ru/album/12327623"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
 
@@ -93,7 +93,7 @@ const AudioItemBlock = (): JSX.Element => {
           name="form-audio-comments"
           className="form-control"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
 
@@ -103,7 +103,7 @@ const AudioItemBlock = (): JSX.Element => {
           name="form-audio-label"
           className="form-control"
           component="select"
-          subscription={subsSettings}
+          subscription={subs}
         >
           <option value="none" defaultValue="true">
             Choose the label

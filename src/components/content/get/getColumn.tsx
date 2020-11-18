@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { RootState, VideoState } from '@/types/state'
 
 import * as videoActions from '@/store/actions/video'
-import VideoItem from './content.getColumn.item'
+import VideoItem from './getColumn.item'
 
 const GetColumn = (): JSX.Element => {
   const videoState = useSelector((s: RootState): VideoState => s.videoState)

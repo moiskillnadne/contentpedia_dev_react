@@ -1,19 +1,19 @@
-import React from 'react'
+import { SubscriptionSettigns } from '@/types/common'
+import React, { FC } from 'react'
 import { Field } from 'react-final-form'
 
-const ChannelBlock = (): JSX.Element => {
-  const subsSettings = {
-    value: true,
-    error: true,
-    active: true,
-    touched: true,
-  }
+type ChannelBlockProps = {
+  subs: SubscriptionSettigns
+}
+
+const ChannelBlock: FC<ChannelBlockProps> = (props): JSX.Element => {
+  const { subs } = props
 
   return (
     <>
       <h5 className="text-center margin-top25 type-item-title">Channel block</h5>
       <div className="form-group">
-        <Field<string> name="form-channel-name" component="select" className="form-control" subscription={subsSettings}>
+        <Field<string> name="form-channel-name" component="select" className="form-control" subscription={subs}>
           <option value="none" defaultValue="true">
             Choose the channel
           </option>
@@ -31,7 +31,7 @@ const ChannelBlock = (): JSX.Element => {
           className="form-control"
           placeholder="Insert link on the video"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
 
@@ -43,7 +43,7 @@ const ChannelBlock = (): JSX.Element => {
           className="form-control"
           placeholder="Insert title of the video"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
 
@@ -55,7 +55,7 @@ const ChannelBlock = (): JSX.Element => {
           className="form-control"
           placeholder="Insert link on the video preview"
           component="input"
-          subscription={subsSettings}
+          subscription={subs}
         />
       </div>
     </>

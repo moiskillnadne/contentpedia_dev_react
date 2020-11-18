@@ -1,0 +1,36 @@
+import { Action } from '@/types/common.d'
+import { combine } from '@/index/redux/middlewares/api/helper'
+import { Content } from '@/types/model'
+import {
+  ADD_VIDEO_CONTENT,
+  REMOVE_VIDEO_CONTENT,
+  ADD_AUDIO_CONTENT,
+  REMOVE_AUDIO_CONTENT,
+  ADD_TEXT_CONTENT,
+  REMOVE_TEXT_CONTENT,
+} from '@/store/constants/content'
+import { ContentState } from '@/types/state'
+
+const initialState: ContentState = {
+  videoContent: [],
+  audioContent: [],
+  textContent: [],
+}
+
+function addContent(state: ContentState, { type, payload }: Action<Content>): ContentState | void {
+  switch (type) {
+    case ADD_VIDEO_CONTENT:
+      state.videoContent.push(payload)
+      return state
+  }
+}
+
+function removeContent(state: ContentState, { type, payload }: Action): ContentState | void {
+  switch (type) {
+    case REMOVE_VIDEO_CONTENT:
+      state.videoContent = state.videoContent.filter((item) => item.id !== payload.id)
+      return state
+  }
+}
+
+export default combine(initialState, addContent, removeContent)
