@@ -1,7 +1,7 @@
 import React from 'react'
 
 import GetColumn from '@/components/content/get/getColumn'
-import AddColumn from '@/components/content/add'
+import AddColumn from '@/components/content/add/_addColumn'
 import UpdateColumn from '@/components/content/update/updateColumn'
 import DeleteColumn from '@/components/content/remove/deleteColumn'
 
