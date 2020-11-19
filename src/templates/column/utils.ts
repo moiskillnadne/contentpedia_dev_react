@@ -1,13 +1,13 @@
 export const makeColumnStyle = (type: string): string | void => {
   switch (type) {
     case 'get':
-      return 'get-column'
+      return 'column-get'
     case 'add':
-      return 'add-column'
+      return 'column-add'
     case 'update':
-      return 'update-column'
+      return 'column-update'
     case 'remove':
-      return 'remove-column'
+      return 'column-remove'
   }
 }
 

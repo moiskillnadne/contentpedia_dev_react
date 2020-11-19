@@ -1,0 +1,90 @@
+// Variables
+
+@pink: rgba(255, 159, 243, 1);
+@green: rgba(0, 210, 211, 1);
+@undefinedChannel: rgba(84, 160, 255, 1);
+
+
+// Usage
+
+.item {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+  height: 150px;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.35);
+  margin-top: 10px;
+
+  h5 {
+    margin-top: 5px;
+    padding-top: 7px;
+    margin-left: 20px;
+    margin-right: 142px;
+    color: white;
+    z-index: 2;
+    position: absolute;
+  }
+
+  span {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    padding: 4px 6px;
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: sans-serif;
+    cursor: default;
+  }
+
+  div {
+    color: white;
+    margin-left: 20px;
+    z-index: 2;
+    position: absolute;
+    top: 30%;
+  }
+
+  button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+
+  &-img-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: auto;
+    opacity: 0.25;
+    z-index: 1;
+    filter: blur(0.5px);
+  }
+}
+
+// Channel labels
+.vdud-background {
+  background: #ff9ff3;
+}
+
+.kuji-background {
+  background: #00d2d3;
+}
+
+.undefined-background {
+  background: #54a0ff;
+}
+
+
+@media screen and (max-width: 1250px) {
+
+  .item {
+
+    div {
+      display: none;
+    }
+  }
+}

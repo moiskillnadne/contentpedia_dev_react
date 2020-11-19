@@ -1,7 +1,9 @@
 import React from 'react'
 
+import './style.less'
+
 import Header from '@/templates/header/header'
-import Column from '@/templates/column/column'
+import Column from '@/templates/column/_column'
 
 const Main = (): JSX.Element => {
   return (

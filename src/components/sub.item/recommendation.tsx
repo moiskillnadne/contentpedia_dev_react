@@ -13,7 +13,7 @@ const smallItem: FC<SmallItemProps> = (props): JSX.Element => {
       <div className="row">
         <span className="col">{item}</span>
         <span className="col">{item}</span>
-        <a href={item.url} className="col">
+        <a href={item.url} className="col" target="_blank" rel="noreferrer">
           Timecode url
         </a>
         <button type="button" className="col-1 remove-btn-for-item" onClick={removeSelfItem}>

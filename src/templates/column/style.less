@@ -1,4 +1,46 @@
-.test {
-  color: red;
-  font-size: 24px;
+// Variables
+@green: rgba(29, 209, 161, 1);
+@yellow: rgba(254, 202, 87, 1);
+@red: rgba(255, 107, 107, 1);
+
+
+
+// Usage
+
+.column {
+  display: grid;
+  min-height: 300px;
+
+  h3 {
+    justify-self: center;
+  }
+
+  &-title {
+    font-family: 'AlegreyaSansSC';
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  &-get {
+    background-color: @green;
+    grid-template-rows: 55px 1fr;
+  }
+
+  &-add {
+    background-color: @yellow;
+  }
+
+  &-update {
+    background-color: @yellow;
+  }
+
+  &-remove {
+    background-color: @red;
+  }
+}
+
+.get-column-content {
+  list-style: none;
+  padding-left: 10px;
+  padding-right: 10px;
 }

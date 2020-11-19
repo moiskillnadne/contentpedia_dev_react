@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 
 // Components
-import GetColumn from '@/components/get/getColumn'
-import AddColumn from '@/components/add/_addColumn'
-import UpdateColumn from '@/components/update/updateColumn'
-import RemoveColumn from '@/components/remove/deleteColumn'
+import GetColumn from './content/get'
+import AddColumn from './content/add'
+import UpdateColumn from './content/update'
+import RemoveColumn from './content/remove'
 
 import * as utils from './utils'
 import './style.less'
