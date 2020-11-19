@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 import { Field } from 'react-final-form'
 import { SubscriptionSettigns } from '@/types/common'
 
-import { Content } from '@/types/model'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/types/state'
 
@@ -15,7 +14,7 @@ type VideoItemBlockProps = {
 const VideoItemBlock: FC<VideoItemBlockProps> = (props): JSX.Element => {
   const { subs } = props
   const videoState = useSelector((s: RootState) => s.contentState.videoContent)
-  const dsp = useDispatch()
+  // const dsp = useDispatch()
 
   return (
     <>

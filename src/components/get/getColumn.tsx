@@ -11,16 +11,13 @@ const GetColumn = (): JSX.Element => {
   useEffect(() => getVideo(), [])
 
   return (
-    <div className="column get-column">
-      <h3 className="column-title">All items</h3>
-      <ol className="get-column-content">
-        {videoState.VideoList.map(
-          (iVideo): JSX.Element => (
-            <VideoItem Video={iVideo} key={iVideo._id} />
-          ),
-        )}
-      </ol>
-    </div>
+    <ol className="get-column-content">
+      {videoState.VideoList.map(
+        (iVideo): JSX.Element => (
+          <VideoItem Video={iVideo} key={iVideo._id} />
+        ),
+      )}
+    </ol>
   )
 
   function getVideo() {

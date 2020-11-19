@@ -1,13 +1,12 @@
 import React from 'react'
 
-import Header from '@/components/header/header'
-import Content from '@/components/content/_content'
+// Pages
+import Main from '@/pages/main/_main'
 
 function App(): JSX.Element {
   return (
     <>
-      <Header />
-      <Content />
+      <Main />
     </>
   )
 }
