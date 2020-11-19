@@ -1,8 +1,9 @@
 import React, { FC } from 'react'
-import { Field } from 'react-final-form'
+import { Field, FormSpy } from 'react-final-form'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/types/state'
+import * as ContentActions from '@/store/actions/content'
 
 // Components
 import Input from './input'
@@ -27,7 +28,7 @@ const Recommendation: FC<RecommendationProps> = (props): JSX.Element => {
         return s.contentState.textContent
     }
   })
-  // const dsp = useDispatch()
+  const dsp = useDispatch()
 
   return (
     <>
@@ -82,14 +83,29 @@ const Recommendation: FC<RecommendationProps> = (props): JSX.Element => {
         </Field>
       </div>
 
-      <button type="button" className="btn btn-primary margin-top25" onClick={addItemToList}>
-        {`Add ${type} item`}
-      </button>
+      <FormSpy subscription={{ values: true }}>
+        {({ values }) => (
+          <button type="button" className="btn btn-primary margin-top25" onClick={() => addItemToList(values)}>
+            {`Add ${type} item`}
+          </button>
+        )}
+      </FormSpy>
     </>
   )
 
-  function addItemToList(e: any) {
-    // dsp()
+  function addItemToList(values: any): void {
+    // const ContentState = utils.validateValues(type, values)
+    console.log(ContentState)
+    switch (type) {
+      case 'video':
+        // dsp(ContentActions.addVideo())
+        break
+      case 'audio':
+        // dsp(ContentActions.addAudio())
+        break
+      case 'text':
+      // dsp(ContentActions.addText())
+    }
   }
 }
 

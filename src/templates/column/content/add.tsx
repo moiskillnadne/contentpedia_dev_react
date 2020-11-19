@@ -4,7 +4,6 @@ import { Form, Field } from 'react-final-form'
 import ChannelBlock from '@/components/form/channel'
 import GuestBlock from '@/components/form/guest'
 import Recommendation from '@/components/form/recommendation'
-import TextBlock from '@/components/form/text'
 
 const AddColumn = (): JSX.Element => {
   return (
@@ -13,7 +12,7 @@ const AddColumn = (): JSX.Element => {
       subscription={{
         submitting: true,
       }}
-      render={({ handleSubmit }) => (
+      render={({ handleSubmit, submitting }) => (
         <form id="add-item-form" onSubmit={handleSubmit}>
           <ChannelBlock />
           <GuestBlock />
@@ -34,7 +33,7 @@ const AddColumn = (): JSX.Element => {
           <div className="margin-top25" />
           <button
             type="submit"
-            // disabled={submitting}
+            disabled={submitting}
             className="btn btn-primary btn-lg btn-block"
             id="add-item-to-database-button"
           >
