@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, Field } from 'react-final-form'
 
+// Components
 import ChannelBlock from '@/components/form/channel'
 import GuestBlock from '@/components/form/guest'
 import Recommendation from '@/components/form/recommendation'
@@ -44,8 +45,8 @@ const AddColumn = (): JSX.Element => {
       )}
     />
   )
-  function onSubmitForm(e: any): void {
-    console.log(e)
+  function onSubmitForm(e: unknown): void {
+    // console.log(e)
   }
 }
 

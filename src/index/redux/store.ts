@@ -1,16 +1,23 @@
-import { applyMiddleware, compose, createStore } from 'redux'
+import { applyMiddleware, compose, createStore, Store } from 'redux'
 
-import { REFRESH } from '@/store/constants/auth'
+import { RootState } from '@/types/state'
 
-import { Api } from '@/index/redux/middlewares/api'
+import { Api } from './middlewares/api'
+
 import createRootReducer from './reducers'
 
-const api = new Api({
-  refreshActionTypes: REFRESH,
-})
+const api = new Api()
+
+const isDevelopment = process.env.NODE_ENV === 'development'
 
 const composeEnhancer =
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (process.env.NODE_ENV === 'development' && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
+  (isDevelopment && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
 
-export default createStore(createRootReducer(), undefined, composeEnhancer(applyMiddleware(api.middleware())))
+function configureStore(preloadedState?: RootState): Store {
+  const store = createStore(createRootReducer(), preloadedState, composeEnhancer(applyMiddleware(api.middleware())))
+
+  return store
+}
+
+export default configureStore()

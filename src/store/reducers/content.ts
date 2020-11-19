@@ -21,15 +21,27 @@ function addContent(state: ContentState, { type, payload }: Action<Content>): Co
   switch (type) {
     case ADD_VIDEO_CONTENT:
       state.videoContent.push(payload)
-      return state
+      return { ...state }
+    case ADD_AUDIO_CONTENT:
+      state.audioContent.push(payload)
+      return { ...state }
+    case ADD_TEXT_CONTENT:
+      state.textContent.push(payload)
+      return { ...state }
   }
 }
 
 function removeContent(state: ContentState, { type, payload }: Action): ContentState | void {
   switch (type) {
     case REMOVE_VIDEO_CONTENT:
-      state.videoContent = state.videoContent.filter((item) => item.id !== payload.id)
-      return state
+      state.videoContent = state.videoContent.filter((item) => item.id === payload.id)
+      return { ...state }
+    case REMOVE_AUDIO_CONTENT:
+      state.audioContent = state.audioContent.filter((item) => item.id === payload.id)
+      return { ...state }
+    case REMOVE_TEXT_CONTENT:
+      state.textContent = state.textContent.filter((item) => item.id === payload.id)
+      return { ...state }
   }
 }
 

@@ -1,3 +1,4 @@
+import { Action } from '@/types/common.d'
 import {
   ADD_VIDEO_CONTENT,
   REMOVE_VIDEO_CONTENT,
@@ -11,29 +12,29 @@ import { Content } from 'types/model'
 
 // Поменять ТИП И ДЕЙСТВИЕ ТИПА местами
 
-export const addVideo = (content: Content) => ({
+export const addVideo = (content: Content): Action => ({
   type: ADD_VIDEO_CONTENT,
   payload: content,
 })
-export const removeVideo = (id: string) => ({
+export const removeVideo = (id: string): Action => ({
   type: REMOVE_VIDEO_CONTENT,
   payload: id,
 })
 
-export const addAudio = (content: Content) => ({
+export const addAudio = (content: Content): Action => ({
   type: ADD_AUDIO_CONTENT,
   payload: content,
 })
-export const removeAudio = (id: string) => ({
+export const removeAudio = (id: string): Action => ({
   type: REMOVE_AUDIO_CONTENT,
   payload: id,
 })
 
-export const addText = (content: Content) => ({
+export const addText = (content: Content): Action => ({
   type: ADD_TEXT_CONTENT,
   payload: content,
 })
-export const removeText = (id: string) => ({
+export const removeText = (id: string): Action => ({
   type: REMOVE_TEXT_CONTENT,
   payload: id,
 })

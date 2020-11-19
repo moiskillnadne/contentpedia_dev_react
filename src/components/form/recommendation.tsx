@@ -1,13 +1,15 @@
 import React, { FC } from 'react'
 import { Field, FormSpy } from 'react-final-form'
+import { v4 as uuidv4 } from 'uuid'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/types/state'
+import { Content } from '@/types/model'
 import * as ContentActions from '@/store/actions/content'
 
 // Components
-import Input from './input'
-import SubItem from '../sub.item/recommendation'
+import Input from '@/components/form/input'
+import SubItem from '@/components/sub.item/content'
 
 import * as utils from './utils'
 
@@ -17,59 +19,51 @@ type RecommendationProps = {
 
 const Recommendation: FC<RecommendationProps> = (props): JSX.Element => {
   const { type } = props
-
-  const state = useSelector((s: RootState) => {
-    switch (type) {
-      case 'video':
-        return s.contentState.videoContent
-      case 'audio':
-        return s.contentState.audioContent
-      case 'text':
-        return s.contentState.textContent
-    }
-  })
   const dsp = useDispatch()
+
+  const contentState = useSelector((s: RootState) => s.contentState)
+  const state = contentState[`${type}Content` as 'videoContent']
 
   return (
     <>
       <h5 className="text-center margin-top25 type-item-title">{utils.makeRecommendationTitle(type)}</h5>
       <ul className="list-group white-bg">
         {state.map((item) => (
-          <SubItem item={item} key={item.id} />
+          <SubItem item={item} key={item.id} type={type} />
         ))}
       </ul>
       <div className="margin-top25" />
 
       <Input
         type="text"
-        name={`${type}-content-type`}
+        name={`${type}.type`}
         placeholder="Film"
         label={`${type} content type`}
         small="Example: Film, Video, Clip, Tv-show and etc."
       />
 
-      <Input type="text" name={`${type}-content-title`} placeholder="Green Mile" label={`${type} content title`} />
+      <Input type="text" name={`${type}.title`} placeholder="Green Mile" label={`${type} content title`} />
 
       <Input
         type="text"
-        name={`${type}-timecode`}
+        name={`${type}.timecode`}
         placeholder="https://youtu.be/WoSzy-4mviQ?t=2135"
         label="Timecode url"
       />
 
       <Input
         type="text"
-        name={`${type}-source`}
+        name={`${type}.source`}
         placeholder="https://www.amazon.com/Green-Mile-Tom-Hanks/dp/B001EBWIPY"
         label="Url on source"
       />
 
-      <Input type="text" name={`${type}-comments`} label="Comments" />
+      <Input type="text" name={`${type}.comments`} label="Comments" />
 
       <div className="form-group">
         <Field<string>
           type="select"
-          name={`${type}-label`}
+          name={`${type}.label`}
           className="form-control"
           component="select"
           subscription={utils.defaultSubs}
@@ -85,7 +79,11 @@ const Recommendation: FC<RecommendationProps> = (props): JSX.Element => {
 
       <FormSpy subscription={{ values: true }}>
         {({ values }) => (
-          <button type="button" className="btn btn-primary margin-top25" onClick={() => addItemToList(values)}>
+          <button
+            type="button"
+            className="btn btn-primary margin-top25"
+            onClick={() => addItemToList({ ...values[type], id: uuidv4() })}
+          >
             {`Add ${type} item`}
           </button>
         )}
@@ -93,18 +91,17 @@ const Recommendation: FC<RecommendationProps> = (props): JSX.Element => {
     </>
   )
 
-  function addItemToList(values: any): void {
-    // const ContentState = utils.validateValues(type, values)
-    console.log(ContentState)
+  function addItemToList(values: Content): void {
     switch (type) {
       case 'video':
-        // dsp(ContentActions.addVideo())
+        dsp(ContentActions.addVideo(values))
         break
       case 'audio':
-        // dsp(ContentActions.addAudio())
+        dsp(ContentActions.addAudio(values))
         break
       case 'text':
-      // dsp(ContentActions.addText())
+        dsp(ContentActions.addText(values))
+        break
     }
   }
 }
