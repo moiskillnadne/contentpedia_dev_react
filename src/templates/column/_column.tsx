@@ -1,3 +1,4 @@
+// Dependencies
 import React, { FC } from 'react'
 
 // Components
@@ -6,6 +7,7 @@ import AddColumn from './content/add'
 import UpdateColumn from './content/update'
 import RemoveColumn from './content/remove'
 
+// Shared
 import * as utils from './utils'
 import './style.less'
 

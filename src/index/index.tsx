@@ -1,3 +1,4 @@
+// Dependencies
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
@@ -5,6 +6,7 @@ import store from '@/index/redux/store'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
+// Shared
 import 'bootstrap/dist/css/bootstrap.css'
 import '@/index/fonts.css'
 import '@/index/style.css'

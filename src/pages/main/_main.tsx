@@ -1,9 +1,12 @@
+// Dependencies
 import React from 'react'
 
-import './style.less'
-
+// Components
 import Header from '@/templates/header/header'
 import Column from '@/templates/column/_column'
+
+// Shared
+import './style.less'
 
 const Main = (): JSX.Element => {
   return (

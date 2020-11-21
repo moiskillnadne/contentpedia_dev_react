@@ -1,7 +1,10 @@
+// Dependencies
 import React, { FC } from 'react'
 import { Content } from '@/types/model'
 import { useDispatch } from 'react-redux'
 import * as ContentActions from '@/store/actions/content'
+
+// Shared
 import '@/components/sub.item/style.less'
 
 type SmallItemProps = {

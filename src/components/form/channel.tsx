@@ -1,10 +1,12 @@
+// Dependencies
 import React from 'react'
 import { Field } from 'react-final-form'
 
-import * as utils from './utils'
-
 // Components
 import Input from './input'
+
+// Shared
+import * as utils from './utils'
 
 const ChannelBlock = (): JSX.Element => {
   return (

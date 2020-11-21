@@ -1,8 +1,10 @@
+// Dependencies
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState, VideoState } from '@/types/state'
-
 import * as videoActions from '@/store/actions/video'
+
+// Components
 import VideoItem from '@/components/item/video'
 
 const GetColumn = (): JSX.Element => {

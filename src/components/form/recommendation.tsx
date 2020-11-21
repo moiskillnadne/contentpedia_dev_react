@@ -1,3 +1,4 @@
+// Dependencies
 import React, { FC } from 'react'
 import { Field, FormSpy } from 'react-final-form'
 import { v4 as uuidv4 } from 'uuid'
@@ -11,6 +12,7 @@ import * as ContentActions from '@/store/actions/content'
 import Input from '@/components/form/input'
 import SubItem from '@/components/sub.item/content'
 
+// Shared
 import * as utils from './utils'
 
 type RecommendationProps = {

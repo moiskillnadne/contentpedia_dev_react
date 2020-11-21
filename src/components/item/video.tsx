@@ -1,8 +1,10 @@
+// Dependencies
 import React, { FC } from 'react'
 import { useDispatch } from 'react-redux'
 import * as videoActions from '@/store/actions/video'
 import { VideoModel } from '@/types/model'
 
+// Shared
 import './style.less'
 import * as utils from './utils'
 
