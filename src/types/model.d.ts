@@ -30,8 +30,8 @@ export type VideoModel = DeepReadonly<{
   }
   guest: {
     name: string
-    age: number
-    profession: string
+    age?: string
+    profession?: string
     recommendation: {
       videoContent: Content[] | []
       audioContent: Content[] | []

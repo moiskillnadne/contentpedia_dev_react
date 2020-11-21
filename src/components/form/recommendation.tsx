@@ -103,13 +103,13 @@ const Recommendation: FC<RecommendationProps> = (props): JSX.Element => {
   function addItemToList(values: Content): void {
     switch (type) {
       case 'video':
-        dsp(ContentActions.addVideo(values))
+        dsp(ContentActions.videoAdd(values))
         break
       case 'audio':
-        dsp(ContentActions.addAudio(values))
+        dsp(ContentActions.audioAdd(values))
         break
       case 'text':
-        dsp(ContentActions.addText(values))
+        dsp(ContentActions.textAdd(values))
         break
     }
   }

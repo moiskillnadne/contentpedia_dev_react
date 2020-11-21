@@ -34,13 +34,13 @@ const smallItem: FC<SmallItemProps> = (props): JSX.Element => {
   function removeSelfItem(id: string) {
     switch (type) {
       case 'video':
-        dsp(ContentActions.removeVideo(id))
+        dsp(ContentActions.videoRemove(id))
         break
       case 'audio':
-        dsp(ContentActions.removeAudio(id))
+        dsp(ContentActions.audioRemove(id))
         break
       case 'text':
-        dsp(ContentActions.removeText(id))
+        dsp(ContentActions.textRemove(id))
         break
     }
   }
