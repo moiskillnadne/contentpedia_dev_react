@@ -5,15 +5,35 @@ export const defaultSubs = {
   touched: true,
 }
 
-export const makeRecommendationTitle = (type: string): string => {
+export const makeEnvRelatedType = (type: string): Record<string, string> => {
   switch (type) {
     case 'video':
-      return 'Video recommendation'
+      return {
+        blockTitle: 'Video recommendation',
+        typePlaceholder: 'Film',
+        small: 'Example: Film, Video, Clip, Tv-show and etc.',
+        titlePlaceholder: 'Green Mile',
+      }
     case 'audio':
-      return 'Audio recommendation'
+      return {
+        blockTitle: 'Audio recommendation',
+        typePlaceholder: 'Artist',
+        small: 'Example: Album, Song, Clip, Artist and etc.',
+        titlePlaceholder: 'Куок',
+      }
     case 'text':
-      return 'Text recommendation'
+      return {
+        blockTitle: 'Text recommendation',
+        typePlaceholder: 'Book',
+        small: 'Example: Book, Article, News and etc.',
+        titlePlaceholder: 'Есть идея!',
+      }
     default:
-      return 'Undefined recommendation'
+      return {
+        blockTitle: 'Undefined recommendation',
+        typePlaceholder: '',
+        small: 'Undefined description',
+        titlePlaceholder: '',
+      }
   }
 }

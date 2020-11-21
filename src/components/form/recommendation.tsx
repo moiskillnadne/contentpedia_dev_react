@@ -24,9 +24,11 @@ const Recommendation: FC<RecommendationProps> = (props): JSX.Element => {
   const contentState = useSelector((s: RootState) => s.contentState)
   const state = contentState[`${type}Content` as 'videoContent']
 
+  const enviroment = utils.makeEnvRelatedType(type)
+
   return (
     <>
-      <h5 className="text-center margin-top25 type-item-title">{utils.makeRecommendationTitle(type)}</h5>
+      <h5 className="text-center margin-top25 type-item-title">{enviroment.blockTitle}</h5>
       <ul className="list-group white-bg">
         {state.map((item) => (
           <SubItem item={item} key={item.id} type={type} />
@@ -37,12 +39,17 @@ const Recommendation: FC<RecommendationProps> = (props): JSX.Element => {
       <Input
         type="text"
         name={`${type}.type`}
-        placeholder="Film"
+        placeholder={enviroment.typePlaceholder}
         label={`${type} content type`}
-        small="Example: Film, Video, Clip, Tv-show and etc."
+        small={enviroment.small}
       />
 
-      <Input type="text" name={`${type}.title`} placeholder="Green Mile" label={`${type} content title`} />
+      <Input
+        type="text"
+        name={`${type}.title`}
+        placeholder={enviroment.titlePlaceholder}
+        label={`${type} content title`}
+      />
 
       <Input
         type="text"
