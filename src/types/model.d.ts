@@ -47,9 +47,9 @@ export type VideoModel = DeepReadonly<{
 export type Content = DeepReadonly<{
   id: string
   type: string
-  name: string
+  title: string
   timecode: string
   url?: string
   comment?: string
-  tags: string[]
+  tags: string
 }>

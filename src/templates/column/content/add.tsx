@@ -46,7 +46,7 @@ const AddColumn = (): JSX.Element => {
     />
   )
   function onSubmitForm(e: unknown): void {
-    // console.log(e)
+    console.log(e)
   }
 }
 

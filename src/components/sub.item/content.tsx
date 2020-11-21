@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { Content } from '@/types/model'
 import { useDispatch } from 'react-redux'
 import * as ContentActions from '@/store/actions/content'
+import '@/components/sub.item/style.less'
 
 type SmallItemProps = {
   item: Content
@@ -13,10 +14,10 @@ const smallItem: FC<SmallItemProps> = (props): JSX.Element => {
   const dsp = useDispatch()
 
   return (
-    <li className="list-group-item">
+    <li className={`list-group-item ${assignColor(item.tags)}`}>
       <div className="row">
         <span className="col">{item.type}</span>
-        <span className="col">{item.name}</span>
+        <span className="col">{item.title}</span>
         <a href={item.timecode} className="col" target="_blank" rel="noreferrer">
           Timecode url
         </a>
@@ -38,6 +39,19 @@ const smallItem: FC<SmallItemProps> = (props): JSX.Element => {
       case 'text':
         dsp(ContentActions.removeText(id))
         break
+    }
+  }
+
+  function assignColor(tag: string): string {
+    switch (tag) {
+      case 'favorites':
+        return 'favorites-bg-color'
+      case 'mention':
+        return 'mention-bg-color'
+      case 'notFavorites':
+        return 'not-favorites-bg-color'
+      default:
+        return 'mention-bg-color'
     }
   }
 }

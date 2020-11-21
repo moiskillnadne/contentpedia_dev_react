@@ -63,7 +63,7 @@ const Recommendation: FC<RecommendationProps> = (props): JSX.Element => {
       <div className="form-group">
         <Field<string>
           type="select"
-          name={`${type}.label`}
+          name={`${type}.tags`}
           className="form-control"
           component="select"
           subscription={utils.defaultSubs}
