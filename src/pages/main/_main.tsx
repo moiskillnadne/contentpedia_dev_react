@@ -6,7 +6,7 @@ import Header from '@/templates/header/header'
 import Column from '@/templates/column/_column'
 
 // Shared
-import './style.less'
+import '@/pages/main/style.less'
 
 const Main = (): JSX.Element => {
   return (

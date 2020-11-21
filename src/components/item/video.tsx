@@ -5,8 +5,8 @@ import * as videoActions from '@/store/actions/video'
 import { VideoModel } from '@/types/model'
 
 // Shared
-import './style.less'
-import * as utils from './utils'
+import '@/components/item/style.less'
+import * as utils from '@/components/item/utils'
 
 type VideoItemProps = { Video: VideoModel }
 

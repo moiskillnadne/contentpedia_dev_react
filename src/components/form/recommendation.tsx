@@ -13,7 +13,7 @@ import Input from '@/components/form/input'
 import SubItem from '@/components/sub.item/content'
 
 // Shared
-import * as utils from './utils'
+import * as utils from '@/components/form/utils'
 
 type RecommendationProps = {
   type: 'video' | 'audio' | 'text'

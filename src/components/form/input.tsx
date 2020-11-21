@@ -1,10 +1,10 @@
 // Dependencies
-import { SubscriptionSettigns } from '@/types/common'
 import React, { FC } from 'react'
 import { Field } from 'react-final-form'
+import { SubscriptionSettigns } from '@/types/common'
 
 // Shared
-import * as utils from './utils'
+import * as utils from '@/components/form/utils'
 
 type InputProps = {
   type: 'text' | 'number' | 'email' | 'password'

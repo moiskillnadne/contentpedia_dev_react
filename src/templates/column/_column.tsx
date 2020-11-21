@@ -2,14 +2,14 @@
 import React, { FC } from 'react'
 
 // Components
-import GetColumn from './content/get'
-import AddColumn from './content/add'
-import UpdateColumn from './content/update'
-import RemoveColumn from './content/remove'
+import GetColumn from '@/templates/column/content/get'
+import AddColumn from '@/templates/column/content/add'
+import UpdateColumn from '@/templates/column/content/update'
+import RemoveColumn from '@/templates/column/content/remove'
 
 // Shared
-import * as utils from './utils'
-import './style.less'
+import * as utils from '@/templates/column/utils'
+import '@/templates/column/style.less'
 
 type ColumnProps = {
   type: 'get' | 'add' | 'update' | 'remove'
