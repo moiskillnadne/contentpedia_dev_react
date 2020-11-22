@@ -1,3 +1,4 @@
+// eslint-disable react/jsx-props-no-spreading
 // Dependencies
 import React, { FC } from 'react'
 import { Field } from 'react-final-form'
@@ -20,22 +21,20 @@ const Input: FC<InputProps> = (props): JSX.Element => {
   const { type, name, styleCss, placeholder, subs, label, small } = props
 
   return (
-    <div className="form-group">
-      <label htmlFor={name} className="first-letter-cap">
-        {label}
-      </label>
-      <Field<string>
-        type={type}
-        name={name}
-        component="input"
-        className={styleCss || 'form-control'}
-        subscription={subs || utils.defaultSubs}
-        placeholder={placeholder || ''}
-      />
-      <small id="emailHelp" className="form-text text-muted">
-        {small}
-      </small>
-    </div>
+    <Field<string> type={type} name={name} subscription={subs || utils.defaultSubs} placeholder={placeholder || ''}>
+      {({ input, meta }) => {
+        return (
+          <div className="form-group">
+            <label htmlFor={input.name} className="first-letter-cap">
+              {label}
+            </label>
+            <input {...input} className={styleCss || 'form-control'} placeholder={placeholder} />
+            {meta.error && meta.touched ? <small className="form-text text-danger">{meta.error}</small> : <></>}
+            <small className="form-text text-muted">{small}</small>
+          </div>
+        )
+      }}
+    </Field>
   )
 }
 

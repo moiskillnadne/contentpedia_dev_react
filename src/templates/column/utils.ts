@@ -25,3 +25,35 @@ export const makeColumnTitle = (type: string): string => {
       return 'Undefined column'
   }
 }
+
+export const validationRules = (values: any): any => {
+  console.log(values)
+  const errors = {
+    videoLink: '',
+    videoTitle: '',
+    videoPreviewLink: '',
+    guestName: '',
+    guestAge: '',
+    guestProfession: '',
+  }
+  if (!values.videoLink) {
+    errors.videoLink = 'Required'
+  }
+  if (!values.videoTitle) {
+    errors.videoTitle = 'Required'
+  }
+  if (!values.videoPreviewLink) {
+    errors.videoPreviewLink = 'Required'
+  }
+  if (!values.guestName) {
+    errors.guestName = 'Required'
+  }
+  if (!values.guestAge) {
+    errors.guestAge = 'Required'
+  }
+  if (!values.guestProfession) {
+    errors.guestProfession = 'Required'
+  }
+
+  return errors
+}

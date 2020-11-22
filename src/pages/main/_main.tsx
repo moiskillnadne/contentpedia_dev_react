@@ -17,11 +17,7 @@ const Main = (): JSX.Element => {
         <div className="columns-wrapper">
           <Column type="get" />
 
-          <div className="column-wrapper-managment">
-            <Column type="add" />
-            <Column type="update" />
-            <Column type="remove" />
-          </div>
+          <Column type="add" />
         </div>
       </div>
     </div>

@@ -4,15 +4,13 @@ import React, { FC } from 'react'
 // Components
 import GetColumn from '@/templates/column/content/get'
 import AddColumn from '@/templates/column/content/add'
-import UpdateColumn from '@/templates/column/content/update'
-import RemoveColumn from '@/templates/column/content/remove'
 
 // Shared
 import * as utils from '@/templates/column/utils'
 import '@/templates/column/style.less'
 
 type ColumnProps = {
-  type: 'get' | 'add' | 'update' | 'remove'
+  type: 'get' | 'add'
 }
 
 const Column: FC<ColumnProps> = (props): JSX.Element => {
@@ -31,11 +29,6 @@ const Column: FC<ColumnProps> = (props): JSX.Element => {
         return <GetColumn />
       case 'add':
         return <AddColumn />
-      case 'update':
-        return <UpdateColumn />
-      case 'remove':
-        return <RemoveColumn />
-
       default:
         // Here should be 404 template
         break

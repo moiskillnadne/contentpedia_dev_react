@@ -3,14 +3,15 @@
 module.exports = {
     plugins: ['import'],
     rules: {
-        "jsx-a11y/label-has-associated-control": "off",
+        'react/jsx-props-no-spreading': 'off',
+        'jsx-a11y/label-has-associated-control': 'off',
         'import/no-unresolved': 'error',
         'no-param-reassign': 'off',
         'default-case': 'off',
         'no-unused-vars': 'off',
         '@typescript-eslint/no-unused-vars': ['warn'],
         'prettier/prettier': [1],
-        semi: ['error', 'never'],
+        'semi': ['error', 'never'],
         'comma-dangle': ['error', 'always-multiline'],
         'no-use-before-define': 'off',
         '@typescript-eslint/no-use-before-define': ['off'],
