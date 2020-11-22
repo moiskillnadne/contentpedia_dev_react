@@ -1,7 +1,8 @@
 // Dependencies
 import React, { FC } from 'react'
-import { Field, FormSpy } from 'react-final-form'
+import { Field, FormSpy, Form } from 'react-final-form'
 import { v4 as uuidv4 } from 'uuid'
+import createDecorator from 'final-form-focus'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/types/state'
@@ -22,6 +23,7 @@ type RecommendationProps = {
 const Recommendation: FC<RecommendationProps> = (props): JSX.Element => {
   const { type } = props
   const dsp = useDispatch()
+  const focusOnError = createDecorator()
 
   const contentState = useSelector((s: RootState) => s.contentState)
   const state = contentState[`${type}Content` as 'videoContent']
@@ -29,78 +31,98 @@ const Recommendation: FC<RecommendationProps> = (props): JSX.Element => {
   const enviroment = utils.makeEnvRelatedType(type)
 
   return (
-    <>
-      <h5 className="text-center margin-top25 type-item-title">{enviroment.blockTitle}</h5>
-      <ul className="list-group white-bg">
-        {state.map((item) => (
-          <SubItem item={item} key={item.id} type={type} />
-        ))}
-      </ul>
-      <div className="margin-top25" />
+    <Form
+      onSubmit={submitToState}
+      // decorators={[focusOnError]}
+      subscription={{
+        submitting: true,
+      }}
+      render={({ handleSubmit }) => {
+        return (
+          <form onSubmit={handleSubmit}>
+            <h5 className="text-center margin-top25 type-item-title">{enviroment.blockTitle}</h5>
+            <ul className="list-group white-bg">
+              {state.map((item) => (
+                <SubItem item={item} key={item.id} type={type} />
+              ))}
+            </ul>
+            <div className="margin-top25" />
 
-      <Input
-        type="text"
-        name={`${type}.type`}
-        placeholder={enviroment.typePlaceholder}
-        label={`${type} content type`}
-        small={enviroment.small}
-      />
+            <Input
+              type="text"
+              name={`${type}.type`}
+              placeholder={enviroment.typePlaceholder}
+              label={`${type} content type`}
+              small={enviroment.small}
+              isValidation={false}
+            />
 
-      <Input
-        type="text"
-        name={`${type}.title`}
-        placeholder={enviroment.titlePlaceholder}
-        label={`${type} content title`}
-      />
+            <Input
+              type="text"
+              name={`${type}.title`}
+              placeholder={enviroment.titlePlaceholder}
+              label={`${type} content title`}
+              isValidation={false}
+            />
 
-      <Input
-        type="text"
-        name={`${type}.timecode`}
-        placeholder="https://youtu.be/WoSzy-4mviQ?t=2135"
-        label="Timecode url"
-      />
+            <Input
+              type="text"
+              name={`${type}.timecode`}
+              placeholder="https://youtu.be/WoSzy-4mviQ?t=2135"
+              label="Timecode url"
+              isValidation={false}
+            />
 
-      <Input
-        type="text"
-        name={`${type}.source`}
-        placeholder="https://www.amazon.com/Green-Mile-Tom-Hanks/dp/B001EBWIPY"
-        label="Url on source"
-      />
+            <Input
+              type="text"
+              name={`${type}.source`}
+              placeholder="https://www.amazon.com/Green-Mile-Tom-Hanks/dp/B001EBWIPY"
+              label="Url on source"
+              isValidation={false}
+            />
 
-      <Input type="text" name={`${type}.comments`} label="Comments" />
+            <Input type="text" name={`${type}.comments`} label="Comments" isValidation={false} />
 
-      <div className="form-group">
-        <Field<string>
-          type="select"
-          name={`${type}.tags`}
-          className="form-control"
-          component="select"
-          subscription={utils.defaultSubs}
-        >
-          <option value="none" defaultValue="true">
-            Choose the label
-          </option>
-          <option value="favorites">Favorites</option>
-          <option value="mention">Mention</option>
-          <option value="notFavorites">Not favorites</option>
-        </Field>
-      </div>
+            <div className="form-group">
+              <Field<string>
+                type="select"
+                name={`${type}.tags`}
+                className="form-control"
+                component="select"
+                subscription={utils.defaultSubs}
+              >
+                <option value="none" defaultValue="true">
+                  Choose the label
+                </option>
+                <option value="favorites">Favorites</option>
+                <option value="mention">Mention</option>
+                <option value="notFavorites">Not favorites</option>
+              </Field>
+            </div>
 
-      <FormSpy subscription={{ values: true }}>
-        {({ values }) => (
-          <button
-            type="button"
-            className="btn btn-primary margin-top25"
-            onClick={() => addItemToList({ ...values[type], id: uuidv4() })}
-          >
-            {`Add ${type} item`}
-          </button>
-        )}
-      </FormSpy>
-    </>
+            <FormSpy subscription={{ values: true }}>
+              {({ values, form }) => (
+                <button
+                  type="button"
+                  className="btn btn-primary margin-top25"
+                  onClick={() => {
+                    submitToState({ ...values[type], id: uuidv4() }, form)
+                  }}
+                >
+                  {`Add ${type} item`}
+                </button>
+              )}
+            </FormSpy>
+          </form>
+        )
+      }}
+    />
   )
 
-  function addItemToList(values: Content): void {
+  function submitToState(values: Content, form: any): void {
+    console.log(values)
+    form.reset()
+
     switch (type) {
       case 'video':
         dsp(ContentActions.videoAdd(values))

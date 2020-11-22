@@ -37,3 +37,5 @@ export const makeEnvRelatedType = (type: string): Record<string, string> => {
       }
   }
 }
+
+export const requiredValidation = (value: string): string | undefined => (value ? undefined : 'Required')

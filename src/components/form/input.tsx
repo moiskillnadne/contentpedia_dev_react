@@ -3,6 +3,7 @@
 import React, { FC } from 'react'
 import { Field } from 'react-final-form'
 import { SubscriptionSettigns } from '@/types/common'
+import c from 'clsx'
 
 // Shared
 import * as utils from '@/components/form/utils'
@@ -15,20 +16,34 @@ type InputProps = {
   subs?: SubscriptionSettigns
   label: string
   small?: string
+  isValidation: boolean
 }
 
 const Input: FC<InputProps> = (props): JSX.Element => {
-  const { type, name, styleCss, placeholder, subs, label, small } = props
+  const { type, name, styleCss, placeholder, subs, label, small, isValidation } = props
+
+  const composeValidators = (...validators: any[]) => (value: any) =>
+    validators.reduce((error, validator) => error || validator(value), undefined)
 
   return (
-    <Field<string> type={type} name={name} subscription={subs || utils.defaultSubs} placeholder={placeholder || ''}>
+    <Field<string>
+      type={type}
+      name={name}
+      subscription={subs || utils.defaultSubs}
+      placeholder={placeholder || ''}
+      validate={isValidation ? composeValidators(utils.requiredValidation) : undefined}
+    >
       {({ input, meta }) => {
         return (
           <div className="form-group">
             <label htmlFor={input.name} className="first-letter-cap">
               {label}
             </label>
-            <input {...input} className={styleCss || 'form-control'} placeholder={placeholder} />
+            <input
+              {...input}
+              className={c(styleCss, 'form-control', meta.error && meta.touched && 'invalid-input')}
+              placeholder={placeholder}
+            />
             {meta.error && meta.touched ? <small className="form-text text-danger">{meta.error}</small> : <></>}
             <small className="form-text text-muted">{small}</small>
           </div>
