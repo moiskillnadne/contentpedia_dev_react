@@ -76,8 +76,8 @@ const AddColumn = (): JSX.Element => {
     )
 
     // Restart whole form
-    // setTimeout(() => formState.restart())
-    // dsp(ContentActions.contentClear())
+    setTimeout(() => formState.restart())
+    dsp(ContentActions.contentClear())
   }
 }
 
