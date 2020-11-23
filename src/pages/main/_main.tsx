@@ -13,7 +13,7 @@ const Main = (): JSX.Element => {
     <div className="container">
       <Header />
 
-      <div className="container">
+      <div className="container-fluid">
         <div className="columns-wrapper">
           <Column type="get" />
 

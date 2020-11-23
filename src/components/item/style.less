@@ -39,14 +39,6 @@
     cursor: default;
   }
 
-  div {
-    color: white;
-    margin-left: 20px;
-    z-index: 2;
-    position: absolute;
-    top: 30%;
-  }
-
   button {
     position: absolute;
     top: 5px;
@@ -79,12 +71,78 @@
 }
 
 
-@media screen and (max-width: 1250px) {
+@media (max-width: 1200px) {}
 
+@media (max-width: 992px) {
+  .item {
+    h5 {
+      margin-left: 10px;
+      margin-right: 85px;
+      font-size: 20px;
+    }
+
+    &-img-bg {
+      top: auto;
+      bottom: 0px;
+      height: auto;
+      width: 160px;
+      opacity: 0.5;
+    }
+  }
+
+}
+
+@media (max-width: 768px) {
   .item {
 
-    div {
+    h5 {
+      margin-left: 10px;
+      margin-right: 85px;
+      font-size: 20px;
+    }
+
+    &-img-bg {
       display: none;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .item {
+
+    h5 {
+      margin-left: 10px;
+      margin-right: 10px;
+      font-size: 18px;
+    }
+
+    span {
+      left: 10px;
+      bottom: 5px;
+      right: auto;
+      padding: 4px 6px;
+      font-size: 16px;
+      font-weight: 500;
+      z-index: 3;
+    }
+
+    button {
+      top: auto;
+      bottom: 5px;
+      right: 10px;
+      font-size: 16px;
+      z-index: 3;
+    }
+
+    &-img-bg {
+      display: block;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 100%;
+      width: 100%;
+      filter: blur(0px);
+      border-radius: 4px;
     }
   }
 }

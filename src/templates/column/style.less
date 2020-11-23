@@ -24,19 +24,14 @@
   &-get {
     background-color: @green;
     grid-template-rows: 55px 1fr;
+    grid-area: getCol;
   }
 
   &-add {
     background-color: @yellow;
+    grid-area: addCol;
   }
 
-  &-update {
-    background-color: @yellow;
-  }
-
-  &-remove {
-    background-color: @red;
-  }
 }
 
 .get-column-content {
@@ -48,4 +43,17 @@
 .invalid-input {
   outline-color: lighten(@red, 10%);
   outline-style: solid;
+}
+
+@media (max-width: 1200px) {}
+
+@media (max-width: 992px) {}
+
+@media (max-width: 768px) {}
+
+@media (max-width: 576px) {
+  .get-column-content {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }

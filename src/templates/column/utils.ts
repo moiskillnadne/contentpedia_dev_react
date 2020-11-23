@@ -4,10 +4,6 @@ export const makeColumnStyle = (type: string): string | void => {
       return 'column-get'
     case 'add':
       return 'column-add'
-    case 'update':
-      return 'column-update'
-    case 'remove':
-      return 'column-remove'
   }
 }
 
@@ -17,10 +13,6 @@ export const makeColumnTitle = (type: string): string => {
       return 'All items'
     case 'add':
       return 'Add item'
-    case 'update':
-      return 'Update item'
-    case 'remove':
-      return 'Remove item'
     default:
       return 'Undefined column'
   }
