@@ -4,7 +4,7 @@ import { combine } from '@/index/redux/middlewares/api/helper'
 
 import { ApiOnStatusAction } from '@/index/redux/middlewares/api/type.d'
 import { VideoModel } from '@/types/model'
-import { GET_VIDEO_LIST, SET_VIDEO } from '../constants/video'
+import { GET_VIDEO_LIST, SET_VIDEO, ADD_VIDEO } from '@/store/constants/video'
 
 const initialState: VideoState = {
   VideoList: [],
@@ -45,6 +45,36 @@ function getList(state = initialState, { type, payload }: ApiOnStatusAction<Vide
   }
 }
 
+function addVideo(state = initialState, { type, payload }: ApiOnStatusAction<VideoModel[]>): VideoState | void {
+  switch (type) {
+    case ADD_VIDEO.START:
+      return {
+        ...state,
+        error: '',
+        loading: {
+          addVideo: state.VideoList.length ? 'Обновление пользователей' : 'Загрузка пользователей',
+        },
+      }
+    case ADD_VIDEO.FAIL:
+      return {
+        ...state,
+        loading: {
+          addVideo: false,
+        },
+        error: payload?.body?.error || '',
+      }
+    case ADD_VIDEO.SUCCESS:
+      return {
+        ...state,
+        error: '',
+        loading: {
+          addVideo: false,
+        },
+        VideoList: { ...state.VideoList },
+      }
+  }
+}
+
 function set(state = initialState, { type, payload }: Action<VideoModel>): VideoState | void {
   switch (type) {
     case SET_VIDEO:
@@ -59,4 +89,4 @@ function set(state = initialState, { type, payload }: Action<VideoModel>): Video
   }
 }
 
-export default combine(initialState, getList, set)
+export default combine(initialState, getList, addVideo, set)

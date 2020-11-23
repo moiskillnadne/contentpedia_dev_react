@@ -2,8 +2,11 @@
 import React from 'react'
 import { Form } from 'react-final-form'
 import createDecorator from 'final-form-focus'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/types/state'
+import { VideoModel } from '@/types/model'
+import * as ContentActions from '@/store/actions/content'
+import * as videoActions from '@/store/actions/video'
 
 // Components
 import ChannelBlock from '@/components/form/channel'
@@ -13,7 +16,9 @@ import Recommendation from '@/components/form/recommendation'
 const AddColumn = (): JSX.Element => {
   const focusOnError = createDecorator()
   const contentState = useSelector((s: RootState) => s.contentState)
+  const dsp = useDispatch()
   let submit: any
+  let formState: any
 
   return (
     <>
@@ -23,8 +28,9 @@ const AddColumn = (): JSX.Element => {
         subscription={{
           submitting: true,
         }}
-        render={({ handleSubmit }) => {
+        render={({ handleSubmit, form }) => {
           submit = handleSubmit
+          formState = form
           return (
             <form onSubmit={handleSubmit}>
               <ChannelBlock />
@@ -37,6 +43,7 @@ const AddColumn = (): JSX.Element => {
       <Recommendation type="video" key="video" />
       <Recommendation type="audio" key="audio" />
       <Recommendation type="text" key="text" />
+
       <button
         type="submit"
         className="btn btn-primary btn-lg btn-block margin-top25 margin-bottom25"
@@ -48,9 +55,18 @@ const AddColumn = (): JSX.Element => {
       </button>
     </>
   )
-  function onSubmitForm(values: unknown): void {
-    // const data = { ...values, ...contentState }
-    console.log(values)
+  function onSubmitForm(values: any): void {
+    const data: VideoModel = { ...values, ...contentState }
+    console.log(data)
+    dsp(
+      videoActions.add(data, function onSuccess() {
+        dsp(videoActions.getList())
+      }),
+    )
+
+    // Restart whole form
+    // setTimeout(() => formState.restart())
+    // dsp(ContentActions.contentClear())
   }
 }
 

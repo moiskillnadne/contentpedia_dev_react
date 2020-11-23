@@ -8,6 +8,7 @@ import {
   REMOVE_AUDIO_CONTENT,
   ADD_TEXT_CONTENT,
   REMOVE_TEXT_CONTENT,
+  CLEAR_ENTIRE_CONTENT,
 } from '@/store/constants/content'
 import { ContentState } from '@/types/state'
 
@@ -45,4 +46,14 @@ function removeContent(state: ContentState, { type, payload }: Action): ContentS
   }
 }
 
-export default combine(initialState, addContent, removeContent)
+function clearContent(state: ContentState, { type, payload }: Action): ContentState | void {
+  switch (type) {
+    case CLEAR_ENTIRE_CONTENT:
+      state.videoContent = []
+      state.audioContent = []
+      state.textContent = []
+      return { ...state }
+  }
+}
+
+export default combine(initialState, addContent, removeContent, clearContent)

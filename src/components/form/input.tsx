@@ -14,7 +14,7 @@ type InputProps = {
   styleCss?: string
   placeholder?: string
   subs?: SubscriptionSettigns
-  label: string
+  label?: string
   small?: string
   isValidation: boolean
 }

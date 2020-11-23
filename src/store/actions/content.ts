@@ -6,11 +6,10 @@ import {
   REMOVE_AUDIO_CONTENT,
   ADD_TEXT_CONTENT,
   REMOVE_TEXT_CONTENT,
+  CLEAR_ENTIRE_CONTENT,
 } from '@/store/constants/content'
 
 import { Content } from 'types/model'
-
-// Поменять ТИП И ДЕЙСТВИЕ ТИПА местами
 
 export const videoAdd = (content: Content): Action => ({
   type: ADD_VIDEO_CONTENT,
@@ -37,4 +36,9 @@ export const textAdd = (content: Content): Action => ({
 export const textRemove = (id: string): Action => ({
   type: REMOVE_TEXT_CONTENT,
   payload: id,
+})
+
+export const contentClear = (): Action => ({
+  type: CLEAR_ENTIRE_CONTENT,
+  payload: undefined,
 })
