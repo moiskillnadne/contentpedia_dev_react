@@ -11,6 +11,7 @@ const GetColumn = (): JSX.Element => {
   const videoState = useSelector((s: RootState): VideoState => s.videoState)
   const dsp = useDispatch()
   useEffect(() => getVideo(), [])
+  console.log(videoState)
 
   return (
     <ol className="get-column-content">

@@ -18,6 +18,21 @@ const VideoItem: FC<VideoItemProps> = (props): JSX.Element => {
     <li className="item">
       <h5>{utils.makeTitle(Video.video.name)}</h5>
 
+      {/* <div className="recommendation-counter">
+        <span className="video">
+          Video recommendation:
+          {Video.recommendation.videoContent.length}
+        </span>
+        <span className="audio">
+          Audio recommendation:
+          {Video.recommendation.audioContent.length}
+        </span>
+        <span className="text">
+          Audio recommendation:
+          {Video.recommendation.textContent.length}
+        </span>
+      </div> */}
+
       <button type="button" className="btn btn-danger btn-sm" onClick={() => onRemoveItemClick(Video._id)}>
         Delete
       </button>

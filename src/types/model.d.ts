@@ -1,4 +1,3 @@
-import { type } from 'os'
 import { DeepReadonly } from './util.d'
 
 type Permission = 'DEALER_DATA'
@@ -27,6 +26,7 @@ export type VideoModel = DeepReadonly<
       audioContent: Content[] | []
       textContent: Content[] | []
     }
+    timestamp: string
   } & VideoDetailsModel
 >
 

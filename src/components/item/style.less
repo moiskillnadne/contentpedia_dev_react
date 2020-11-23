@@ -20,13 +20,13 @@
     margin-top: 5px;
     padding-top: 7px;
     margin-left: 20px;
-    margin-right: 142px;
+    margin-right: 125px;
     color: white;
     z-index: 2;
     position: absolute;
   }
 
-  span {
+  &>span {
     position: absolute;
     bottom: 5px;
     right: 10px;
@@ -54,6 +54,26 @@
     opacity: 0.25;
     z-index: 1;
     filter: blur(0.5px);
+    border-radius: 4px;
+  }
+
+  .recommendation-counter {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+
+    height: 75px;
+
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+
+    .video {
+      padding: 5px;
+    }
+
+    .audio {}
+
+    .text {}
   }
 }
 
