@@ -17,9 +17,8 @@ export type UserModel = DeepReadonly<{
   role: Role
   username: string
 }>
-
-export type VideoModel = DeepReadonly<{
-  _id: string
+export type VideoModel = DeepReadonly<{ _id: string } & VideoFormModel>
+export type VideoFormModel = DeepReadonly<{
   channel: {
     name: string
   }
@@ -30,8 +29,8 @@ export type VideoModel = DeepReadonly<{
   }
   guest: {
     name: string
-    age?: string
-    profession?: string
+    age?: string | null
+    profession?: string | null
     recommendation: {
       videoContent: Content[] | []
       audioContent: Content[] | []
@@ -41,7 +40,6 @@ export type VideoModel = DeepReadonly<{
   general: {
     description: string
   }
-  timestamp: string
 }>
 
 export type Content = DeepReadonly<{
@@ -52,4 +50,23 @@ export type Content = DeepReadonly<{
   url?: string
   comment?: string
   tags: string
+}>
+
+export type VideoParamsModel = DeepReadonly<{
+  channel: {
+    name: string
+  }
+  video: {
+    name: string
+    url: string
+    previewUrl: string
+  }
+  guest: {
+    name: string
+    age?: string | null
+    profession?: string | null
+  }
+  general: {
+    description: string
+  }
 }>

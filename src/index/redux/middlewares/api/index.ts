@@ -54,7 +54,7 @@ export class Api {
       const response = await this.fetch(action, abortController)
 
       if (response.status === 204) throw Error('No content returned')
-      if (response.status === 500) throw Error('Внутренняя ошибка сервера')
+      // if (response.status === 500) throw Error('Внутренняя ошибка сервера')
       if (response.status === 401 && this.refreshActionTypes) this.refreshToken(api)
 
       const responseBody = await Api.getResponseBody(response)

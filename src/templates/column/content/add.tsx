@@ -4,7 +4,7 @@ import { Form } from 'react-final-form'
 import createDecorator from 'final-form-focus'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/types/state'
-import { VideoModel } from '@/types/model'
+import { VideoFormModel, VideoParamsModel } from '@/types/model'
 import * as ContentActions from '@/store/actions/content'
 import * as videoActions from '@/store/actions/video'
 
@@ -24,7 +24,7 @@ const AddColumn = (): JSX.Element => {
     <>
       <Form
         onSubmit={onSubmitForm}
-        decorators={[focusOnError]}
+        decorators={[focusOnError as any]}
         subscription={{
           submitting: true,
         }}
@@ -55,9 +55,20 @@ const AddColumn = (): JSX.Element => {
       </button>
     </>
   )
-  function onSubmitForm(values: any): void {
-    const data: VideoModel = { ...values, ...contentState }
+  function onSubmitForm(values: VideoParamsModel): void {
+    const data: VideoFormModel = {
+      ...values,
+      guest: {
+        ...values.guest,
+        recommendation: contentState,
+      },
+      general: {
+        description: '',
+      },
+    }
+
     console.log(data)
+
     dsp(
       videoActions.add(data, function onSuccess() {
         dsp(videoActions.getList())

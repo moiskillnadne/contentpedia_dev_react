@@ -1,4 +1,4 @@
-import { VideoModel } from '@/types/model'
+import { VideoFormModel } from '@/types/model'
 import { REST_API } from '@/index/redux/middlewares/api'
 import { ApiAction, OnStatus } from '@/index/redux/middlewares/api/type.d'
 
@@ -20,7 +20,7 @@ export const getList = (): ApiAction => ({
   method: 'get',
 })
 
-export const add = (Video: VideoModel, onSuccess: OnStatus): ApiAction => ({
+export const add = (Video: VideoFormModel, onSuccess: OnStatus): ApiAction => ({
   type: REST_API,
   stageActionTypes: ADD_VIDEO,
   url,

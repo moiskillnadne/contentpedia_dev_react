@@ -70,7 +70,6 @@ function addVideo(state = initialState, { type, payload }: ApiOnStatusAction<Vid
         loading: {
           addVideo: false,
         },
-        VideoList: { ...state.VideoList },
       }
   }
 }
