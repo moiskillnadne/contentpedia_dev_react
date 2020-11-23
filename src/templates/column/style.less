@@ -10,6 +10,7 @@
 .column {
   display: grid;
   min-height: 300px;
+  position: relative;
 
   h3 {
     justify-self: center;
@@ -30,6 +31,20 @@
   &-add {
     background-color: @yellow;
     grid-area: addCol;
+  }
+
+  .video-counter {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 35px;
+    height: 35px;
+    top: 10px;
+    right: 10px;
+    background-color: darkgrey;
+    border-radius: 50%;
   }
 
 }
