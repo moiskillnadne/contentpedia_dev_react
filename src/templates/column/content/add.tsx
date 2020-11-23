@@ -2,9 +2,10 @@
 import React from 'react'
 import { Form } from 'react-final-form'
 import createDecorator from 'final-form-focus'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/types/state'
-import { VideoFormModel, VideoParamsModel } from '@/types/model'
+import { VideoDetailsFormModel } from '@/types/model'
 import * as ContentActions from '@/store/actions/content'
 import * as videoActions from '@/store/actions/video'
 
@@ -55,29 +56,21 @@ const AddColumn = (): JSX.Element => {
       </button>
     </>
   )
-  function onSubmitForm(values: VideoParamsModel): void {
-    const data: VideoFormModel = {
+  function onSubmitForm(values: VideoDetailsFormModel): void {
+    const data = {
       ...values,
-      guest: {
-        ...values.guest,
-        recommendation: contentState,
-      },
-      general: {
-        description: '',
-      },
+      recommendation: { ...contentState },
     }
-
-    console.log(data)
 
     dsp(
       videoActions.add(data, function onSuccess() {
         dsp(videoActions.getList())
+
+        // Restart whole form
+        setTimeout(() => formState.restart())
+        dsp(ContentActions.contentClear())
       }),
     )
-
-    // Restart whole form
-    setTimeout(() => formState.restart())
-    dsp(ContentActions.contentClear())
   }
 }
 

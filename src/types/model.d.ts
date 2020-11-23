@@ -1,3 +1,4 @@
+import { type } from 'os'
 import { DeepReadonly } from './util.d'
 
 type Permission = 'DEALER_DATA'
@@ -17,8 +18,29 @@ export type UserModel = DeepReadonly<{
   role: Role
   username: string
 }>
-export type VideoModel = DeepReadonly<{ _id: string } & VideoFormModel>
-export type VideoFormModel = DeepReadonly<{
+
+export type VideoModel = DeepReadonly<
+  {
+    _id: string
+    recommendation: {
+      videoContent: Content[] | []
+      audioContent: Content[] | []
+      textContent: Content[] | []
+    }
+  } & VideoDetailsModel
+>
+
+export type VideoFormModel = DeepReadonly<
+  {
+    recommendation: {
+      videoContent: Content[] | []
+      audioContent: Content[] | []
+      textContent: Content[] | []
+    }
+  } & VideoDetailsFormModel
+>
+
+export type VideoDetailsModel = DeepReadonly<{
   channel: {
     name: string
   }
@@ -29,16 +51,23 @@ export type VideoFormModel = DeepReadonly<{
   }
   guest: {
     name: string
-    age?: string | null
-    profession?: string | null
-    recommendation: {
-      videoContent: Content[] | []
-      audioContent: Content[] | []
-      textContent: Content[] | []
-    }
+    age?: string
+    profession?: string
   }
-  general: {
-    description: string
+}>
+
+export type VideoDetailsFormModel = DeepReadonly<{
+  channel: {
+    name: string
+  }
+  video: {
+    name: string
+    url: string
+  }
+  guest: {
+    name: string
+    age?: string
+    profession?: string
   }
 }>
 
@@ -50,23 +79,4 @@ export type Content = DeepReadonly<{
   url?: string
   comment?: string
   tags: string
-}>
-
-export type VideoParamsModel = DeepReadonly<{
-  channel: {
-    name: string
-  }
-  video: {
-    name: string
-    url: string
-    previewUrl: string
-  }
-  guest: {
-    name: string
-    age?: string | null
-    profession?: string | null
-  }
-  general: {
-    description: string
-  }
 }>

@@ -22,16 +22,13 @@ type InputProps = {
 const Input: FC<InputProps> = (props): JSX.Element => {
   const { type, name, styleCss, placeholder, subs, label, small, isValidation } = props
 
-  const composeValidators = (...validators: any[]) => (value: any) =>
-    validators.reduce((error, validator) => error || validator(value), undefined)
-
   return (
     <Field<string>
       type={type}
       name={name}
       subscription={subs || utils.defaultSubs}
       placeholder={placeholder || ''}
-      validate={isValidation ? composeValidators(utils.requiredValidation) : undefined}
+      validate={isValidation ? utils.requiredValidation : undefined}
     >
       {({ input, meta }) => {
         return (

@@ -9,20 +9,14 @@ const GuestBlock = (): JSX.Element => {
     <>
       <h5 className="text-center margin-top25 type-item-title">Guest block</h5>
 
-      <Input type="text" name="guest.name" placeholder="Example: Victor Ryabkov" label="Guest name" isValidation />
+      <Input type="text" name="guest.name" placeholder="Victor Ryabkov" label="Guest name" isValidation />
 
-      <Input
-        type="text"
-        name="guest.age"
-        placeholder="Example: 26.07.2000"
-        label="Date of Birth"
-        isValidation={false}
-      />
+      <Input type="text" name="guest.age" placeholder="26.07.2000" label="Date of Birth" isValidation={false} />
 
       <Input
         type="text"
         name="guest.profession"
-        placeholder="Example: Developer"
+        placeholder="Developer"
         label="Guest profession"
         isValidation={false}
       />

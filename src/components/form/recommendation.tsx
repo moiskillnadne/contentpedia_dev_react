@@ -108,7 +108,7 @@ const Recommendation: FC<RecommendationProps> = (props): JSX.Element => {
     />
   )
 
-  function submitToState(val: any, form: any): void {
+  function submitToState(val: Record<string, Content>, form: any): void {
     const values: Content = { ...val[type], id: uuidv4() }
 
     switch (type) {

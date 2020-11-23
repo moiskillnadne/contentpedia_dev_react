@@ -46,7 +46,7 @@ function removeContent(state: ContentState, { type, payload }: Action): ContentS
   }
 }
 
-function clearContent(state: ContentState, { type, payload }: Action): ContentState | void {
+function clearContent(state: ContentState, { type }: Action): ContentState | void {
   switch (type) {
     case CLEAR_ENTIRE_CONTENT:
       state.videoContent = []

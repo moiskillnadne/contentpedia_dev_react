@@ -17,7 +17,6 @@ const VideoItem: FC<VideoItemProps> = (props): JSX.Element => {
   return (
     <li className="item">
       <h5>{utils.makeTitle(Video.video.name)}</h5>
-      <div>{utils.makeDescription(Video.general.description)}</div>
 
       <button type="button" className="btn btn-danger btn-sm" onClick={() => onRemoveItemClick(Video._id)}>
         Delete
