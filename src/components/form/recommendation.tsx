@@ -108,6 +108,7 @@ const Recommendation: FC<RecommendationProps> = (props): JSX.Element => {
     />
   )
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function submitToState(val: Record<string, Content>, form: any): void {
     const values: Content = { ...val[type], id: uuidv4() }
 

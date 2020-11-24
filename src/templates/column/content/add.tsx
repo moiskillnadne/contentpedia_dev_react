@@ -1,6 +1,6 @@
 // Dependencies
 import React from 'react'
-import { Form } from 'react-final-form'
+import { Form, FormRenderProps } from 'react-final-form'
 import createDecorator from 'final-form-focus'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,17 +15,18 @@ import GuestBlock from '@/components/form/guest'
 import Recommendation from '@/components/form/recommendation'
 
 const AddColumn = (): JSX.Element => {
-  const focusOnError = createDecorator()
+  const focusOnError = createDecorator<VideoDetailsFormModel>()
   const contentState = useSelector((s: RootState) => s.contentState)
   const dsp = useDispatch()
-  let submit: any
-  let formState: any
+  let submit: FormRenderProps['handleSubmit']
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let formState: any // ToDo: Присвоить тип когда выйдет Final-Form 4.21
 
   return (
     <>
-      <Form
+      <Form<VideoDetailsFormModel>
         onSubmit={onSubmitForm}
-        decorators={[focusOnError as any]}
+        decorators={[focusOnError]}
         subscription={{
           submitting: true,
         }}
