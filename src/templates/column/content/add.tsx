@@ -1,5 +1,5 @@
 // Dependencies
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Form, FormRenderProps } from 'react-final-form'
 import createDecorator from 'final-form-focus'
 
@@ -15,7 +15,7 @@ import GuestBlock from '@/components/form/guest'
 import Recommendation from '@/components/form/recommendation'
 
 const AddColumn = (): JSX.Element => {
-  const focusOnError = createDecorator<VideoDetailsFormModel>()
+  const focusOnError = useMemo(() => createDecorator<VideoDetailsFormModel>(), [])
   const contentState = useSelector((s: RootState) => s.contentState)
   const dsp = useDispatch()
   let submit: FormRenderProps['handleSubmit']
@@ -35,6 +35,7 @@ const AddColumn = (): JSX.Element => {
           formState = form
           return (
             <form onSubmit={handleSubmit}>
+              <div />
               <ChannelBlock />
               <GuestBlock />
             </form>

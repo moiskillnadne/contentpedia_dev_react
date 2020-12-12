@@ -1,6 +1,6 @@
 import '@/pages/auth/style.less'
-import React, { FC } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { Form } from 'react-final-form'
 import { AuthForm } from '@/types/auth'
 
@@ -8,6 +8,7 @@ import { AuthForm } from '@/types/auth'
 import Input from '@/components/form/input'
 
 const Auth = (): JSX.Element => {
+  const history = useHistory()
   let fromApi: any
   return (
     <div className="auth-background">
@@ -26,13 +27,9 @@ const Auth = (): JSX.Element => {
                   <form onSubmit={handleSubmit}>
                     <Input type="email" name="email" isValidation label="Email" />
                     <Input type="password" name="password" isValidation label="Password" />
-                    <Link
-                      to="/"
-                      className="btn btn-primary"
-                      // onClick={(e) => handleSubmit(e)}
-                    >
+                    <button type="submit" className="btn btn-primary">
                       Log In
-                    </Link>
+                    </button>
                   </form>
                 )
               }}
@@ -46,8 +43,7 @@ const Auth = (): JSX.Element => {
   function formSubmit(e: AuthForm) {
     console.log(e)
 
-    // Form cleaning
-    setTimeout(() => fromApi.restart())
+    history.push('/')
   }
 }
 
