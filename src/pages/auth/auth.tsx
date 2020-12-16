@@ -1,13 +1,18 @@
 import '@/pages/auth/style.less'
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Form } from 'react-final-form'
 import { AuthForm } from '@/types/auth'
+import { login } from '@/store/actions/auth'
+import md5 from 'md5'
 
 // Components
 import Input from '@/components/form/input'
 
 const Auth = (): JSX.Element => {
+  const dsp = useDispatch()
+
   const history = useHistory()
   let fromApi: any
   return (
@@ -40,10 +45,14 @@ const Auth = (): JSX.Element => {
     </div>
   )
 
-  function formSubmit(e: AuthForm) {
-    console.log(e)
-
-    history.push('/')
+  async function formSubmit(values: AuthForm) {
+    dsp(
+      login({ email: values.email, password: md5(values.password) }, function onSuccess(data: any) {
+        localStorage.setItem('token', data.token)
+        localStorage.setItem('refresh', data.refreshToken)
+        history.push('/')
+      }),
+    )
   }
 }
 
