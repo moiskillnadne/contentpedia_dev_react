@@ -4,7 +4,7 @@ import { ApiAction, OnStatus } from '@/index/redux/middlewares/api/type.d'
 
 import { GET_VIDEO_LIST, GET_VIDEO, REMOVE_VIDEO, ADD_VIDEO } from '@/store/constants/video'
 
-const url = '/api/db'
+const url = '/api/v1/videoDetails/'
 
 export const get = (id: string): ApiAction => ({
   type: REST_API,
