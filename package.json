@@ -2,7 +2,7 @@
     "name": "contentpedia_dev",
     "version": "2.0.0",
     "private": true,
-    "proxy": "http://localhost:5555/",
+    "proxy": "https://dev.contentpedia.ru",
     "dependencies": {
         "@babel/core": "7.12.3",
         "@pmmmwh/react-refresh-webpack-plugin": "0.4.2",
