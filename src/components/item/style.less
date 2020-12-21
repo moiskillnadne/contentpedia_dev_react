@@ -59,16 +59,25 @@
 
   .recommendation-counter {
     position: absolute;
-    left: 0px;
-    bottom: 0px;
+    right: 150px;
+    bottom: 5px;
 
-    height: 75px;
+    height: 50px;
 
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 3;
+
+    span{
+      padding: 5px;
+      display: grid;
+      justify-items: center;
+    }
 
     .video {
-      padding: 5px;
     }
 
     .audio {}
@@ -163,6 +172,10 @@
       width: 100%;
       filter: blur(0px);
       border-radius: 4px;
+    }
+
+    .recommendation-counter {
+      display: none;
     }
   }
 }
