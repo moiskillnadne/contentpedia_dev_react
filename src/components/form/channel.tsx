@@ -3,7 +3,7 @@ import React from 'react'
 import { Field } from 'react-final-form'
 
 // Components
-import Input from '@/components/form/input'
+import Input from '@/components/input/input'
 
 // Shared
 import * as utils from '@/components/form/utils'

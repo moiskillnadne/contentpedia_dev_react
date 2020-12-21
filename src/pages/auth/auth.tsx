@@ -8,7 +8,7 @@ import { login } from '@/store/actions/auth'
 import md5 from 'md5'
 
 // Components
-import Input from '@/components/form/input'
+import Input from '@/components/input/input'
 
 const Auth = (): JSX.Element => {
   const dsp = useDispatch()

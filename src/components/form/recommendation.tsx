@@ -9,7 +9,7 @@ import { Content } from '@/types/model'
 import * as ContentActions from '@/store/actions/content'
 
 // Components
-import Input from '@/components/form/input'
+import Input from '@/components/input/input'
 import SubItem from '@/components/sub.item/content'
 
 // Shared

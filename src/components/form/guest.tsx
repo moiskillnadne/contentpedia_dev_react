@@ -2,7 +2,7 @@
 import React from 'react'
 
 // Components
-import Input from '@/components/form/input'
+import Input from '@/components/input/input'
 
 const GuestBlock = (): JSX.Element => {
   return (
