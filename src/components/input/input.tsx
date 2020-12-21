@@ -1,5 +1,6 @@
 // eslint-disable react/jsx-props-no-spreading
 // Dependencies
+import '@/components/input/style.less'
 import React, { FC, useState } from 'react'
 import { Field } from 'react-final-form'
 import { SubscriptionSettigns } from '@/types/common'
