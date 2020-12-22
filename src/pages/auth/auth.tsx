@@ -14,7 +14,6 @@ const Auth = (): JSX.Element => {
   const dsp = useDispatch()
 
   const history = useHistory()
-  let fromApi: any
   return (
     <div className="auth-background">
       <div className="container">
@@ -26,8 +25,7 @@ const Auth = (): JSX.Element => {
               subscription={{
                 submitting: true,
               }}
-              render={({ handleSubmit, form }) => {
-                fromApi = form
+              render={({ handleSubmit }) => {
                 return (
                   <form onSubmit={handleSubmit}>
                     <Input type="email" name="email" isValidation label="Email" />
@@ -47,6 +45,7 @@ const Auth = (): JSX.Element => {
 
   async function formSubmit(values: AuthForm) {
     dsp(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       login({ email: values.email, password: md5(values.password) }, function onSuccess(data: any) {
         localStorage.setItem('token', data.token)
         localStorage.setItem('refresh', data.refreshToken)

@@ -2,7 +2,7 @@ import { VideoFormModel } from '@/types/model'
 import { REST_API } from '@/index/redux/middlewares/api'
 import { ApiAction, OnStatus } from '@/index/redux/middlewares/api/type.d'
 
-import { GET_VIDEO_LIST, GET_VIDEO, REMOVE_VIDEO, ADD_VIDEO } from '@/store/constants/video'
+import { GET_VIDEO_LIST, GET_VIDEO, REMOVE_VIDEO, ADD_VIDEO, GET_PREVIEW_LINK } from '@/store/constants/video'
 
 const url = '/api/v1/videoDetails/'
 
@@ -18,6 +18,14 @@ export const getList = (): ApiAction => ({
   stageActionTypes: GET_VIDEO_LIST,
   url,
   method: 'get',
+})
+
+export const getPreviewLink = (videoLink: string): ApiAction => ({
+  type: REST_API,
+  stageActionTypes: GET_PREVIEW_LINK,
+  url: `${url}getPreviewLink`,
+  method: 'post',
+  body: { videoLink },
 })
 
 export const add = (Video: VideoFormModel, onSuccess: OnStatus): ApiAction => ({

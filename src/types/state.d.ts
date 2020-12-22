@@ -9,6 +9,9 @@ export type UserState = Requestable & {
 export type VideoState = Requestable & {
   VideoList: VideoModel[]
   Video: VideoModel | null
+  validation: {
+    previewLink: string | null
+  }
 }
 
 export type ContentState = {

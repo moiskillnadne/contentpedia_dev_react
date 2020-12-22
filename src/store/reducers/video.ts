@@ -4,11 +4,14 @@ import { combine } from '@/index/redux/middlewares/api/helper'
 
 import { ApiOnStatusAction } from '@/index/redux/middlewares/api/type.d'
 import { VideoModel } from '@/types/model'
-import { GET_VIDEO_LIST, SET_VIDEO, ADD_VIDEO } from '@/store/constants/video'
+import { GET_VIDEO_LIST, SET_VIDEO, ADD_VIDEO, GET_PREVIEW_LINK } from '@/store/constants/video'
 
 const initialState: VideoState = {
   VideoList: [],
   Video: null,
+  validation: {
+    previewLink: null,
+  },
   error: '',
   loading: {
     getList: false,
@@ -41,6 +44,40 @@ function getList(state = initialState, { type, payload }: ApiOnStatusAction<Vide
           getList: false,
         },
         VideoList: (payload.body as VideoModel[]) || { ...state.VideoList },
+      }
+  }
+}
+
+function getPreview(state = initialState, { type, payload }: ApiOnStatusAction<string>): VideoState | void {
+  switch (type) {
+    case GET_PREVIEW_LINK.START:
+      return {
+        ...state,
+        error: '',
+        loading: {
+          getList: state.VideoList.length ? 'Обновление пользователей' : 'Загрузка пользователей',
+        },
+      }
+
+    case GET_PREVIEW_LINK.FAIL:
+      return {
+        ...state,
+        error: payload?.body?.error || '',
+        loading: {
+          getList: false,
+        },
+      }
+
+    case GET_PREVIEW_LINK.SUCCESS:
+      return {
+        ...state,
+        error: '',
+        loading: {
+          getList: false,
+        },
+        validation: {
+          previewLink: (payload.body as string) || null,
+        },
       }
   }
 }
@@ -88,4 +125,4 @@ function set(state = initialState, { type, payload }: Action<VideoModel>): Video
   }
 }
 
-export default combine(initialState, getList, addVideo, set)
+export default combine(initialState, getList, getPreview, addVideo, set)
