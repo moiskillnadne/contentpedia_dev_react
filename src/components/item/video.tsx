@@ -10,9 +10,8 @@ import * as utils from '@/components/item/utils'
 
 type VideoItemProps = { Video: VideoModel }
 
-const VideoItem: FC<VideoItemProps> = (props): JSX.Element => {
+const VideoItem: FC<VideoItemProps> = ({ Video }): JSX.Element => {
   const dsp = useDispatch()
-  const { Video } = props
 
   return (
     <li className="item">
@@ -44,6 +43,7 @@ const VideoItem: FC<VideoItemProps> = (props): JSX.Element => {
   )
 
   function onRemoveItemClick(id: string): void {
+    if (!id) return
     dsp(
       videoActions.remove(id, function onSuccess() {
         dsp(videoActions.getList())

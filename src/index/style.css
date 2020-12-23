@@ -17,3 +17,7 @@
 body {
     scroll-behavior: smooth;
 }
+
+.no-scroll {
+  overflow-y: hidden;
+}
