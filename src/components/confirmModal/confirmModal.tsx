@@ -1,29 +1,44 @@
 import '@/components/confirmModal/style.less'
-import React from 'react'
+import 'react-simple-hook-modal/dist/styles.css'
+import React, { FC } from 'react'
+import { Modal, ModalTransition } from 'react-simple-hook-modal'
 
-const ConfirmModal = (): JSX.Element => {
+type ConfirmModalProps = {
+  isModalOpen: boolean
+  content: string
+  onTrueButtonClick: () => void
+  onFalseButtonClick: () => void
+}
+
+const ConfirmModal: FC<ConfirmModalProps> = ({
+  isModalOpen,
+  content,
+  onTrueButtonClick,
+  onFalseButtonClick,
+}): JSX.Element => {
   return (
-    <div className="modal-container">
-      <div className="customModal">
-        <div className="content">content</div>
-        <div className="trueButton">
-          <button
-            type="button"
-            // onClick={onTrueButtonClick}
-          >
+    <Modal
+      id="confirmation-modal"
+      isOpen={isModalOpen}
+      transition={ModalTransition.SCALE}
+      modalClassName="confirmation-modal"
+    >
+      <div className="modal-container">
+        <div className="content">
+          <h3>{content}</h3>
+        </div>
+        <div className="true-button">
+          <button type="button" onClick={onTrueButtonClick}>
             Yes
           </button>
         </div>
-        <div className="falseButton">
-          <button
-            type="button"
-            // onClick={onFalseButtonClick}
-          >
+        <div className="false-button">
+          <button type="button" onClick={onFalseButtonClick}>
             No
           </button>
         </div>
       </div>
-    </div>
+    </Modal>
   )
 }
 

@@ -1,29 +1,59 @@
 // Dependencies
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { RootState, VideoState } from '@/types/state'
-import * as videoActions from '@/store/actions/video'
+import { useModal } from 'react-simple-hook-modal'
 
 // Components
 import VideoItem from '@/components/item/video'
+import Modal from '@/components/confirmModal/confirmModal'
+
+// Shared
+import { RootState, VideoState } from '@/types/state'
+import * as videoActions from '@/store/actions/video'
 
 const GetColumn = (): JSX.Element => {
   const videoState = useSelector((s: RootState): VideoState => s.videoState)
   const dsp = useDispatch()
+
+  const [id, setId] = useState<string>('')
+  const { isModalOpen, openModal, closeModal } = useModal()
+
   useEffect(() => getVideo(), [])
 
   return (
-    <ol className="get-column-content">
-      {videoState.VideoList.map(
-        (iVideo): JSX.Element => (
-          <VideoItem Video={iVideo} key={iVideo._id} />
-        ),
-      )}
-    </ol>
+    <>
+      <ol className="get-column-content">
+        {videoState.VideoList.map(
+          (iVideo): JSX.Element => (
+            <VideoItem Video={iVideo} key={iVideo._id} openModal={openModal} setId={setId} />
+          ),
+        )}
+      </ol>
+      <Modal
+        isModalOpen={isModalOpen}
+        content="Are you sure you want to delete video?"
+        onTrueButtonClick={onTrueButtonClick}
+        onFalseButtonClick={customCloseModal}
+      />
+    </>
   )
 
   function getVideo() {
     dsp(videoActions.getList())
+  }
+
+  function onTrueButtonClick() {
+    dsp(
+      videoActions.remove(id, function onSuccess() {
+        getVideo()
+        customCloseModal()
+      }),
+    )
+  }
+
+  function customCloseModal() {
+    closeModal()
+    document.body.classList.remove('no-scroll')
   }
 }
 

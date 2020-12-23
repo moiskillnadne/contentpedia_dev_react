@@ -1,18 +1,18 @@
 // Dependencies
 import React, { FC } from 'react'
-import { useDispatch } from 'react-redux'
-import * as videoActions from '@/store/actions/video'
-import { VideoModel } from '@/types/model'
 
 // Shared
 import '@/components/item/style.less'
 import * as utils from '@/components/item/utils'
+import { VideoModel } from '@/types/model'
 
-type VideoItemProps = { Video: VideoModel }
+type VideoItemProps = {
+  Video: VideoModel
+  openModal: () => void
+  setId: (id: string) => void
+}
 
-const VideoItem: FC<VideoItemProps> = ({ Video }): JSX.Element => {
-  const dsp = useDispatch()
-
+const VideoItem: FC<VideoItemProps> = ({ Video, openModal, setId }): JSX.Element => {
   return (
     <li className="item">
       <h5>{utils.makeTitle(Video.video.name)}</h5>
@@ -44,11 +44,9 @@ const VideoItem: FC<VideoItemProps> = ({ Video }): JSX.Element => {
 
   function onRemoveItemClick(id: string): void {
     if (!id) return
-    dsp(
-      videoActions.remove(id, function onSuccess() {
-        dsp(videoActions.getList())
-      }),
-    )
+    document.body.classList.add('no-scroll')
+    openModal()
+    setId(id)
   }
 }
 

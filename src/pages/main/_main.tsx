@@ -1,5 +1,6 @@
 // Dependencies
 import React from 'react'
+import { ModalProvider } from 'react-simple-hook-modal'
 
 // Components
 import Header from '@/templates/header/header'
@@ -10,17 +11,19 @@ import '@/pages/main/style.less'
 
 const Main = (): JSX.Element => {
   return (
-    <div className="container">
-      <Header />
+    <ModalProvider>
+      <div className="container">
+        <Header />
 
-      <div className="container-fluid">
-        <div className="columns-wrapper">
-          <Column type="get" />
+        <div className="container-fluid">
+          <div className="columns-wrapper">
+            <Column type="get" />
 
-          <Column type="add" />
+            <Column type="add" />
+          </div>
         </div>
       </div>
-    </div>
+    </ModalProvider>
   )
 }
 
