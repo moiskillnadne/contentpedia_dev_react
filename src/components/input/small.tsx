@@ -7,8 +7,7 @@ type SmallProps = {
   name?: string
 }
 
-const Small: FC<SmallProps> = (props): JSX.Element => {
-  const { small, name } = props
+const Small: FC<SmallProps> = ({ small, name }): JSX.Element => {
   const validation = useSelector((s: RootState) => s.videoState.validation)
 
   if (small) return <small className="form-text text-muted">{small}</small>

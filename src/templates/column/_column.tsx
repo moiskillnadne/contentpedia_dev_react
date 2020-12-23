@@ -1,6 +1,5 @@
 // Dependencies
 import React, { FC } from 'react'
-import { RootState, VideoState } from '@/types/state'
 import { useSelector } from 'react-redux'
 
 // Components
@@ -10,13 +9,13 @@ import AddColumn from '@/templates/column/content/add'
 // Shared
 import * as utils from '@/templates/column/utils'
 import '@/templates/column/style.less'
+import { RootState, VideoState } from '@/types/state'
 
 type ColumnProps = {
   type: 'get' | 'add'
 }
 
-const Column: FC<ColumnProps> = (props): JSX.Element => {
-  const { type } = props
+const Column: FC<ColumnProps> = ({ type }): JSX.Element => {
   const videoState = useSelector((s: RootState): VideoState => s.videoState)
 
   return (

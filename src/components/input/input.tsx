@@ -4,7 +4,6 @@ import '@/components/input/style.less'
 import React, { FC } from 'react'
 import { useDispatch } from 'react-redux'
 import { Field } from 'react-final-form'
-import { SubscriptionSettigns } from '@/types/common'
 import c from 'clsx'
 
 // Components
@@ -13,6 +12,7 @@ import Small from '@/components/input/small'
 // Shared
 import * as utils from '@/components/form/utils'
 import { getPreviewLink } from '@/store/actions/video'
+import { SubscriptionSettigns } from '@/types/common'
 
 type InputProps = {
   type: 'text' | 'number' | 'email' | 'password'
@@ -25,8 +25,16 @@ type InputProps = {
   isValidation: boolean
 }
 
-const Input: FC<InputProps> = (props): JSX.Element => {
-  const { type, name, styleCss, placeholder, subs, label, small, isValidation } = props
+const Input: FC<InputProps> = ({
+  type,
+  name,
+  styleCss,
+  placeholder,
+  subs,
+  label,
+  small,
+  isValidation,
+}): JSX.Element => {
   const dsp = useDispatch()
 
   return (

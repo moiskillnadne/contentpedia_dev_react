@@ -19,8 +19,7 @@ type RecommendationProps = {
   type: 'video' | 'audio' | 'text'
 }
 
-const Recommendation: FC<RecommendationProps> = (props): JSX.Element => {
-  const { type } = props
+const Recommendation: FC<RecommendationProps> = ({ type }): JSX.Element => {
   const dsp = useDispatch()
 
   const contentState = useSelector((s: RootState) => s.contentState)

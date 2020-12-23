@@ -3,17 +3,19 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Form } from 'react-final-form'
-import { AuthForm } from '@/types/auth'
-import { login } from '@/store/actions/auth'
 import md5 from 'md5'
 
 // Components
 import Input from '@/components/input/input'
 
+// Shared
+import { AuthForm } from '@/types/auth'
+import { login } from '@/store/actions/auth'
+
 const Auth = (): JSX.Element => {
   const dsp = useDispatch()
-
   const history = useHistory()
+
   return (
     <div className="auth-background">
       <div className="container">

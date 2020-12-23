@@ -12,8 +12,7 @@ type SmallItemProps = {
   type: 'video' | 'audio' | 'text'
 }
 
-const smallItem: FC<SmallItemProps> = (props): JSX.Element => {
-  const { item, type } = props
+const smallItem: FC<SmallItemProps> = ({ item, type }): JSX.Element => {
   const dsp = useDispatch()
 
   return (
