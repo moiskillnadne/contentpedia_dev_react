@@ -1,11 +1,11 @@
-name: TESTING_BUILD_ON_PUSH
+name: BUILD_ON_PUSH
 
 on:
   push:
     branches: [dev]
 
 jobs:
-  testing_build:
+  build:
     runs-on: ubuntu-latest
 
     strategy:

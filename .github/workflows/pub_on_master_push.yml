@@ -1,9 +1,11 @@
+name: PUBLISH_ON_PUSH
+
 on:
   push:
     branch: [master]
 
 jobs:
-  testing_build:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -23,7 +25,7 @@ jobs:
           yarn build
 
   build_and_pub:
-    needs: [testing_build]
+    needs: [build]
 
     runs-on: ubuntu-latest
 
@@ -31,6 +33,7 @@ jobs:
       - name: Connecting via SSH and deploy
         uses: appleboy/ssh-action@master
         with:
+          key: ${{secrets.SSH_PRIVATE}}
           fingerprint: ${{secrets.SSH_KEY}}
           script: cd ../var/www/contentpedia.ru/
             git clone git@github.com:moiskillnadne/contentpedia_dev_react.git
