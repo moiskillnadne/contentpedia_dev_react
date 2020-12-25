@@ -3,6 +3,10 @@
     "version": "2.1.0",
     "private": true,
     "proxy": "https://dev.contentpedia.ru",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/moiskillnadne/contentpedia_dev_react"
+    },
     "dependencies": {
         "@babel/core": "7.12.3",
         "@pmmmwh/react-refresh-webpack-plugin": "0.4.2",
