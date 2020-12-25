@@ -1,3 +1,5 @@
+name: TEST_BUILD_ON_PUSH
+
 on:
   push:
     branches: [dev]
