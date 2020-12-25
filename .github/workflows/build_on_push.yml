@@ -20,6 +20,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Create build
-        run: rm -rf build
-          npm install
-          npm build
+      - run: yarn install
+      - run: yarn build
