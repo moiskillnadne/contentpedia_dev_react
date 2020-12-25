@@ -33,6 +33,10 @@ jobs:
       - name: Connecting via SSH and deploy
         uses: appleboy/ssh-action@master
         with:
+          host: ${{ secrets.CONTENTPEDIA.SSH_HOST }}
+          username: ${{ secrets.CONTENTPEDIA.SSH_USERNAME }}
+          password: ${{ secrets.CONTENTPEDIA.SSH_PASSWORD }}
+          # port: ${{ secrets.CONTENTPEDIA.PORT }}
           key: ${{secrets.CONTENTPEDIA.SSH_PRIVATE}}
           fingerprint: ${{secrets.CONTENTPEDIA.SSH_KEY}}
           script: cd ../var/www/contentpedia.ru/
