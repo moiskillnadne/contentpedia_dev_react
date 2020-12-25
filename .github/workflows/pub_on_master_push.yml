@@ -1,0 +1,26 @@
+on:
+  push:
+    branch: [master]
+
+jobs:
+  build_and_pub:
+    needs: [testing_build]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Connecting via SSH and deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.CONTENTPEDIA.SSH_HOST}}
+          username: ${{secrets.CONTENTPEDIA.SSH_USERNAME}}
+          password: ${{secrets.CONTENTPEDIA.SSH_PASSWORD}}
+          script: cd ../var/www/contentpedia.ru/
+            git clone git@github.com:moiskillnadne/contentpedia_dev_react.git
+            cd contentpedia_dev_react/
+            npm install
+            npm run-script build
+            cp -R build/* build/asset-manifest.json build/index.html build/robots.txt ../contentpedia.ru/
+            nginx -s reload
+            cd ../
+            rm -rf contentpedia_dev_react/
