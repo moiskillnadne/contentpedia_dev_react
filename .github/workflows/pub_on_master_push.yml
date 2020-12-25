@@ -3,6 +3,12 @@ on:
     branch: [master]
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Testing...
+
   build_and_pub:
     needs: [testing_build]
 
