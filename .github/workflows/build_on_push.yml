@@ -1,4 +1,4 @@
-name: TEST_BUILD_ON_PUSH
+name: TESTING_BUILD_ON_PUSH
 
 on:
   push:
