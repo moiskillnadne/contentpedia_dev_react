@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     strategy:
       matrix:
@@ -37,8 +37,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           # port: ${{ secrets.CONTENTPEDIA.PORT }}
-          key: ${{secrets.SSH_PRIVATE}}
-          fingerprint: ${{secrets.SSH_KEY}}
+          # key: ${{secrets.SSH_PRIVATE}}
+          # fingerprint: ${{secrets.SSH_KEY}}
           script: cd ../var/www/contentpedia.ru/
             git clone git@github.com:moiskillnadne/contentpedia_dev_react.git
             cd contentpedia_dev_react/
