@@ -19,6 +19,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - run: rm -rf build
       - run: npm install
       - run: npm run-script build --if-present
+      - run: cp -r build/* build/index.html build/robots.txt build/asset-manifest.json /var/www/contentpedia.ru
       # - run: npm run-script test --if-present
