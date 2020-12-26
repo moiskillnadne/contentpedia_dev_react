@@ -1,4 +1,4 @@
-name: BUILD_ON_PUSH
+name: PUBLISH_ON_PUSH
 
 on:
   push:
