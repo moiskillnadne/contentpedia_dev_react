@@ -21,6 +21,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: rm -rf build
       - run: npm install
-      - run: npm run-script build --if-present
-      - run: cp -r build/* build/index.html build/robots.txt build/asset-manifest.json /var/www/contentpedia.ru
-      # - run: npm run-script test --if-present
+      - run: npm run-script build
+      - run: cp -r /root/actions-runner/contentpedia/contentpedia_dev_react/contentpedia_dev_react/build/* /var/www/contentpedia.ru/
