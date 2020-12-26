@@ -16,7 +16,7 @@ import Recommendation from '@/components/form/recommendation'
 
 const AddColumn = (): JSX.Element => {
   const focusOnError = useMemo(() => createDecorator<VideoDetailsFormModel>(), [])
-  const contentState = useSelector((s: RootState) => s.contentState)
+  const state = useSelector((s: RootState) => s)
   const dsp = useDispatch()
   let submit: FormRenderProps['handleSubmit']
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -61,12 +61,19 @@ const AddColumn = (): JSX.Element => {
   function onSubmitForm(values: VideoDetailsFormModel): void {
     const data = {
       ...values,
-      recommendation: { ...contentState },
+      recommendation: { ...state.contentState },
     }
 
     dsp(
       videoActions.add(data, function onSuccess() {
         dsp(videoActions.getList())
+
+        console.log(state.videoState.VideoList.length * 151)
+
+        window.scrollTo({
+          top: state.videoState.VideoList.length * 151,
+          behavior: 'smooth',
+        })
 
         // Restart whole form
         setTimeout(() => formState.restart())
