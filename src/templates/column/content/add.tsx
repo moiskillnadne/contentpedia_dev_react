@@ -1,7 +1,8 @@
 // Dependencies
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { Form, FormRenderProps } from 'react-final-form'
 import createDecorator from 'final-form-focus'
+import { useModal } from 'react-simple-hook-modal'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/types/state'
@@ -13,6 +14,7 @@ import * as videoActions from '@/store/actions/video'
 import ChannelBlock from '@/components/form/channel'
 import GuestBlock from '@/components/form/guest'
 import Recommendation from '@/components/form/recommendation'
+import Modal from '@/components/confirmModal/confirmModal'
 
 const AddColumn = (): JSX.Element => {
   const focusOnError = useMemo(() => createDecorator<VideoDetailsFormModel>(), [])
@@ -21,6 +23,8 @@ const AddColumn = (): JSX.Element => {
   let submit: FormRenderProps['handleSubmit']
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let formState: any // ToDo: Присвоить тип когда выйдет Final-Form 4.21
+  const { isModalOpen, openModal, closeModal } = useModal()
+  const [modalContent, setModalContent] = useState<string>('')
 
   return (
     <>
@@ -56,6 +60,8 @@ const AddColumn = (): JSX.Element => {
       >
         Submit to DB
       </button>
+
+      <Modal isModalOpen={isModalOpen} content={modalContent} trueButton="4etko!" onTrueButtonClick={closeModal} />
     </>
   )
   function onSubmitForm(values: VideoDetailsFormModel): void {
@@ -64,22 +70,27 @@ const AddColumn = (): JSX.Element => {
       recommendation: { ...state.contentState },
     }
 
-    dsp(
-      videoActions.add(data, function onSuccess() {
-        dsp(videoActions.getList())
+    dsp(videoActions.add(data, onSuccess, onFail))
+  }
 
-        console.log(state.videoState.VideoList.length * 151)
+  function onSuccess() {
+    dsp(videoActions.getList())
 
-        window.scrollTo({
-          top: state.videoState.VideoList.length * 151,
-          behavior: 'smooth',
-        })
+    window.scrollTo({
+      top: state.videoState.VideoList.length * 151,
+      behavior: 'smooth',
+    })
+    setModalContent('Video item was added successfully!')
+    openModal()
 
-        // Restart whole form
-        setTimeout(() => formState.restart())
-        dsp(ContentActions.contentClear())
-      }),
-    )
+    // Restart whole form
+    setTimeout(() => formState.restart())
+    dsp(ContentActions.contentClear())
+  }
+
+  function onFail(e: Record<'error', string>) {
+    setModalContent(e.error)
+    openModal()
   }
 }
 

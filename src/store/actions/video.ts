@@ -28,13 +28,14 @@ export const getPreviewLink = (videoLink: string): ApiAction => ({
   body: { videoLink },
 })
 
-export const add = (Video: VideoFormModel, onSuccess: OnStatus): ApiAction => ({
+export const add = (Video: VideoFormModel, onSuccess: OnStatus, onFail: OnStatus): ApiAction => ({
   type: REST_API,
   stageActionTypes: ADD_VIDEO,
   url,
   method: 'post',
   body: Video,
   onSuccess,
+  onFail,
 })
 
 export const remove = (id: string, onSuccess: OnStatus): ApiAction => ({
