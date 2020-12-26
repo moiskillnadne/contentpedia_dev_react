@@ -1,8 +1,8 @@
-name: BUILD_ON_PUSH
+name: PUBLISH_ON_PUSH
 
 on:
   push:
-    branches: [dev]
+    branches: [master]
 
 jobs:
   build:
@@ -22,3 +22,4 @@ jobs:
       - run: rm -rf build
       - run: npm install
       - run: npm run-script build
+      - run: cp -r /root/actions-runner/contentpedia/contentpedia_dev_react/contentpedia_dev_react/build/* /var/www/contentpedia.ru/
