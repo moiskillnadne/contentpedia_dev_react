@@ -15,9 +15,9 @@ export type VideoState = Requestable & {
 }
 
 export type ContentState = {
-  videoContent: Content[]
-  audioContent: Content[]
-  textContent: Content[]
+  videoContent: Content[] | []
+  audioContent: Content[] | []
+  textContent: Content[] | []
 }
 
 export type RootState = {
