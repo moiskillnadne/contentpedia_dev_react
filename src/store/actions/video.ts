@@ -1,10 +1,23 @@
-import { VideoFormModel } from '@/types/model'
+import { VideoFormModel, VideoModel } from '@/types/model'
 import { REST_API } from '@/index/redux/middlewares/api'
 import { ApiAction, OnStatus } from '@/index/redux/middlewares/api/type.d'
+import { Action } from '@/types/common.d'
 
-import { GET_VIDEO_LIST, GET_VIDEO, REMOVE_VIDEO, ADD_VIDEO, GET_PREVIEW_LINK } from '@/store/constants/video'
+import {
+  GET_VIDEO_LIST,
+  GET_VIDEO,
+  REMOVE_VIDEO,
+  ADD_VIDEO,
+  GET_PREVIEW_LINK,
+  SET_VIDEO,
+} from '@/store/constants/video'
 
 const url = '/api/v1/videoDetails/'
+
+export const set = (Video: VideoModel): Action => ({
+  type: SET_VIDEO,
+  payload: Video,
+})
 
 export const get = (id: string): ApiAction => ({
   type: REST_API,
