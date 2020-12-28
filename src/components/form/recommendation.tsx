@@ -1,5 +1,5 @@
 // Dependencies
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import { Field, Form } from 'react-final-form'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -22,10 +22,18 @@ type RecommendationProps = {
 const Recommendation: FC<RecommendationProps> = ({ type }): JSX.Element => {
   const dsp = useDispatch()
 
+  const videoContentState = useSelector((s: RootState) => s.videoState.Video?.recommendation)
+
   const contentState = useSelector((s: RootState) => s.contentState)
-  const state = contentState[`${type}Content` as 'videoContent']
+  const state = videoContentState
+    ? videoContentState[`${type}Content` as 'videoContent']
+    : contentState[`${type}Content` as 'videoContent']
 
   const enviroment = utils.makeEnvRelatedType(type)
+
+  useEffect(() => {
+    pushWholeRecommendationToContentState(videoContentState)
+  }, [])
 
   return (
     <Form
@@ -39,7 +47,7 @@ const Recommendation: FC<RecommendationProps> = ({ type }): JSX.Element => {
             <h5 className="text-center margin-top25 type-item-title">{enviroment.blockTitle}</h5>
             <ul className="list-group white-bg">
               {state.map((item) => (
-                <SubItem item={item} key={item.id} type={type} />
+                <SubItem item={item} key={item.id ? item.id : `${item.timecode}${item.title}`} type={type} />
               ))}
             </ul>
             <div className="margin-top25" />
@@ -110,6 +118,7 @@ const Recommendation: FC<RecommendationProps> = ({ type }): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function submitToState(val: Record<string, Content>, form: any): void {
     const values: Content = { ...val[type], id: uuidv4() }
+    console.log(values)
 
     switch (type) {
       case 'video':
@@ -125,6 +134,10 @@ const Recommendation: FC<RecommendationProps> = ({ type }): JSX.Element => {
 
     // Restart whole form
     setTimeout(() => form.restart())
+  }
+
+  function pushWholeRecommendationToContentState(recommendation: Record<string, Content[]>) {
+    console.log(recommendation)
   }
 }
 

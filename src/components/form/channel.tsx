@@ -20,11 +20,11 @@ const ChannelBlock = (): JSX.Element => {
           subscription={utils.defaultSubs}
           validate={utils.requiredValidation}
         >
-          <option value="none" defaultValue="true">
-            Choose the channel
-          </option>
-          <option value="vdud">вДудь</option>
-          <option value="kuji">KuJi</option>
+          {utils.channelBlockOption.map((item) => (
+            <option key={`${item.value}${item.text}`} value={item.value} defaultValue={item.defaultValue}>
+              {item.text}
+            </option>
+          ))}
         </Field>
       </div>
 

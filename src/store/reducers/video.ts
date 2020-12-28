@@ -111,7 +111,7 @@ function addVideo(state = initialState, { type, payload }: ApiOnStatusAction<Vid
   }
 }
 
-function set(state = initialState, { type, payload }: Action<VideoModel>): VideoState | void {
+function set(state = initialState, { type, payload }: Action<VideoModel | null>): VideoState | void {
   switch (type) {
     case SET_VIDEO:
       return {

@@ -1,7 +1,5 @@
 import { DeepReadonly } from './util.d'
 
-type Permission = 'DEALER_DATA'
-
 type Role = 'PORTAL_ADMIN' | 'TEST'
 
 export type UserModel = DeepReadonly<{
@@ -79,4 +77,10 @@ export type Content = DeepReadonly<{
   url?: string
   comment?: string
   tags: string
+}>
+
+export type ChannelBlockOption = DeepReadonly<{
+  defaultValue: 'true' | 'false'
+  value: string
+  text: string
 }>

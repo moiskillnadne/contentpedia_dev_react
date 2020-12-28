@@ -34,6 +34,13 @@ const AddColumn = (): JSX.Element => {
         subscription={{
           submitting: true,
         }}
+        initialValues={
+          {
+            channel: state.videoState.Video?.channel,
+            video: state.videoState.Video?.video,
+            guest: state.videoState.Video?.guest,
+          } || undefined
+        }
         render={({ handleSubmit, form }) => {
           submit = handleSubmit
           formState = form
@@ -69,8 +76,9 @@ const AddColumn = (): JSX.Element => {
       ...values,
       recommendation: { ...state.contentState },
     }
+    console.log(data)
 
-    dsp(videoActions.add(data, onSuccess, onFail))
+    // dsp(videoActions.add(data, onSuccess, onFail))
   }
 
   function onSuccess() {
