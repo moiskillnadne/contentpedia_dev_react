@@ -12,7 +12,7 @@ import '@/templates/column/style.less'
 import { RootState, VideoState } from '@/types/state'
 
 type ColumnProps = {
-  type: 'get' | 'add'
+  type: 'get' | 'add' | 'edit'
 }
 
 const Column: FC<ColumnProps> = ({ type }): JSX.Element => {
@@ -31,6 +31,8 @@ const Column: FC<ColumnProps> = ({ type }): JSX.Element => {
       case 'get':
         return <GetColumn />
       case 'add':
+        return <AddColumn />
+      case 'edit':
         return <AddColumn />
       default:
         // Here should be 404 template
