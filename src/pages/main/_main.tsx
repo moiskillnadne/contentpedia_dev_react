@@ -9,10 +9,10 @@ import Column from '@/templates/column/_column'
 
 // Shared
 import '@/pages/main/style.less'
-import { RootState } from '@/types/state'
+import { RootState } from '@/common/state.d'
 
 const Main = (): JSX.Element => {
-  const videoState = useSelector((s: RootState) => s.videoState.Video)
+  const videoState = useSelector((s: RootState) => s.releaseState.Video)
 
   return (
     <ModalProvider>

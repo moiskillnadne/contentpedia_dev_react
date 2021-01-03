@@ -9,9 +9,9 @@ import {
   CLEAR_ENTIRE_CONTENT,
 } from '@/store/constants/content'
 
-import { Content } from 'types/model'
+import { RecommendationContentModel } from '@/common/videoModel'
 
-export const videoAdd = (content: Content): Action => ({
+export const videoAdd = (content: RecommendationContentModel): Action => ({
   type: ADD_VIDEO_CONTENT,
   payload: content,
 })
@@ -20,7 +20,7 @@ export const videoRemove = (id: string): Action => ({
   payload: id,
 })
 
-export const audioAdd = (content: Content): Action => ({
+export const audioAdd = (content: RecommendationContentModel): Action => ({
   type: ADD_AUDIO_CONTENT,
   payload: content,
 })
@@ -29,7 +29,7 @@ export const audioRemove = (id: string): Action => ({
   payload: id,
 })
 
-export const textAdd = (content: Content): Action => ({
+export const textAdd = (content: RecommendationContentModel): Action => ({
   type: ADD_TEXT_CONTENT,
   payload: content,
 })

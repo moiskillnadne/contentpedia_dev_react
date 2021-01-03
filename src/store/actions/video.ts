@@ -1,4 +1,4 @@
-import { VideoFormModel, VideoModel } from '@/types/model'
+import { ReleaseModel, RawReleaseModel } from '@/common/videoModel'
 import { REST_API } from '@/index/redux/middlewares/api'
 import { ApiAction, OnStatus } from '@/index/redux/middlewares/api/type.d'
 import { Action } from '@/types/common.d'
@@ -14,7 +14,7 @@ import {
 
 const url = '/api/v1/videoDetails/'
 
-export const set = (Video: VideoModel): Action => ({
+export const set = (Video: ReleaseModel | null): Action => ({
   type: SET_VIDEO,
   payload: Video,
 })
@@ -41,7 +41,7 @@ export const getPreviewLink = (videoLink: string): ApiAction => ({
   body: { videoLink },
 })
 
-export const add = (Video: VideoFormModel, onSuccess: OnStatus, onFail: OnStatus): ApiAction => ({
+export const add = (Video: RawReleaseModel, onSuccess: OnStatus, onFail: OnStatus): ApiAction => ({
   type: REST_API,
   stageActionTypes: ADD_VIDEO,
   url,

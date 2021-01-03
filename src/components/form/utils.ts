@@ -1,4 +1,4 @@
-import { ChannelBlockOption } from '@/types/model'
+import { ChannelBlockOption } from '@/common/utils.d'
 
 export const defaultSubs = {
   value: true,
@@ -60,7 +60,7 @@ export const channelBlockOption: ChannelBlockOption[] = [
   },
   {
     defaultValue: 'true',
-    value: 'something',
-    text: 'Что то еще',
+    value: 'asafyevlife',
+    text: 'Асафьев. Жизнь',
   },
 ]

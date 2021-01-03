@@ -8,11 +8,11 @@ import VideoItem from '@/components/item/video'
 import Modal from '@/components/confirmModal/confirmModal'
 
 // Shared
-import { RootState, VideoState } from '@/types/state'
+import { RootState } from '@/common/state.d'
 import * as videoActions from '@/store/actions/video'
 
 const GetColumn = (): JSX.Element => {
-  const videoState = useSelector((s: RootState): VideoState => s.videoState)
+  const releaseState = useSelector((s: RootState) => s.releaseState)
   const dsp = useDispatch()
 
   const [id, setId] = useState<string>('')
@@ -23,7 +23,7 @@ const GetColumn = (): JSX.Element => {
   return (
     <>
       <ol className="get-column-content">
-        {videoState.VideoList.map(
+        {releaseState.VideoList.map(
           (iVideo): JSX.Element => (
             <VideoItem Video={iVideo} key={iVideo._id} openModal={openModal} setId={setId} />
           ),

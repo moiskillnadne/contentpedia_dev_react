@@ -1,6 +1,6 @@
 import { applyMiddleware, compose, createStore, Store } from 'redux'
 
-import { RootState } from '@/types/state'
+import { RootState } from '@/common/state'
 
 import { Api } from './middlewares/api'
 

@@ -9,14 +9,14 @@ import AddColumn from '@/templates/column/content/add'
 // Shared
 import * as utils from '@/templates/column/utils'
 import '@/templates/column/style.less'
-import { RootState, VideoState } from '@/types/state'
+import { RootState, ReleaseState } from '@/common/state'
 
 type ColumnProps = {
   type: 'get' | 'add' | 'edit'
 }
 
 const Column: FC<ColumnProps> = ({ type }): JSX.Element => {
-  const videoState = useSelector((s: RootState): VideoState => s.videoState)
+  const videoState = useSelector((s: RootState): ReleaseState => s.releaseState)
 
   return (
     <div className={`column ${utils.makeColumnStyle(type)}`}>

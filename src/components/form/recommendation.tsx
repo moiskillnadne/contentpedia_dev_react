@@ -4,8 +4,8 @@ import { Field, Form } from 'react-final-form'
 import { v4 as uuidv4 } from 'uuid'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '@/types/state'
-import { Content } from '@/types/model'
+import { RootState } from '@/common/state'
+import { RecommendationContentModel } from '@/common/videoModel'
 import * as ContentActions from '@/store/actions/content'
 
 // Components
@@ -22,17 +22,17 @@ type RecommendationProps = {
 const Recommendation: FC<RecommendationProps> = ({ type }): JSX.Element => {
   const dsp = useDispatch()
 
-  const videoContentState = useSelector((s: RootState) => s.videoState.Video?.recommendation)
+  const videoContentState = useSelector((s: RootState) => s.releaseState.Video)
+  const contentState = useSelector((s: RootState) => s.recommendationContentState)
 
-  const contentState = useSelector((s: RootState) => s.contentState)
-  const state = videoContentState
-    ? videoContentState[`${type}Content` as 'videoContent']
+  const state = videoContentState?.recommendation
+    ? videoContentState.recommendation[`${type}Content` as 'videoContent']
     : contentState[`${type}Content` as 'videoContent']
 
   const enviroment = utils.makeEnvRelatedType(type)
 
   useEffect(() => {
-    pushWholeRecommendationToContentState(videoContentState)
+    pushWholeRecommendationToContentState(contentState)
   }, [])
 
   return (
@@ -116,9 +116,8 @@ const Recommendation: FC<RecommendationProps> = ({ type }): JSX.Element => {
   )
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function submitToState(val: Record<string, Content>, form: any): void {
-    const values: Content = { ...val[type], id: uuidv4() }
-    console.log(values)
+  function submitToState(val: Record<string, RecommendationContentModel>, form: any): void {
+    const values: RecommendationContentModel = { ...val[type], id: uuidv4() }
 
     switch (type) {
       case 'video':
@@ -136,7 +135,7 @@ const Recommendation: FC<RecommendationProps> = ({ type }): JSX.Element => {
     setTimeout(() => form.restart())
   }
 
-  function pushWholeRecommendationToContentState(recommendation: Record<string, Content[]>) {
+  function pushWholeRecommendationToContentState(recommendation: Record<string, RecommendationContentModel[]>) {
     console.log(recommendation)
   }
 }

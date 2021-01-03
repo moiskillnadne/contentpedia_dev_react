@@ -5,8 +5,8 @@ import createDecorator from 'final-form-focus'
 import { useModal } from 'react-simple-hook-modal'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '@/types/state'
-import { VideoDetailsFormModel } from '@/types/model'
+import { RootState } from '@/common/state'
+import { RawReleaseModel } from '@/common/videoModel.d'
 import * as ContentActions from '@/store/actions/content'
 import * as videoActions from '@/store/actions/video'
 
@@ -17,7 +17,7 @@ import Recommendation from '@/components/form/recommendation'
 import Modal from '@/components/confirmModal/confirmModal'
 
 const AddColumn = (): JSX.Element => {
-  const focusOnError = useMemo(() => createDecorator<VideoDetailsFormModel>(), [])
+  const focusOnError = useMemo(() => createDecorator<RawReleaseModel>(), [])
   const state = useSelector((s: RootState) => s)
   const dsp = useDispatch()
   let submit: FormRenderProps['handleSubmit']
@@ -28,7 +28,7 @@ const AddColumn = (): JSX.Element => {
 
   return (
     <>
-      <Form<VideoDetailsFormModel>
+      <Form<RawReleaseModel>
         onSubmit={onSubmitForm}
         decorators={[focusOnError]}
         subscription={{
@@ -36,9 +36,9 @@ const AddColumn = (): JSX.Element => {
         }}
         initialValues={
           {
-            channel: state.videoState.Video?.channel,
-            video: state.videoState.Video?.video,
-            guest: state.videoState.Video?.guest,
+            channel: state.releaseState.Video?.channel,
+            video: state.releaseState.Video?.video,
+            guest: state.releaseState.Video?.guest,
           } || undefined
         }
         render={({ handleSubmit, form }) => {
@@ -71,10 +71,10 @@ const AddColumn = (): JSX.Element => {
       <Modal isModalOpen={isModalOpen} content={modalContent} trueButton="4etko!" onTrueButtonClick={closeModal} />
     </>
   )
-  function onSubmitForm(values: VideoDetailsFormModel): void {
+  function onSubmitForm(values: RawReleaseModel): void {
     const data = {
       ...values,
-      recommendation: { ...state.contentState },
+      recommendation: { ...state.recommendationContentState },
     }
     console.log(data)
 
@@ -85,7 +85,7 @@ const AddColumn = (): JSX.Element => {
     dsp(videoActions.getList())
 
     window.scrollTo({
-      top: state.videoState.VideoList.length * 151,
+      top: state.releaseState.VideoList.length * 151,
       behavior: 'smooth',
     })
     setModalContent('Video item was added successfully!')

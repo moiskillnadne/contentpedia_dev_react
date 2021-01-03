@@ -1,4 +1,4 @@
-import { RootState } from '@/types/state'
+import { RootState } from '@/common/state.d'
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -8,7 +8,7 @@ type SmallProps = {
 }
 
 const Small: FC<SmallProps> = ({ small, name }): JSX.Element => {
-  const validation = useSelector((s: RootState) => s.videoState.validation)
+  const validation = useSelector((s: RootState) => s.releaseState.validation)
 
   if (small) return <small className="form-text text-muted">{small}</small>
   if (name === 'video.url' && validation.previewLink) {

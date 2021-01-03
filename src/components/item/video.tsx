@@ -5,22 +5,22 @@ import { useDispatch, useSelector } from 'react-redux'
 // Shared
 import '@/components/item/style.less'
 import * as utils from '@/components/item/utils'
-import { VideoModel } from '@/types/model'
+import { ReleaseModel } from '@/common/videoModel'
 import * as VIDEO_ACTION from '@/store/actions/video'
-import { RootState } from '@/types/state'
+import { RootState } from '@/common/state'
 
 // Components
 import RecommendationCounter from './recommendationCounter'
 
 type VideoItemProps = {
-  Video: VideoModel
+  Video: ReleaseModel
   openModal: () => void
   setId: (id: string) => void
 }
 
 const VideoItem: FC<VideoItemProps> = ({ Video, openModal, setId }): JSX.Element => {
   const dsp = useDispatch()
-  const videoState = useSelector((s: RootState) => s.videoState.Video)
+  const videoState = useSelector((s: RootState) => s.releaseState.Video)
 
   return (
     <li className="item">
@@ -48,7 +48,7 @@ const VideoItem: FC<VideoItemProps> = ({ Video, openModal, setId }): JSX.Element
     setId(id)
   }
 
-  function onEditItemClick(video: VideoModel): void {
+  function onEditItemClick(video: ReleaseModel): void {
     if (!video) return
     dsp(VIDEO_ACTION.set(videoState ? null : video))
   }

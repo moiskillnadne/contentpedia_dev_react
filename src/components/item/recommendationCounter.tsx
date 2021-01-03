@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
-import { ContentState } from '@/types/state'
+import { RecommendationModel } from '@/common/videoModel'
 
 type RecommendationCounterProps = {
-  recommendation: ContentState
+  recommendation: RecommendationModel
 }
 
 const RecommendationCounter: FC<RecommendationCounterProps> = ({ recommendation }): JSX.Element => {

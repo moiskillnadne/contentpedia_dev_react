@@ -1,6 +1,6 @@
 // Dependencies
 import React, { FC } from 'react'
-import { Content } from '@/types/model'
+import { RecommendationContentModel } from '@/common/videoModel'
 import { useDispatch } from 'react-redux'
 import * as ContentActions from '@/store/actions/content'
 
@@ -8,7 +8,7 @@ import * as ContentActions from '@/store/actions/content'
 import '@/components/sub.item/style.less'
 
 type SmallItemProps = {
-  item: Content
+  item: RecommendationContentModel
   type: 'video' | 'audio' | 'text'
 }
 

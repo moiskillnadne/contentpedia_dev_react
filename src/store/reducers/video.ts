@@ -1,12 +1,12 @@
 import { Action } from '@/types/common.d'
-import { VideoState } from '@/types/state.d'
+import { ReleaseState } from '@/common/state.d'
 import { combine } from '@/index/redux/middlewares/api/helper'
 
 import { ApiOnStatusAction } from '@/index/redux/middlewares/api/type.d'
-import { VideoModel } from '@/types/model'
+import { ReleaseModel } from '@/common/videoModel'
 import { GET_VIDEO_LIST, SET_VIDEO, ADD_VIDEO, GET_PREVIEW_LINK } from '@/store/constants/video'
 
-const initialState: VideoState = {
+const initialState: ReleaseState = {
   VideoList: [],
   Video: null,
   validation: {
@@ -18,7 +18,7 @@ const initialState: VideoState = {
   },
 }
 
-function getList(state = initialState, { type, payload }: ApiOnStatusAction<VideoModel[]>): VideoState | void {
+function getList(state = initialState, { type, payload }: ApiOnStatusAction<ReleaseModel[]>): ReleaseState | void {
   switch (type) {
     case GET_VIDEO_LIST.START:
       return {
@@ -43,12 +43,12 @@ function getList(state = initialState, { type, payload }: ApiOnStatusAction<Vide
         loading: {
           getList: false,
         },
-        VideoList: (payload.body as VideoModel[]) || { ...state.VideoList },
+        VideoList: (payload.body as ReleaseModel[]) || { ...state.VideoList },
       }
   }
 }
 
-function getPreview(state = initialState, { type, payload }: ApiOnStatusAction<string>): VideoState | void {
+function getPreview(state = initialState, { type, payload }: ApiOnStatusAction<string>): ReleaseState | void {
   switch (type) {
     case GET_PREVIEW_LINK.START:
       return {
@@ -82,7 +82,7 @@ function getPreview(state = initialState, { type, payload }: ApiOnStatusAction<s
   }
 }
 
-function addVideo(state = initialState, { type, payload }: ApiOnStatusAction<VideoModel[]>): VideoState | void {
+function addVideo(state = initialState, { type, payload }: ApiOnStatusAction<ReleaseModel[]>): ReleaseState | void {
   switch (type) {
     case ADD_VIDEO.START:
       return {
@@ -111,7 +111,7 @@ function addVideo(state = initialState, { type, payload }: ApiOnStatusAction<Vid
   }
 }
 
-function set(state = initialState, { type, payload }: Action<VideoModel | null>): VideoState | void {
+function set(state = initialState, { type, payload }: Action<ReleaseModel | null>): ReleaseState | void {
   switch (type) {
     case SET_VIDEO:
       return {
