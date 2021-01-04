@@ -31,6 +31,8 @@ const Recommendation: FC<RecommendationProps> = ({ type }): JSX.Element => {
   useEffect(() => {
     if (videoRecommendationContentState) {
       pushAllRecommendationToRecommendationState(videoRecommendationContentState)
+    } else {
+      clearAllRecommendationState()
     }
   }, [videoRecommendationContentState])
 
@@ -136,8 +138,12 @@ const Recommendation: FC<RecommendationProps> = ({ type }): JSX.Element => {
     setTimeout(() => form.restart())
   }
 
-  function pushAllRecommendationToRecommendationState(recomm: RecommendationModel) {
-    console.log(recomm)
+  function pushAllRecommendationToRecommendationState(recommendation: RecommendationModel) {
+    dsp(ContentActions.contentUpdate(recommendation))
+  }
+
+  function clearAllRecommendationState() {
+    dsp(ContentActions.contentClear())
   }
 }
 

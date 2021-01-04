@@ -1,6 +1,6 @@
 import { Action } from '@/common/types/basic'
 import * as recommendation from '@/store/constants/recommendationContent'
-import { RecommendationContentModel } from '@/common/types/videoModel'
+import { RecommendationContentModel, RecommendationModel } from '@/common/types/videoModel'
 
 export const videoAdd = (content: RecommendationContentModel): Action => ({
   type: recommendation.ADD_VIDEO_CONTENT,
@@ -32,4 +32,9 @@ export const textRemove = (id: string): Action => ({
 export const contentClear = (): Action => ({
   type: recommendation.CLEAR_ENTIRE_CONTENT,
   payload: undefined,
+})
+
+export const contentUpdate = (recommendationContentState: RecommendationModel): Action => ({
+  type: recommendation.UPDATE_ENTIRE_CONTENT,
+  payload: recommendationContentState,
 })

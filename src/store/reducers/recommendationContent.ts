@@ -46,8 +46,15 @@ function removeContent(state: RecommendationModel, { type, payload }: Action): R
 function clearContent(state: RecommendationModel, { type }: Action): RecommendationModel | void {
   switch (type) {
     case recommendation.CLEAR_ENTIRE_CONTENT:
-      return { ...state, ...{ videoContent: [], audioContent: [], textContent: [] } }
+      return { ...state, ...{ video: [], audio: [], text: [] } }
   }
 }
 
-export default combine(initialState, addContent, removeContent, clearContent)
+function updateContent(state: RecommendationModel, { type, payload }: Action): RecommendationModel | void {
+  switch (type) {
+    case recommendation.UPDATE_ENTIRE_CONTENT:
+      return { ...state, ...{ video: payload.video, audio: payload.audio, text: payload.text } }
+  }
+}
+
+export default combine(initialState, addContent, removeContent, clearContent, updateContent)
