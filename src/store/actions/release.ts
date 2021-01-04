@@ -44,10 +44,10 @@ export const add = (Video: RawReleaseModel, onSuccess: OnSuccess, onFail: OnFail
 })
 
 // Check method and url v
-export const update = (Video: ReleaseModel, onSuccess: OnSuccess, onFail: OnFail): APIAction => ({
+export const update = (id: string, Video: RawReleaseModel, onSuccess: OnSuccess, onFail: OnFail): APIAction => ({
   type: REST_API,
   stageActionTypes: video.UPDATE,
-  url,
+  url: `${url}${id}`,
   method: 'put',
   body: Video,
   onSuccess,

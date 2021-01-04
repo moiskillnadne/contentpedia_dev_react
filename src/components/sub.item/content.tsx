@@ -23,14 +23,19 @@ const smallItem: FC<SmallItemProps> = ({ item, type }): JSX.Element => {
         <a href={item.timecode} className="col" target="_blank" rel="noreferrer">
           Timecode url
         </a>
-        <button type="button" className="col-1 remove-btn-for-item" onClick={() => removeSelfItem(item.id)}>
+        <button
+          type="button"
+          className="col-1 remove-btn-for-item"
+          onClick={() => removeSelfItem(item._id ? item._id : item.id)}
+        >
           X
         </button>
       </div>
     </li>
   )
 
-  function removeSelfItem(id: string) {
+  function removeSelfItem(id: string | undefined) {
+    if (!id) return
     switch (type) {
       case 'video':
         dsp(ContentActions.videoRemove(id))

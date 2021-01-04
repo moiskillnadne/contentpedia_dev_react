@@ -1,4 +1,4 @@
-import { Action } from '@/common/types/basic'
+import { Action } from '@/common/types/basic.d'
 import * as recommendation from '@/store/constants/recommendationContent'
 import { RecommendationContentModel, RecommendationModel } from '@/common/types/videoModel'
 

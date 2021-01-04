@@ -31,9 +31,9 @@ const Column: FC<ColumnProps> = ({ type }): JSX.Element => {
       case 'get':
         return <GetColumn />
       case 'add':
-        return <AddColumn />
+        return <AddColumn type="add" />
       case 'edit':
-        return <AddColumn />
+        return <AddColumn type="edit" />
       default:
         // Here should be 404 template
         break

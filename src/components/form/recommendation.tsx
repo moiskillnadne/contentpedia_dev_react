@@ -36,6 +36,12 @@ const Recommendation: FC<RecommendationProps> = ({ type }): JSX.Element => {
     }
   }, [videoRecommendationContentState])
 
+  useEffect(() => {
+    return () => {
+      clearAllRecommendationState()
+    }
+  }, [])
+
   const enviroment = utils.makeEnvRelatedType(type)
 
   return (

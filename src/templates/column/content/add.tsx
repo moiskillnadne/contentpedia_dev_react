@@ -1,13 +1,13 @@
 // Dependencies
-import React, { useMemo, useState } from 'react'
+import React, { FC, useMemo, useState } from 'react'
 import { Form, FormRenderProps } from 'react-final-form'
 import createDecorator from 'final-form-focus'
 import { useModal } from 'react-simple-hook-modal'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/common/types/state.d'
-import { RawReleaseModel } from '@/common/types/videoModel.d'
-import * as ContentActions from '@/store/actions/recommendationContent'
+import { RawReleaseModel, ReleaseModel } from '@/common/types/videoModel.d'
+import * as contentActions from '@/store/actions/recommendationContent'
 import * as videoActions from '@/store/actions/release'
 
 // Components
@@ -16,7 +16,11 @@ import GuestBlock from '@/components/form/guest'
 import Recommendation from '@/components/form/recommendation'
 import Modal from '@/components/confirmModal/confirmModal'
 
-const AddColumn = (): JSX.Element => {
+type AddColumnProps = {
+  type: 'add' | 'edit'
+}
+
+const AddColumn: FC<AddColumnProps> = ({ type }): JSX.Element => {
   const focusOnError = useMemo(() => createDecorator<RawReleaseModel>(), [])
   const state = useSelector((s: RootState) => s)
   const dsp = useDispatch()
@@ -68,7 +72,12 @@ const AddColumn = (): JSX.Element => {
         Submit to DB
       </button>
 
-      <Modal isModalOpen={isModalOpen} content={modalContent} trueButton="4etko!" onTrueButtonClick={closeModal} />
+      <Modal
+        isModalOpen={isModalOpen}
+        content={modalContent}
+        trueButton="4etko!"
+        onTrueButtonClick={type === 'edit' ? resetEditColumnData : closeModal}
+      />
     </>
   )
   function onSubmitForm(values: RawReleaseModel): void {
@@ -76,12 +85,21 @@ const AddColumn = (): JSX.Element => {
       ...values,
       recommendation: { ...state.recommendationContentState },
     }
+    const Video: ReleaseModel = state.releaseState?.Video
     console.log(data)
+    console.log(Video)
 
-    // dsp(videoActions.add(data, onSuccess, onFail))
+    switch (type) {
+      case 'add':
+        dsp(videoActions.add(data, onAddSuccess, onAddFail))
+        break
+      case 'edit':
+        dsp(videoActions.update(Video._id, data, onEditSuccess, onEditFail))
+        break
+    }
   }
 
-  function onSuccess() {
+  function onAddSuccess() {
     dsp(videoActions.getList())
 
     window.scrollTo({
@@ -93,13 +111,26 @@ const AddColumn = (): JSX.Element => {
 
     // Restart whole form
     setTimeout(() => formState.restart())
-    dsp(ContentActions.contentClear())
+    dsp(contentActions.contentClear())
   }
 
-  function onFail(e: Record<'error', string>) {
-    setModalContent(e.error)
+  function onAddFail() {
+    setModalContent('Failed!')
     openModal()
   }
+
+  function onEditSuccess() {
+    dsp(videoActions.getList())
+
+    setModalContent('Video item was edited successfully!')
+    openModal()
+  }
+
+  function resetEditColumnData() {
+    dsp(videoActions.set(null))
+  }
+
+  function onEditFail() {}
 }
 
 export default AddColumn

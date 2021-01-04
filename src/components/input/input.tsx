@@ -12,7 +12,7 @@ import Small from '@/components/input/small'
 // Shared
 import * as utils from '@/components/form/utils'
 import { getPreviewLink } from '@/store/actions/release'
-import { SubscriptionSettigns } from '@/common/types/basic'
+import { SubscriptionSettigns } from '@/common/types/basic.d'
 
 type InputProps = {
   type: 'text' | 'number' | 'email' | 'password'
@@ -70,7 +70,6 @@ const Input: FC<InputProps> = ({
 
   function onGetLinkBlur(value: string): void {
     if (!value) return
-    console.log(value)
     dsp(getPreviewLink(value))
   }
 }
