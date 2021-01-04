@@ -4,7 +4,7 @@ import { combine } from '@/index/redux/middlewares/api/helper'
 
 import { ApiOnStatusAction } from '@/index/redux/middlewares/api/type.d'
 import { ReleaseModel } from '@/common/videoModel'
-import { GET_VIDEO_LIST, SET_VIDEO, ADD_VIDEO, GET_PREVIEW_LINK } from '@/store/constants/video'
+import * as video from '@/store/constants/video'
 
 const initialState: ReleaseState = {
   VideoList: [],
@@ -20,7 +20,7 @@ const initialState: ReleaseState = {
 
 function getList(state = initialState, { type, payload }: ApiOnStatusAction<ReleaseModel[]>): ReleaseState | void {
   switch (type) {
-    case GET_VIDEO_LIST.START:
+    case video.GET_ALL.START:
       return {
         ...state,
         error: '',
@@ -28,7 +28,7 @@ function getList(state = initialState, { type, payload }: ApiOnStatusAction<Rele
           getList: state.VideoList.length ? 'Обновление пользователей' : 'Загрузка пользователей',
         },
       }
-    case GET_VIDEO_LIST.FAIL:
+    case video.GET_ALL.FAIL:
       return {
         ...state,
         loading: {
@@ -36,7 +36,7 @@ function getList(state = initialState, { type, payload }: ApiOnStatusAction<Rele
         },
         error: payload?.body?.error || '',
       }
-    case GET_VIDEO_LIST.SUCCESS:
+    case video.GET_ALL.SUCCESS:
       return {
         ...state,
         error: '',
@@ -50,7 +50,7 @@ function getList(state = initialState, { type, payload }: ApiOnStatusAction<Rele
 
 function getPreview(state = initialState, { type, payload }: ApiOnStatusAction<string>): ReleaseState | void {
   switch (type) {
-    case GET_PREVIEW_LINK.START:
+    case video.GET_PREVIEW_LINK.START:
       return {
         ...state,
         error: '',
@@ -59,7 +59,7 @@ function getPreview(state = initialState, { type, payload }: ApiOnStatusAction<s
         },
       }
 
-    case GET_PREVIEW_LINK.FAIL:
+    case video.GET_PREVIEW_LINK.FAIL:
       return {
         ...state,
         error: payload?.body?.error || '',
@@ -68,7 +68,7 @@ function getPreview(state = initialState, { type, payload }: ApiOnStatusAction<s
         },
       }
 
-    case GET_PREVIEW_LINK.SUCCESS:
+    case video.GET_PREVIEW_LINK.SUCCESS:
       return {
         ...state,
         error: '',
@@ -84,7 +84,7 @@ function getPreview(state = initialState, { type, payload }: ApiOnStatusAction<s
 
 function addVideo(state = initialState, { type, payload }: ApiOnStatusAction<ReleaseModel[]>): ReleaseState | void {
   switch (type) {
-    case ADD_VIDEO.START:
+    case video.ADD.START:
       return {
         ...state,
         error: '',
@@ -92,7 +92,7 @@ function addVideo(state = initialState, { type, payload }: ApiOnStatusAction<Rel
           addVideo: state.VideoList.length ? 'Обновление пользователей' : 'Загрузка пользователей',
         },
       }
-    case ADD_VIDEO.FAIL:
+    case video.ADD.FAIL:
       return {
         ...state,
         loading: {
@@ -100,7 +100,7 @@ function addVideo(state = initialState, { type, payload }: ApiOnStatusAction<Rel
         },
         error: payload?.body?.error || '',
       }
-    case ADD_VIDEO.SUCCESS:
+    case video.ADD.SUCCESS:
       return {
         ...state,
         error: '',
@@ -113,7 +113,7 @@ function addVideo(state = initialState, { type, payload }: ApiOnStatusAction<Rel
 
 function set(state = initialState, { type, payload }: Action<ReleaseModel | null>): ReleaseState | void {
   switch (type) {
-    case SET_VIDEO:
+    case video.SET_VIDEO:
       return {
         ...state,
         error: '',

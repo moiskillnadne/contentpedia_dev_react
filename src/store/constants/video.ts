@@ -1,10 +1,10 @@
-export const GET_VIDEO_LIST = {
+export const GET_ALL = {
   START: 'GET_VIDEO_LIST/START',
   SUCCESS: 'GET_VIDEO_LIST/SUCCESS',
   FAIL: 'GET_VIDEO_LIST/FAIL',
 }
 
-export const GET_VIDEO = {
+export const GET = {
   START: 'GET_VIDEO/START',
   SUCCESS: 'GET_VIDEO/SUCCESS',
   FAIL: 'GET_VIDEO/FAIL',
@@ -15,17 +15,17 @@ export const GET_PREVIEW_LINK = {
   FAIL: 'GET_PREVIEW_LINK/FAIL',
 }
 
-export const ADD_VIDEO = {
+export const ADD = {
   START: 'ADD_VIDEO/START',
   SUCCESS: 'ADD_VIDEO/SUCCESS',
   FAIL: 'ADD_VIDEO/FAIL',
 }
-export const UPDATE_VIDEO = {
+export const UPDATE = {
   START: 'UPDATE_VIDEO/START',
   SUCCESS: 'UPDATE_VIDEO/SUCCESS',
   FAIL: 'UPDATE_VIDEO/FAIL',
 }
-export const REMOVE_VIDEO = {
+export const REMOVE = {
   START: 'REMOVE_VIDEO/START',
   SUCCESS: 'REMOVE_VIDEO/SUCCESS',
   FAIL: 'REMOVE_VIDEO/FAIL',

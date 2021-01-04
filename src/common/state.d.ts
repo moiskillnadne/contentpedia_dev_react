@@ -1,5 +1,4 @@
 import { Requestable } from '@/index/redux/middlewares/api'
-
 import { ReleaseModel, RecommendationContentModel } from './videoModel.d'
 
 export type RootState = {
