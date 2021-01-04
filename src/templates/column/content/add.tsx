@@ -36,9 +36,9 @@ const AddColumn = (): JSX.Element => {
         }}
         initialValues={
           {
-            channel: state.releaseState.Video?.channel,
-            video: state.releaseState.Video?.video,
-            guest: state.releaseState.Video?.guest,
+            channel: state.releaseState?.Video?.channel,
+            video: state.releaseState?.Video?.video,
+            guest: state.releaseState?.Video?.guest,
           } || undefined
         }
         render={({ handleSubmit, form }) => {

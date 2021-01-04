@@ -1,4 +1,4 @@
-import { Action } from '@/types/common.d'
+import { Action } from '@/common/basic.d'
 import { ReleaseState } from '@/common/state.d'
 import { combine } from '@/index/redux/middlewares/api/helper'
 

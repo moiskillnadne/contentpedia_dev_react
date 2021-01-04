@@ -12,7 +12,7 @@ import Small from '@/components/input/small'
 // Shared
 import * as utils from '@/components/form/utils'
 import { getPreviewLink } from '@/store/actions/video'
-import { SubscriptionSettigns } from '@/types/common'
+import { SubscriptionSettigns } from '@/common/basic'
 
 type InputProps = {
   type: 'text' | 'number' | 'email' | 'password'

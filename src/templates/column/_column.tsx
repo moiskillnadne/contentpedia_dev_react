@@ -9,19 +9,19 @@ import AddColumn from '@/templates/column/content/add'
 // Shared
 import * as utils from '@/templates/column/utils'
 import '@/templates/column/style.less'
-import { RootState, ReleaseState } from '@/common/state'
+import { RootState } from '@/common/state'
 
 type ColumnProps = {
   type: 'get' | 'add' | 'edit'
 }
 
 const Column: FC<ColumnProps> = ({ type }): JSX.Element => {
-  const videoState = useSelector((s: RootState): ReleaseState => s.releaseState)
+  const videoListState = useSelector((s: RootState) => s.releaseState?.VideoList)
 
   return (
     <div className={`column ${utils.makeColumnStyle(type)}`}>
       <h3 className="column-title">{utils.makeColumnTitle(type)}</h3>
-      {type === 'get' ? <span className="video-counter">{videoState.VideoList.length}</span> : null}
+      {type === 'get' ? <span className="video-counter">{videoListState.length}</span> : null}
       <div className="container">{makeColumnContent(type)}</div>
     </div>
   )

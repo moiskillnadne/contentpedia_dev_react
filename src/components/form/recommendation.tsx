@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/common/state'
-import { RecommendationContentModel } from '@/common/videoModel'
+import { RecommendationContentModel, RecommendationModel } from '@/common/videoModel'
 import * as ContentActions from '@/store/actions/content'
 
 // Components
@@ -22,11 +22,13 @@ type RecommendationProps = {
 const Recommendation: FC<RecommendationProps> = ({ type }): JSX.Element => {
   const dsp = useDispatch()
 
-  const videoContentState = useSelector((s: RootState) => s.releaseState.Video)
+  const videoContentState = useSelector(
+    (s: RootState): RecommendationModel => s.releaseState.Video?.recommendation as RecommendationModel,
+  )
   const contentState = useSelector((s: RootState) => s.recommendationContentState)
 
-  const state = videoContentState?.recommendation
-    ? videoContentState.recommendation[`${type}Content` as 'videoContent']
+  const state: RecommendationContentModel[] = videoContentState
+    ? (videoContentState[`${type}Content` as 'videoContent'] as RecommendationContentModel[])
     : contentState[`${type}Content` as 'videoContent']
 
   const enviroment = utils.makeEnvRelatedType(type)
@@ -136,6 +138,7 @@ const Recommendation: FC<RecommendationProps> = ({ type }): JSX.Element => {
   }
 
   function pushWholeRecommendationToContentState(recommendation: Record<string, RecommendationContentModel[]>) {
+    // eslint-disable-next-line no-console
     console.log(recommendation)
   }
 }

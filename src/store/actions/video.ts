@@ -1,7 +1,7 @@
 import { ReleaseModel, RawReleaseModel } from '@/common/videoModel'
 import { REST_API } from '@/index/redux/middlewares/api'
 import { ApiAction, OnStatus } from '@/index/redux/middlewares/api/type.d'
-import { Action } from '@/types/common.d'
+import { Action } from '@/common/basic.d'
 
 import * as video from '@/store/constants/video'
 

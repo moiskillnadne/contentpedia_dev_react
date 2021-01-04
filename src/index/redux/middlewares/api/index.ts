@@ -2,7 +2,7 @@ import { Middleware, Dispatch, MiddlewareAPI } from 'redux'
 
 import qs from 'qs'
 
-import { ApiAction, ApiOnStatusAction, ResBody, Settings, StageActionTypes } from './type'
+import { ApiAction, ApiOnStatusAction, ResBody, Settings, StageActionTypes } from './type.d'
 
 export const REST_API = 'REST_API'
 

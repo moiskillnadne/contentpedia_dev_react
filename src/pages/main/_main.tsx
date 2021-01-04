@@ -12,7 +12,7 @@ import '@/pages/main/style.less'
 import { RootState } from '@/common/state.d'
 
 const Main = (): JSX.Element => {
-  const videoState = useSelector((s: RootState) => s.releaseState.Video)
+  const videoState = useSelector((s: RootState) => s.releaseState?.Video)
 
   return (
     <ModalProvider>

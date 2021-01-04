@@ -1,4 +1,4 @@
-import { DeepReadonly } from '@/types/util.d'
+import { DeepReadonly } from '@/common/util'
 
 export type ReleaseModel = DeepReadonly<{ _id: string } & RawReleaseModel>
 export type RawReleaseModel = DeepReadonly<

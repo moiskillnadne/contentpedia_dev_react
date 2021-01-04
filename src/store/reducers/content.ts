@@ -1,4 +1,4 @@
-import { Action } from '@/types/common.d'
+import { Action } from '@/common/basic.d'
 import { combine } from '@/index/redux/middlewares/api/helper'
 import { RecommendationContentModel, RecommendationModel } from '@/common/videoModel.d'
 import * as recommendation from '@/store/constants/content'

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable import/prefer-default-export */
-import { Action } from '@/types/common.d'
+import { Action } from '@/common/basic.d'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function combine(initS: any, ...fn: ((s: any, a: Action) => any)[]) {
