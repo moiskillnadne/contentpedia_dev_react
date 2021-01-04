@@ -3,7 +3,7 @@ import { RootState } from '@/common/types/state'
 import { APIMiddleware } from '@savchenko91/rc-redux-api-mw'
 import createRootReducer from './reducers'
 
-const api = new APIMiddleware()
+const api = new APIMiddleware({ headers: { 'Content-Type': 'application/json' } })
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
