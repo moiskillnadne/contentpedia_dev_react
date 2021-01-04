@@ -1,4 +1,4 @@
-import { DeepReadonly } from '@/common/util'
+import { DeepReadonly } from '@/common/types/util.d'
 
 export type ReleaseModel = DeepReadonly<{ _id: string } & RawReleaseModel>
 export type RawReleaseModel = DeepReadonly<
@@ -30,9 +30,9 @@ export type GuestModel = DeepReadonly<{
 }>
 
 export type RecommendationModel = DeepReadonly<{
-  videoContent: RecommendationContentModel[] | []
-  audioContent: RecommendationContentModel[] | []
-  textContent: RecommendationContentModel[] | []
+  video: RecommendationContentModel[] | []
+  audio: RecommendationContentModel[] | []
+  text: RecommendationContentModel[] | []
 }>
 
 export type RecommendationContentModel = DeepReadonly<{

@@ -1,12 +1,9 @@
 import { applyMiddleware, compose, createStore, Store } from 'redux'
-
-import { RootState } from '@/common/state'
-
-import { Api } from './middlewares/api'
-
+import { RootState } from '@/common/types/state'
+import { APIMiddleware } from '@savchenko91/rc-redux-api-mw'
 import createRootReducer from './reducers'
 
-const api = new Api()
+const api = new APIMiddleware()
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 

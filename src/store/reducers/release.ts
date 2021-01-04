@@ -1,10 +1,8 @@
-import { Action } from '@/common/basic.d'
-import { ReleaseState } from '@/common/state.d'
-import { combine } from '@/index/redux/middlewares/api/helper'
-
-import { ApiOnStatusAction } from '@/index/redux/middlewares/api/type.d'
-import { ReleaseModel } from '@/common/videoModel'
-import * as video from '@/store/constants/video'
+import { Action } from '@/common/types/basic'
+import { ReleaseState } from '@/common/types/state'
+import { combine, APIAction } from '@savchenko91/rc-redux-api-mw'
+import { ReleaseModel } from '@/common/types/videoModel.d'
+import * as video from '@/store/constants/release'
 
 const initialState: ReleaseState = {
   VideoList: [],
@@ -18,7 +16,7 @@ const initialState: ReleaseState = {
   },
 }
 
-function getList(state = initialState, { type, payload }: ApiOnStatusAction<ReleaseModel[]>): ReleaseState | void {
+function getList(state = initialState, { type, payload }: APIAction<ReleaseModel[]>): ReleaseState | void {
   switch (type) {
     case video.GET_ALL.START:
       return {
@@ -48,7 +46,7 @@ function getList(state = initialState, { type, payload }: ApiOnStatusAction<Rele
   }
 }
 
-function getPreview(state = initialState, { type, payload }: ApiOnStatusAction<string>): ReleaseState | void {
+function getPreview(state = initialState, { type, payload }: APIAction<string>): ReleaseState | void {
   switch (type) {
     case video.GET_PREVIEW_LINK.START:
       return {
@@ -82,7 +80,7 @@ function getPreview(state = initialState, { type, payload }: ApiOnStatusAction<s
   }
 }
 
-function addVideo(state = initialState, { type, payload }: ApiOnStatusAction<ReleaseModel[]>): ReleaseState | void {
+function addVideo(state = initialState, { type, payload }: APIAction<ReleaseModel[]>): ReleaseState | void {
   switch (type) {
     case video.ADD.START:
       return {

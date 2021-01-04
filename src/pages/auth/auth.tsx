@@ -9,7 +9,7 @@ import md5 from 'md5'
 import Input from '@/components/input/input'
 
 // Shared
-import { AuthForm } from '@/common/auth'
+import { AuthForm } from '@/common/types/auth.d'
 import { login } from '@/store/actions/auth'
 
 const Auth = (): JSX.Element => {

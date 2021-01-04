@@ -8,8 +8,9 @@ import VideoItem from '@/components/item/video'
 import Modal from '@/components/confirmModal/confirmModal'
 
 // Shared
-import { RootState } from '@/common/state.d'
-import * as videoActions from '@/store/actions/video'
+import { RootState } from '@/common/types/state.d'
+import { ReleaseModel } from '@/common/types/videoModel.d'
+import * as videoActions from '@/store/actions/release'
 
 const GetColumn = (): JSX.Element => {
   const releaseState = useSelector((s: RootState) => s.releaseState)
@@ -23,8 +24,8 @@ const GetColumn = (): JSX.Element => {
   return (
     <>
       <ol className="get-column-content">
-        {releaseState.VideoList.map(
-          (iVideo): JSX.Element => (
+        {releaseState?.VideoList.map(
+          (iVideo: ReleaseModel): JSX.Element => (
             <VideoItem Video={iVideo} key={iVideo._id} openModal={openModal} setId={setId} />
           ),
         )}

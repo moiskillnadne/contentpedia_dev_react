@@ -1,12 +1,12 @@
-import { Action } from '@/common/basic.d'
-import { combine } from '@/index/redux/middlewares/api/helper'
-import { RecommendationContentModel, RecommendationModel } from '@/common/videoModel.d'
-import * as recommendation from '@/store/constants/content'
+import { Action } from '@/common/types/basic'
+import { combine } from '@savchenko91/rc-redux-api-mw'
+import { RecommendationContentModel, RecommendationModel } from '@/common/types/videoModel.d'
+import * as recommendation from '@/store/constants/recommendationContent'
 
 const initialState: RecommendationModel = {
-  videoContent: [],
-  audioContent: [],
-  textContent: [],
+  video: [],
+  audio: [],
+  text: [],
 }
 
 function addContent(
@@ -15,15 +15,15 @@ function addContent(
 ): RecommendationModel | void {
   switch (type) {
     case recommendation.ADD_VIDEO_CONTENT:
-      const videoContent = state.videoContent.filter((i: RecommendationContentModel) => i)
+      const videoContent = state.video.filter((i: RecommendationContentModel) => i)
       videoContent.push(payload)
       return { ...state, ...{ videoContent } }
     case recommendation.ADD_AUDIO_CONTENT:
-      const audioContent = state.audioContent.filter((i: RecommendationContentModel) => i)
+      const audioContent = state.audio.filter((i: RecommendationContentModel) => i)
       audioContent.push(payload)
       return { ...state, ...{ audioContent } }
     case recommendation.ADD_TEXT_CONTENT:
-      const textContent = state.textContent.filter((i: RecommendationContentModel) => i)
+      const textContent = state.text.filter((i: RecommendationContentModel) => i)
       textContent.push(payload)
       return { ...state, ...{ textContent } }
   }
@@ -32,13 +32,13 @@ function addContent(
 function removeContent(state: RecommendationModel, { type, payload }: Action): RecommendationModel | void {
   switch (type) {
     case recommendation.REMOVE_VIDEO_CONTENT:
-      const videoContent = state.videoContent.filter((item) => item.id === payload.id)
+      const videoContent = state.video.filter((item) => item.id === payload.id)
       return { ...state, ...{ videoContent } }
     case recommendation.REMOVE_AUDIO_CONTENT:
-      const audioContent = state.audioContent.filter((item) => item.id === payload.id)
+      const audioContent = state.audio.filter((item) => item.id === payload.id)
       return { ...state, ...{ audioContent } }
     case recommendation.REMOVE_TEXT_CONTENT:
-      const textContent = state.textContent.filter((item) => item.id === payload.id)
+      const textContent = state.text.filter((item) => item.id === payload.id)
       return { ...state, ...{ textContent } }
   }
 }

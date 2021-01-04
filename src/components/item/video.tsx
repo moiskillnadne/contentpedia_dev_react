@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 // Shared
 import '@/components/item/style.less'
 import * as utils from '@/components/item/utils'
-import { ReleaseModel } from '@/common/videoModel'
-import * as VIDEO_ACTION from '@/store/actions/video'
-import { RootState } from '@/common/state'
+import { ReleaseModel } from '@/common/types/videoModel.d'
+import * as VIDEO_ACTION from '@/store/actions/release'
+import { RootState } from '@/common/types/state.d'
 
 // Components
 import RecommendationCounter from './recommendationCounter'

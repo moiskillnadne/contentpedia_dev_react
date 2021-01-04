@@ -4,9 +4,9 @@ import { Field, Form } from 'react-final-form'
 import { v4 as uuidv4 } from 'uuid'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '@/common/state'
-import { RecommendationContentModel, RecommendationModel } from '@/common/videoModel'
-import * as ContentActions from '@/store/actions/content'
+import { RecommendationContentState, RootState } from '@/common/types/state.d'
+import { RecommendationContentModel, RecommendationModel } from '@/common/types/videoModel.d'
+import * as ContentActions from '@/store/actions/recommendationContent'
 
 // Components
 import Input from '@/components/input/input'
@@ -22,20 +22,19 @@ type RecommendationProps = {
 const Recommendation: FC<RecommendationProps> = ({ type }): JSX.Element => {
   const dsp = useDispatch()
 
-  const videoContentState = useSelector(
-    (s: RootState): RecommendationModel => s.releaseState.Video?.recommendation as RecommendationModel,
+  const videoRecommendationContentState: RecommendationModel = useSelector(
+    (s: RootState) => s.releaseState?.Video?.recommendation,
   )
-  const contentState = useSelector((s: RootState) => s.recommendationContentState)
-
-  const state: RecommendationContentModel[] = videoContentState
-    ? (videoContentState[`${type}Content` as 'videoContent'] as RecommendationContentModel[])
-    : contentState[`${type}Content` as 'videoContent']
-
-  const enviroment = utils.makeEnvRelatedType(type)
+  const contentState = useSelector((s: RootState) => s.recommendationContentState as RecommendationContentState)
+  const currentContentTypeState = contentState[type] as RecommendationContentModel[]
 
   useEffect(() => {
-    pushWholeRecommendationToContentState(contentState)
-  }, [])
+    if (videoRecommendationContentState) {
+      pushAllRecommendationToRecommendationState(videoRecommendationContentState)
+    }
+  }, [videoRecommendationContentState])
+
+  const enviroment = utils.makeEnvRelatedType(type)
 
   return (
     <Form
@@ -48,7 +47,7 @@ const Recommendation: FC<RecommendationProps> = ({ type }): JSX.Element => {
           <>
             <h5 className="text-center margin-top25 type-item-title">{enviroment.blockTitle}</h5>
             <ul className="list-group white-bg">
-              {state.map((item) => (
+              {currentContentTypeState.map((item) => (
                 <SubItem item={item} key={item.id ? item.id : `${item.timecode}${item.title}`} type={type} />
               ))}
             </ul>
@@ -137,9 +136,8 @@ const Recommendation: FC<RecommendationProps> = ({ type }): JSX.Element => {
     setTimeout(() => form.restart())
   }
 
-  function pushWholeRecommendationToContentState(recommendation: Record<string, RecommendationContentModel[]>) {
-    // eslint-disable-next-line no-console
-    console.log(recommendation)
+  function pushAllRecommendationToRecommendationState(recomm: RecommendationModel) {
+    console.log(recomm)
   }
 }
 

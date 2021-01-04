@@ -5,10 +5,10 @@ import createDecorator from 'final-form-focus'
 import { useModal } from 'react-simple-hook-modal'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '@/common/state'
-import { RawReleaseModel } from '@/common/videoModel.d'
-import * as ContentActions from '@/store/actions/content'
-import * as videoActions from '@/store/actions/video'
+import { RootState } from '@/common/types/state.d'
+import { RawReleaseModel } from '@/common/types/videoModel.d'
+import * as ContentActions from '@/store/actions/recommendationContent'
+import * as videoActions from '@/store/actions/release'
 
 // Components
 import ChannelBlock from '@/components/form/channel'

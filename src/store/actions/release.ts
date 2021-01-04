@@ -1,9 +1,8 @@
-import { ReleaseModel, RawReleaseModel } from '@/common/videoModel'
-import { REST_API } from '@/index/redux/middlewares/api'
-import { ApiAction, OnStatus } from '@/index/redux/middlewares/api/type.d'
-import { Action } from '@/common/basic.d'
+import { ReleaseModel, RawReleaseModel } from '@/common/types/videoModel.d'
+import { REST_API, APIAction, OnSuccess, OnFail } from '@savchenko91/rc-redux-api-mw'
+import { Action } from '@/common/types/basic.d'
 
-import * as video from '@/store/constants/video'
+import * as video from '@/store/constants/release'
 
 const url = '/api/v1/videoDetails/'
 
@@ -12,21 +11,21 @@ export const set = (Video: ReleaseModel | null): Action => ({
   payload: Video,
 })
 
-export const get = (id: string): ApiAction => ({
+export const get = (id: string): APIAction => ({
   type: REST_API,
   stageActionTypes: video.GET,
   url: `${url}/${id}`,
   method: 'get',
 })
 
-export const getList = (): ApiAction => ({
+export const getList = (): APIAction => ({
   type: REST_API,
   stageActionTypes: video.GET_ALL,
   url,
   method: 'get',
 })
 
-export const getPreviewLink = (videoLink: string): ApiAction => ({
+export const getPreviewLink = (videoLink: string): APIAction => ({
   type: REST_API,
   stageActionTypes: video.GET_PREVIEW_LINK,
   url: `${url}getPreviewLink`,
@@ -34,7 +33,7 @@ export const getPreviewLink = (videoLink: string): ApiAction => ({
   body: { videoLink },
 })
 
-export const add = (Video: RawReleaseModel, onSuccess: OnStatus, onFail: OnStatus): ApiAction => ({
+export const add = (Video: RawReleaseModel, onSuccess: OnSuccess, onFail: OnFail): APIAction => ({
   type: REST_API,
   stageActionTypes: video.ADD,
   url,
@@ -45,7 +44,7 @@ export const add = (Video: RawReleaseModel, onSuccess: OnStatus, onFail: OnStatu
 })
 
 // Check method and url v
-export const update = (Video: ReleaseModel, onSuccess: OnStatus, onFail: OnStatus): ApiAction => ({
+export const update = (Video: ReleaseModel, onSuccess: OnSuccess, onFail: OnFail): APIAction => ({
   type: REST_API,
   stageActionTypes: video.UPDATE,
   url,
@@ -55,7 +54,7 @@ export const update = (Video: ReleaseModel, onSuccess: OnStatus, onFail: OnStatu
   onFail,
 })
 
-export const remove = (id: string, onSuccess: OnStatus): ApiAction => ({
+export const remove = (id: string, onSuccess: OnSuccess): APIAction => ({
   type: REST_API,
   stageActionTypes: video.REMOVE,
   url: `${url}/${id}`,

@@ -1,4 +1,4 @@
-import { DeepReadonly } from './util'
+import { DeepReadonly } from './util.d'
 
 export type AuthForm = DeepReadonly<{
   email: string

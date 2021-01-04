@@ -1,6 +1,6 @@
-import { Action } from '@/common/basic.d'
-import * as recommendation from '@/store/constants/content'
-import { RecommendationContentModel } from '@/common/videoModel'
+import { Action } from '@/common/types/basic'
+import * as recommendation from '@/store/constants/recommendationContent'
+import { RecommendationContentModel } from '@/common/types/videoModel'
 
 export const videoAdd = (content: RecommendationContentModel): Action => ({
   type: recommendation.ADD_VIDEO_CONTENT,
