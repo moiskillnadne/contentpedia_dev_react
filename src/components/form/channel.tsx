@@ -7,6 +7,7 @@ import Input from '@/components/input/input'
 
 // Shared
 import * as utils from '@/components/form/utils'
+import * as constants from '@/common/constants/options'
 
 const ChannelBlock = React.memo(
   (): JSX.Element => {
@@ -21,7 +22,7 @@ const ChannelBlock = React.memo(
             subscription={utils.defaultSubs}
             validate={utils.requiredValidation}
           >
-            {utils.channelBlockOption.map((item) => (
+            {constants.channelBlockOption.map((item) => (
               <option key={`${item.value}${item.text}`} value={item.value} defaultValue={item.defaultValue}>
                 {item.text}
               </option>
