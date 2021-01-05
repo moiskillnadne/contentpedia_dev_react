@@ -8,7 +8,7 @@ export const makeChannelNameStyle = (type: string): string => {
     case 'kuji':
       return 'kuji-background'
     default:
-      return 'undefined-background'
+      return 'vdud-background'
   }
 }
 
