@@ -25,53 +25,46 @@ type InputProps = {
   isValidation: boolean
 }
 
-const Input: FC<InputProps> = ({
-  type,
-  name,
-  styleCss,
-  placeholder,
-  subs,
-  label,
-  small,
-  isValidation,
-}): JSX.Element => {
-  const dsp = useDispatch()
+const Input: FC<InputProps> = React.memo(
+  ({ type, name, styleCss, placeholder, subs, label, small, isValidation }): JSX.Element => {
+    const dsp = useDispatch()
 
-  return (
-    <Field<string>
-      type={type}
-      name={name}
-      subscription={subs || utils.defaultSubs}
-      placeholder={placeholder || ''}
-      validate={isValidation ? utils.requiredValidation : undefined}
-    >
-      {({ input, meta }) => {
-        return (
-          <div className="form-group">
-            <label htmlFor={input.name} className="first-letter-cap">
-              {label}
-            </label>
-            <input
-              {...input}
-              className={c(styleCss, 'form-control', meta.error && meta.touched && 'invalid-input')}
-              placeholder={placeholder}
-              onBlur={name === 'video.url' ? () => onGetLinkBlur(input.value) : undefined}
-            />
+    return (
+      <Field<string>
+        type={type}
+        name={name}
+        subscription={subs || utils.defaultSubs}
+        placeholder={placeholder || ''}
+        validate={isValidation ? utils.requiredValidation : undefined}
+      >
+        {({ input, meta }) => {
+          return (
+            <div className="form-group">
+              <label htmlFor={input.name} className="first-letter-cap">
+                {label}
+              </label>
+              <input
+                {...input}
+                className={c(styleCss, 'form-control', meta.error && meta.touched && 'invalid-input')}
+                placeholder={placeholder}
+                onBlur={name === 'video.url' ? () => onGetLinkBlur(input.value) : undefined}
+              />
 
-            {meta.error && meta.touched ? <small className="form-text text-danger">{meta.error}</small> : <></>}
+              {meta.error && meta.touched ? <small className="form-text text-danger">{meta.error}</small> : <></>}
 
-            <Small small={small} />
-            <Small name={name} />
-          </div>
-        )
-      }}
-    </Field>
-  )
+              <Small small={small} />
+              <Small name={name} />
+            </div>
+          )
+        }}
+      </Field>
+    )
 
-  function onGetLinkBlur(value: string): void {
-    if (!value) return
-    dsp(getPreviewLink(value))
-  }
-}
+    function onGetLinkBlur(value: string): void {
+      if (!value) return
+      dsp(getPreviewLink(value))
+    }
+  },
+)
 
 export default Input

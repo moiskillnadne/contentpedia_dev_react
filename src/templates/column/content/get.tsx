@@ -13,7 +13,7 @@ import { ReleaseModel } from '@/common/types/videoModel.d'
 import * as videoActions from '@/store/actions/release'
 
 const GetColumn = (): JSX.Element => {
-  const releaseState = useSelector((s: RootState) => s.releaseState)
+  const videoListState: ReleaseModel[] = useSelector((s: RootState) => s.releaseState?.VideoList)
   const dsp = useDispatch()
 
   const [id, setId] = useState<string>('')
@@ -24,7 +24,7 @@ const GetColumn = (): JSX.Element => {
   return (
     <>
       <ol className="get-column-content">
-        {releaseState?.VideoList.map(
+        {videoListState.map(
           (iVideo: ReleaseModel): JSX.Element => (
             <VideoItem Video={iVideo} key={iVideo._id} openModal={openModal} setId={setId} />
           ),

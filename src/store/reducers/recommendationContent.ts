@@ -32,13 +32,19 @@ function addContent(
 function removeContent(state: RecommendationModel, { type, payload }: Action): RecommendationModel | void {
   switch (type) {
     case recommendation.REMOVE_VIDEO_CONTENT:
-      const video = state.video.filter((item: RecommendationContentModel) => item._id && item.id === payload)
+      const video = state.video.filter((item: RecommendationContentModel) => {
+        return (item._id ? item._id : item.id) !== payload
+      })
       return { ...state, ...{ video } }
     case recommendation.REMOVE_AUDIO_CONTENT:
-      const audio = state.audio.filter((item: RecommendationContentModel) => item._id && item.id === payload)
+      const audio = state.audio.filter((item: RecommendationContentModel) => {
+        return (item._id ? item._id : item.id) !== payload
+      })
       return { ...state, ...{ audio } }
     case recommendation.REMOVE_TEXT_CONTENT:
-      const text = state.text.filter((item: RecommendationContentModel) => item._id && item.id === payload)
+      const text = state.text.filter((item: RecommendationContentModel) => {
+        return (item._id ? item._id : item.id) !== payload
+      })
       return { ...state, ...{ text } }
   }
 }
