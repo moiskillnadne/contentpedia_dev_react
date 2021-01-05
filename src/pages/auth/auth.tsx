@@ -48,9 +48,9 @@ const Auth = (): JSX.Element => {
   async function formSubmit(values: AuthForm) {
     dsp(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      login({ email: values.email, password: md5(values.password) }, function onSuccess(data: any) {
-        localStorage.setItem('token', data.token)
-        localStorage.setItem('refresh', data.refreshToken)
+      login({ email: values.email, password: md5(values.password) }, function onSuccess({ body }) {
+        localStorage.setItem('token', body.token)
+        localStorage.setItem('refresh', body.refreshToken)
         history.push('/')
       }),
     )

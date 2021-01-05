@@ -2,7 +2,7 @@
     "name": "contentpedia_dev",
     "version": "2.1.1",
     "private": true,
-    "proxy": "https://dev.contentpedia.ru",
+    "proxy": "http://localhost:5555/",
     "repository": {
         "type": "git",
         "url": "https://github.com/moiskillnadne/contentpedia_dev_react"
@@ -10,7 +10,7 @@
     "dependencies": {
         "@babel/core": "7.12.3",
         "@pmmmwh/react-refresh-webpack-plugin": "0.4.2",
-        "@savchenko91/rc-redux-api-mw": "^1.0.6",
+        "@savchenko91/rc-redux-api-mw": "^1.0.20",
         "@svgr/webpack": "5.4.0",
         "@testing-library/jest-dom": "^5.11.4",
         "@testing-library/react": "^11.1.0",
