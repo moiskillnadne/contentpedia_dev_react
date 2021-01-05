@@ -41,26 +41,3 @@ export const makeEnvRelatedType = (type: string): Record<string, string> => {
 }
 
 export const requiredValidation = (value: string): string | undefined => (value ? undefined : 'Required')
-
-export const channelBlockOption: ChannelBlockOption[] = [
-  {
-    defaultValue: 'true',
-    value: 'none',
-    text: 'Choose the channel',
-  },
-  {
-    defaultValue: 'false',
-    value: 'vdud',
-    text: 'вДудь',
-  },
-  {
-    defaultValue: 'false',
-    value: 'kuji',
-    text: 'KuJi',
-  },
-  {
-    defaultValue: 'true',
-    value: 'asafyevlife',
-    text: 'Асафьев. Жизнь',
-  },
-]
