@@ -1,5 +1,3 @@
-import { ChannelBlockOption } from '@/common/types/basic.d'
-
 export const defaultSubs = {
   value: true,
   error: true,
