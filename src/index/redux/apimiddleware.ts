@@ -21,6 +21,10 @@ export const api = new APIMiddleware({
         stageActionTypes: { START: 'start', FAIL: 'fail', SUCCESS: 'success' },
       } as APIAction)
 
+      if (response?.status === 401 && url === action.url) {
+        // Redirect to auth page
+      }
+
       if (result.payload?.body) {
         const body = result.payload.body as LoginResBody
         localStorage.setItem('token', body.token)

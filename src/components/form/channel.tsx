@@ -23,7 +23,7 @@ const ChannelBlock = React.memo(
             validate={utils.requiredValidation}
           >
             {constants.channelBlockOption.map((item) => (
-              <option key={`${item.value}${item.text}`} value={item.value} defaultValue={item.defaultValue}>
+              <option key={item.value} value={item.text} defaultValue={item.defaultValue}>
                 {item.text}
               </option>
             ))}
