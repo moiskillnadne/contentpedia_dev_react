@@ -25,9 +25,9 @@ export const api = new APIMiddleware({
         const body = result.payload.body as LoginResBody
         localStorage.setItem('token', body.token)
         localStorage.setItem('refresh', body.refreshToken)
-        console.log(body)
 
         request.headers.set('Authorization', `Bearer ${body.token}`)
+
         return new Request(request)
       }
     }
