@@ -30,7 +30,7 @@ const VideoItem: FC<VideoItemProps> = React.memo(
 
         <RecommendationCounter recommendation={Video.recommendation} />
 
-        <button type="button" className="btn btn-delete btn-danger btn-sm" onClick={() => onRemoveItemClick(Video.id!)}>
+        <button type="button" className="btn btn-delete btn-danger btn-sm" onClick={() => onRemoveItemClick(Video.id)}>
           Delete
         </button>
         <button type="button" className="btn btn-edit btn-info btn-sm" onClick={() => onEditItemClick(Video)}>

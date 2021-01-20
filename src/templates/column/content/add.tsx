@@ -99,7 +99,7 @@ const AddColumn: FC<AddColumnProps> = React.memo(
           dsp(videoActions.add(data, onAddSuccess, onAddFail))
           break
         case 'edit':
-          dsp(videoActions.update(videoState.id!, data, onEditSuccess, onAddFail))
+          dsp(videoActions.update(videoState.id, data, onEditSuccess, onAddFail))
           break
       }
     }
