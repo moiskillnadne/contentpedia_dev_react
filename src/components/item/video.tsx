@@ -20,7 +20,7 @@ type VideoItemProps = {
 }
 
 const VideoItem: FC<VideoItemProps> = React.memo(
-  ({ Video, openModal, setId, position }): JSX.Element => {
+  ({ Video, openModal, setId }): JSX.Element => {
     const dsp = useDispatch()
     const videoState = useSelector((s: RootState) => s.releaseState?.Video)
 
@@ -58,12 +58,8 @@ const VideoItem: FC<VideoItemProps> = React.memo(
     function onEditItemClick(video: ReleaseModel): void {
       if (!video) return
       dsp(VIDEO_ACTION.set(videoState ? null : video))
-      if (videoState) {
-        window.scrollTo({
-          top: position * 151,
-          behavior: 'smooth',
-        })
-      } else {
+
+      if (!videoState) {
         window.scrollTo({
           top: 0,
           behavior: 'smooth',

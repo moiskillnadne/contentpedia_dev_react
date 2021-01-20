@@ -35,7 +35,6 @@ const GetColumn: FC<GetColumnProps> = (): JSX.Element => {
           <input
             type="radio"
             name="options"
-            checked
             onClick={() => {
               onSwitchChange('true')
             }}
