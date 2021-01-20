@@ -1,5 +1,6 @@
 import { LoginResBody } from '@/store/actions/auth'
 import { APIAction, APIMiddleware, REST_API } from '@savchenko91/rc-redux-api-mw'
+import history from '@/index/history'
 
 const url = '/api/v1/auth/refresh'
 
@@ -22,7 +23,7 @@ export const api = new APIMiddleware({
       } as APIAction)
 
       if (response?.status === 401 && url === action.url) {
-        // Redirect to auth page
+        history.push('/auth')
       }
 
       if (result.payload?.body) {
