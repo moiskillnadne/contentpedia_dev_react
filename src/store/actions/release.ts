@@ -1,4 +1,4 @@
-import { ReleaseModel, RawReleaseModel } from '@/common/types/videoModel.d'
+import { ReleaseModel, RawReleaseModel } from '@/common/types/release'
 import { REST_API, APIAction, OnSuccess, OnFail } from '@savchenko91/rc-redux-api-mw'
 import { Action } from '@/common/types/basic.d'
 
@@ -47,7 +47,7 @@ export const add = (Video: RawReleaseModel, onSuccess: OnSuccess, onFail: OnFail
 export const update = (id: string, Video: RawReleaseModel, onSuccess: OnSuccess, onFail: OnFail): APIAction => ({
   type: REST_API,
   stageActionTypes: video.UPDATE,
-  url: `${url}${id}`,
+  url: `${url}/${id}`,
   method: 'put',
   body: Video,
   onSuccess,

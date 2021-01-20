@@ -1,5 +1,5 @@
 // Dependencies
-import React, { useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useModal } from 'react-simple-hook-modal'
 
@@ -9,13 +9,19 @@ import Modal from '@/components/confirmModal/confirmModal'
 
 // Shared
 import { RootState } from '@/common/types/state.d'
-import { ReleaseModel } from '@/common/types/videoModel.d'
+import { ReleaseModel } from '@/common/types/release'
 import * as videoActions from '@/store/actions/release'
 
-const GetColumn = (): JSX.Element => {
+type GetColumnProps = {
+  type: 'get'
+}
+
+const GetColumn: FC<GetColumnProps> = (): JSX.Element => {
   const videoListState: { db: string; data: ReleaseModel[] } = useSelector((s: RootState) => s.releaseState?.VideoList)
-  console.log(videoListState)
   const dsp = useDispatch()
+
+  const [isCompleted, setIsCompleted] = useState<boolean>(true)
+  const counter = videoListState?.data?.filter((item) => item.isComplete === isCompleted).length
 
   const [id, setId] = useState<string>('')
   const { isModalOpen, openModal, closeModal } = useModal()
@@ -24,12 +30,39 @@ const GetColumn = (): JSX.Element => {
 
   return (
     <>
+      <div className="btn-group btn-group-toggle" data-toggle="buttons">
+        <label className={`${isCompleted ? 'btn btn-secondary active' : 'btn btn-secondary'}`} key="completed">
+          <input
+            type="radio"
+            name="options"
+            checked
+            onClick={() => {
+              onSwitchChange('true')
+            }}
+          />
+          Completed
+        </label>
+        <label className={`${isCompleted ? 'btn btn-secondary' : 'btn btn-secondary active'}`} key="InProcess">
+          <input
+            type="radio"
+            name="options"
+            onClick={() => {
+              onSwitchChange('false')
+            }}
+          />
+          In Process
+        </label>
+      </div>
+
+      <span className="video-counter">{counter}</span>
+
       <ol className="get-column-content">
-        {videoListState?.data?.map(
-          (iVideo: ReleaseModel): JSX.Element => (
-            <VideoItem Video={iVideo} key={iVideo.id} openModal={openModal} setId={setId} />
-          ),
-        )}
+        {videoListState?.data?.map((iVideo: ReleaseModel, index): JSX.Element | boolean => {
+          if (iVideo.isComplete === isCompleted) {
+            return <VideoItem Video={iVideo} key={iVideo.id} openModal={openModal} setId={setId} position={index} />
+          }
+          return false
+        })}
       </ol>
       <Modal
         isModalOpen={isModalOpen}
@@ -56,6 +89,18 @@ const GetColumn = (): JSX.Element => {
   function customCloseModal() {
     closeModal()
     document.body.classList.remove('no-scroll')
+  }
+
+  function onSwitchChange(status: 'true' | 'false') {
+    switch (status) {
+      case 'true':
+        setIsCompleted(true)
+        break
+      case 'false':
+        setIsCompleted(false)
+        break
+      default:
+    }
   }
 }
 

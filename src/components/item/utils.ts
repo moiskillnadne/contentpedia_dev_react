@@ -1,5 +1,5 @@
 export const makeTitle = (title: string): string => {
-  return title.substr(0, 41)
+  return title?.substr(0, 41)
 }
 export const makeChannelNameStyle = (type: string): string => {
   switch (type) {

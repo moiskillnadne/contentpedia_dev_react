@@ -1,7 +1,7 @@
 import { Action } from '@/common/types/basic'
 import { ReleaseState } from '@/common/types/state'
 import { combine, APIAction } from '@savchenko91/rc-redux-api-mw'
-import { ReleaseModel } from '@/common/types/videoModel.d'
+import { ReleaseModel } from '@/common/types/release'
 import * as video from '@/store/constants/release'
 
 const initialState: ReleaseState = {

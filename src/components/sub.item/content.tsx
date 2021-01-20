@@ -1,6 +1,6 @@
 // Dependencies
 import React, { FC } from 'react'
-import { RecommendationContentModel } from '@/common/types/videoModel.d'
+import { RecommendationContentModel } from '@/common/types/release'
 import { useDispatch } from 'react-redux'
 import * as ContentActions from '@/store/actions/recommendationContent'
 

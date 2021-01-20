@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { RecommendationModel } from '@/common/types/videoModel.d'
+import { RecommendationModel } from '@/common/types/release'
 
 type RecommendationCounterProps = {
   recommendation: RecommendationModel

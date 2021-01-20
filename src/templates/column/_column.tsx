@@ -1,6 +1,5 @@
 // Dependencies
 import React, { FC } from 'react'
-import { useSelector } from 'react-redux'
 
 // Components
 import GetColumn from '@/templates/column/content/get'
@@ -9,7 +8,6 @@ import AddColumn from '@/templates/column/content/add'
 // Shared
 import * as utils from '@/templates/column/utils'
 import '@/templates/column/style.less'
-import { RootState } from '@/common/types/state.d'
 
 type ColumnProps = {
   type: 'get' | 'add' | 'edit'
@@ -17,12 +15,9 @@ type ColumnProps = {
 
 const Column: FC<ColumnProps> = React.memo(
   ({ type }): JSX.Element => {
-    const videoListState = useSelector((s: RootState) => s.releaseState?.VideoList)
-
     return (
       <div className={`column ${utils.makeColumnStyle(type)}`}>
         <h3 className="column-title">{utils.makeColumnTitle(type)}</h3>
-        {type === 'get' ? <span className="video-counter">{videoListState?.length}</span> : null}
         <div className="container">{makeColumnContent(type)}</div>
       </div>
     )
@@ -30,11 +25,11 @@ const Column: FC<ColumnProps> = React.memo(
     function makeColumnContent(type_col: string): JSX.Element | undefined {
       switch (type_col) {
         case 'get':
-          return <GetColumn />
+          return <GetColumn type="get" />
         case 'add':
-          return <AddColumn type="add" />
+          return <AddColumn type="add" key="add" />
         case 'edit':
-          return <AddColumn type="edit" />
+          return <AddColumn type="edit" key="edit" />
         default:
           // Here should be 404 template
           break

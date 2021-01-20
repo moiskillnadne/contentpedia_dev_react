@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/common/types/state.d'
-import { RecommendationContentModel } from '@/common/types/videoModel.d'
+import { RecommendationContentModel } from '@/common/types/release'
 import * as ContentActions from '@/store/actions/recommendationContent'
 
 // Components

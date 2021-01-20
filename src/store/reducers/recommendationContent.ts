@@ -1,6 +1,6 @@
 import { Action } from '@/common/types/basic'
 import { combine } from '@savchenko91/rc-redux-api-mw'
-import { RecommendationContentModel, RecommendationModel } from '@/common/types/videoModel.d'
+import { RecommendationContentModel, RecommendationModel } from '@/common/types/release'
 import * as recommendation from '@/store/constants/recommendationContent'
 
 const initialState: RecommendationModel = {

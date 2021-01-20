@@ -15,7 +15,7 @@ import { getPreviewLink } from '@/store/actions/release'
 import { SubscriptionSettigns } from '@/common/types/basic.d'
 
 type InputProps = {
-  type: 'text' | 'number' | 'email' | 'password'
+  type: 'text' | 'number' | 'email' | 'password' | 'checkbox'
   name: string
   styleCss?: string
   placeholder?: string

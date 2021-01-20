@@ -13,10 +13,24 @@ const ChannelBlock = React.memo(
   (): JSX.Element => {
     return (
       <>
+        <div className="form-group form-check">
+          <Field<string>
+            name="isComplete"
+            component="input"
+            type="checkbox"
+            className="form-check-input"
+            subscription={utils.defaultSubs}
+          />
+          <label className="form-check-label" htmlFor="isComplete">
+            Completed
+          </label>
+        </div>
+
         <h5 className="text-center margin-top25 type-item-title">Channel block</h5>
+
         <div className="form-group">
           <Field<string>
-            name="channel.name"
+            name="channel.title"
             component="select"
             className="form-control"
             subscription={utils.defaultSubs}
@@ -34,7 +48,13 @@ const ChannelBlock = React.memo(
 
         <Input type="text" name="video.url" placeholder="Insert link on the video" label="Video link" isValidation />
 
-        <Input type="text" name="video.name" placeholder="Insert title of the video" label="Video title" isValidation />
+        <Input
+          type="text"
+          name="video.title"
+          placeholder="Insert title of the video"
+          label="Video title"
+          isValidation
+        />
       </>
     )
   },

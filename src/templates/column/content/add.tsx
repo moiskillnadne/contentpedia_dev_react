@@ -6,7 +6,7 @@ import { useModal } from 'react-simple-hook-modal'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/common/types/state.d'
-import { RawReleaseModel, RecommendationModel, ReleaseModel } from '@/common/types/videoModel.d'
+import { RawReleaseModel, RecommendationModel, ReleaseModel } from '@/common/types/release'
 import * as contentActions from '@/store/actions/recommendationContent'
 import * as videoActions from '@/store/actions/release'
 
@@ -48,6 +48,7 @@ const AddColumn: FC<AddColumnProps> = React.memo(
           }}
           initialValues={
             {
+              isComplete: videoState?.isComplete,
               channel: videoState?.channel,
               video: videoState?.video,
               guest: videoState?.guest,
@@ -89,6 +90,7 @@ const AddColumn: FC<AddColumnProps> = React.memo(
     function onSubmitForm(values: RawReleaseModel): void {
       const data = {
         ...values,
+        isComplete: !!values.isComplete,
         recommendation: { ...state.recommendationContentState },
       }
 
@@ -97,7 +99,7 @@ const AddColumn: FC<AddColumnProps> = React.memo(
           dsp(videoActions.add(data, onAddSuccess, onAddFail))
           break
         case 'edit':
-          dsp(videoActions.update(videoState?._id, data, onEditSuccess, onAddFail))
+          dsp(videoActions.update(videoState.id!, data, onEditSuccess, onAddFail))
           break
       }
     }
