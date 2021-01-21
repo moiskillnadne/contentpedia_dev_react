@@ -2,7 +2,7 @@
     "name": "contentpedia_dev",
     "version": "2.2.0",
     "private": true,
-    "proxy": "http://localhost:5555/",
+    "proxy": "https://dev.contentpedia.ru/",
     "repository": {
         "type": "git",
         "url": "https://github.com/moiskillnadne/contentpedia_dev_react"
