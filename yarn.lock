@@ -1845,10 +1845,10 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@savchenko91/rc-redux-api-mw@^1.0.21":
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/@savchenko91/rc-redux-api-mw/-/rc-redux-api-mw-1.0.21.tgz#583fb94ce6feb8e5926b2b8cc6e1c768d66c4f0c"
-  integrity sha512-GR8977MgmnbUUWIOB5Zgj8eGZD9I/KFl5EXROQhrGbWtcWr1XtzFQWBo31F7OwfJewc3cZ16HdGpnn/CBR0Isg==
+"@savchenko91/rc-redux-api-mw@^1.0.23":
+  version "1.0.23"
+  resolved "https://registry.yarnpkg.com/@savchenko91/rc-redux-api-mw/-/rc-redux-api-mw-1.0.23.tgz#e20bee6531a3034fd274dfa327eacce96741e3ea"
+  integrity sha512-jZvCvHucFgg1bVrGYa9SKJMUdNYau9d8Pi4InCG7NwP0nqt6jS1NGb/wfu7MiH6K3RX+XzggFS+0uJybJeUSHA==
   dependencies:
     redux "^4.0.5"
 
