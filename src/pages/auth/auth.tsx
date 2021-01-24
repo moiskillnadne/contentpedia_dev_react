@@ -1,20 +1,19 @@
 import '@/pages/auth/style.less'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import { Form } from 'react-final-form'
 import md5 from 'md5'
+import history from '@/index/history'
 
 // Components
 import Input from '@/components/input/input'
 
 // Shared
 import { AuthForm } from '@/common/types/auth.d'
-import { login } from '@/store/actions/auth'
+import { login, getUser } from '@/store/actions/auth'
 
 const Auth = (): JSX.Element => {
   const dsp = useDispatch()
-  const history = useHistory()
 
   return (
     <div className="auth-background">
@@ -51,9 +50,18 @@ const Auth = (): JSX.Element => {
       login({ email: values.email, password: md5(values.password) }, function onSuccess({ body }) {
         localStorage.setItem('token', body.token)
         localStorage.setItem('refresh', body.refreshToken)
-        history.push('/')
+        dsp(getUser({ email: values.email }, onLoginSuccess))
       }),
     )
+  }
+
+  function onLoginSuccess(response: any) {
+    const { data } = response.body
+    localStorage.setItem('firstName', data.firstName)
+    localStorage.setItem('lastName', data.lastName)
+    localStorage.setItem('role', data.role)
+    localStorage.setItem('email', data.email)
+    history.push('/', history)
   }
 }
 

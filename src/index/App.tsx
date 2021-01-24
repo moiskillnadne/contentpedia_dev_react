@@ -13,8 +13,8 @@ import Auth from '@/pages/auth/auth'
 function App(): JSX.Element {
   return (
     <Router history={history}>
-      <Switch>
-        <Route path="/auth" component={Auth} />
+      <Switch location={history.location}>
+        <Route exact path="/auth" component={Auth} />
 
         <ProtectedRoute path="/" component={Main} />
       </Switch>

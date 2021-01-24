@@ -17,3 +17,9 @@ export const REFRESH = {
 }
 
 export const LOGOUT = 'LOGOUT'
+
+export const GET_USER = {
+  START: 'GET_USER/START',
+  SUCCESS: 'GET_USER/SUCCESS',
+  FAIL: 'GET_USER/FAIL',
+}
