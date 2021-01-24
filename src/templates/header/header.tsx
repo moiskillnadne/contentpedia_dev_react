@@ -40,7 +40,7 @@ const Header = (): JSX.Element => {
     localStorage.removeItem('email')
     localStorage.removeItem('role')
 
-    history.push('/auth', history)
+    history.push('/auth')
   }
 }
 

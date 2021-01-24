@@ -61,7 +61,7 @@ const Auth = (): JSX.Element => {
     localStorage.setItem('lastName', data.lastName)
     localStorage.setItem('role', data.role)
     localStorage.setItem('email', data.email)
-    history.push('/', history)
+    history.push('/')
   }
 }
 
