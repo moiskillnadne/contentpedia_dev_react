@@ -46,6 +46,37 @@ function getList(state = initialState, { type, payload }: APIAction<ReleaseModel
   }
 }
 
+function getListPerPage(state = initialState, { type, payload }: APIAction<ReleaseModel[]>): ReleaseState | void {
+  switch (type) {
+    case video.GET_ALL_PER_PAGE.START:
+      return {
+        ...state,
+        error: '',
+        loading: {
+          getList: state.VideoList.length ? 'Обновление пользователей' : 'Загрузка пользователей',
+        },
+      }
+    case video.GET_ALL_PER_PAGE.FAIL:
+      return {
+        ...state,
+        loading: {
+          getList: false,
+        },
+        error: payload?.body?.error || '',
+      }
+    case video.GET_ALL_PER_PAGE.SUCCESS:
+      return {
+        ...state,
+        error: '',
+        loading: {
+          getList: false,
+        },
+        VideoList: (payload.body.docs as ReleaseModel[]) || { ...state.VideoList },
+        details: { ...payload.body },
+      }
+  }
+}
+
 function getPreview(state = initialState, { type, payload }: APIAction<string>): ReleaseState | void {
   switch (type) {
     case video.GET_PREVIEW_LINK.START:
@@ -123,4 +154,4 @@ function set(state = initialState, { type, payload }: Action<ReleaseModel | null
   }
 }
 
-export default combine(initialState, getList, getPreview, addVideo, set)
+export default combine(initialState, getList, getListPerPage, getPreview, addVideo, set)

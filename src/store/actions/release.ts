@@ -4,7 +4,7 @@ import { Action } from '@/common/types/basic.d'
 
 import * as video from '@/store/constants/release'
 
-const url = '/api/v2/release/'
+const url = '/api/v2/release'
 
 export const set = (Video: ReleaseModel | null): Action => ({
   type: video.SET_VIDEO,
@@ -25,10 +25,17 @@ export const getList = (): APIAction => ({
   method: 'get',
 })
 
+export const getListPage = (pageNumber: number): APIAction => ({
+  type: REST_API,
+  stageActionTypes: video.GET_ALL_PER_PAGE,
+  url: `${url}/page/${pageNumber}`,
+  method: 'post',
+})
+
 export const getPreviewLink = (videoLink: string): APIAction => ({
   type: REST_API,
   stageActionTypes: video.GET_PREVIEW_LINK,
-  url: `${url}getPreviewLink`,
+  url: `${url}/getPreviewLink`,
   method: 'post',
   body: { videoLink },
 })

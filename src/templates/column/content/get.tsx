@@ -73,7 +73,7 @@ const GetColumn: FC<GetColumnProps> = (): JSX.Element => {
   )
 
   function getVideo() {
-    dsp(videoActions.getList())
+    dsp(videoActions.getListPage(1))
   }
 
   function onTrueButtonClick() {
