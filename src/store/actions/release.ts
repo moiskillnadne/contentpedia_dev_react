@@ -4,7 +4,7 @@ import { Action } from '@/common/types/basic.d'
 
 import * as video from '@/store/constants/release'
 
-const url = '/api/v1/release/'
+const url = '/api/v2/release/'
 
 export const set = (Video: ReleaseModel | null): Action => ({
   type: video.SET_VIDEO,

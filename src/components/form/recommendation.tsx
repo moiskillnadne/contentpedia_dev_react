@@ -2,6 +2,7 @@
 import React, { FC, useEffect } from 'react'
 import { Field, Form } from 'react-final-form'
 import { v4 as uuidv4 } from 'uuid'
+import c from 'clsx'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/common/types/state.d'
@@ -90,16 +91,19 @@ const Recommendation: FC<RecommendationProps> = React.memo(
                   <Field<string>
                     type="select"
                     name={`${type}.tags`}
-                    className="form-control"
-                    component="select"
                     subscription={utils.defaultSubs}
+                    validate={utils.requiredValidation}
                   >
-                    <option value="none" defaultValue="true">
-                      Choose the label
-                    </option>
-                    <option value="favorites">Favorites</option>
-                    <option value="mention">Mention</option>
-                    <option value="notFavorites">Not favorites</option>
+                    {({ input, meta }) => (
+                      <select {...input} className={c('form-control', meta.error && meta.touched && 'invalid-input')}>
+                        <option value="none" defaultValue="true">
+                          Choose the label
+                        </option>
+                        <option value="favorites">Favorites</option>
+                        <option value="mention">Mention</option>
+                        <option value="notFavorites">Not favorites</option>
+                      </select>
+                    )}
                   </Field>
                 </div>
 
