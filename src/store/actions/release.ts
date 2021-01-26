@@ -32,6 +32,20 @@ export const getListPage = (pageNumber: number): APIAction => ({
   method: 'post',
 })
 
+export const getCompletedRelease = (pageNumber: number): APIAction => ({
+  type: REST_API,
+  stageActionTypes: video.GET_COMPLETED_RELEASE,
+  url: `${url}/completed/page/${pageNumber}`,
+  method: 'post',
+})
+
+export const getInprocessRelease = (pageNumber: number): APIAction => ({
+  type: REST_API,
+  stageActionTypes: video.GET_INPROCESS_RELEASE,
+  url: `${url}/inprocess/page/${pageNumber}`,
+  method: 'post',
+})
+
 export const getPreviewLink = (videoLink: string): APIAction => ({
   type: REST_API,
   stageActionTypes: video.GET_PREVIEW_LINK,

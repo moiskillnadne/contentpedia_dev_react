@@ -14,6 +14,7 @@ const initialState: ReleaseState = {
   loading: {
     getList: false,
   },
+  details: {},
 }
 
 function getList(state = initialState, { type, payload }: APIAction<ReleaseModel[]>): ReleaseState | void {
@@ -73,6 +74,68 @@ function getListPerPage(state = initialState, { type, payload }: APIAction<Relea
         },
         VideoList: (payload.body.docs as ReleaseModel[]) || { ...state.VideoList },
         details: { ...payload.body },
+      }
+  }
+}
+
+function getCompletedRelease(state = initialState, { type, payload }: APIAction<ReleaseModel[]>): ReleaseState | void {
+  switch (type) {
+    case video.GET_COMPLETED_RELEASE.START:
+      return {
+        ...state,
+        error: '',
+        loading: {
+          getList: state.VideoList.length ? 'Обновление пользователей' : 'Загрузка пользователей',
+        },
+      }
+    case video.GET_COMPLETED_RELEASE.FAIL:
+      return {
+        ...state,
+        loading: {
+          getList: false,
+        },
+        error: payload?.body?.error || '',
+      }
+    case video.GET_COMPLETED_RELEASE.SUCCESS:
+      return {
+        ...state,
+        error: '',
+        loading: {
+          getList: false,
+        },
+        VideoList: (payload.body.docs as ReleaseModel[]) || { ...state.VideoList },
+        details: payload.body,
+      }
+  }
+}
+
+function getInprocessRelease(state = initialState, { type, payload }: APIAction<ReleaseModel[]>): ReleaseState | void {
+  switch (type) {
+    case video.GET_INPROCESS_RELEASE.START:
+      return {
+        ...state,
+        error: '',
+        loading: {
+          getList: state.VideoList.length ? 'Обновление пользователей' : 'Загрузка пользователей',
+        },
+      }
+    case video.GET_INPROCESS_RELEASE.FAIL:
+      return {
+        ...state,
+        loading: {
+          getList: false,
+        },
+        error: payload?.body?.error || '',
+      }
+    case video.GET_INPROCESS_RELEASE.SUCCESS:
+      return {
+        ...state,
+        error: '',
+        loading: {
+          getList: false,
+        },
+        VideoList: (payload.body.docs as ReleaseModel[]) || { ...state.VideoList },
+        details: payload.body,
       }
   }
 }
@@ -154,4 +217,13 @@ function set(state = initialState, { type, payload }: Action<ReleaseModel | null
   }
 }
 
-export default combine(initialState, getList, getListPerPage, getPreview, addVideo, set)
+export default combine(
+  initialState,
+  getList,
+  getListPerPage,
+  getPreview,
+  getCompletedRelease,
+  getInprocessRelease,
+  addVideo,
+  set,
+)

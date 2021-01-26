@@ -105,7 +105,7 @@ const AddColumn: FC<AddColumnProps> = React.memo(
     }
 
     function onAddSuccess() {
-      dsp(videoActions.getList())
+      dsp(videoActions.getCompletedRelease(1))
 
       window.scrollTo({
         top: state.releaseState.VideoList.length * 151,
@@ -125,7 +125,7 @@ const AddColumn: FC<AddColumnProps> = React.memo(
     }
 
     function onEditSuccess() {
-      dsp(videoActions.getList())
+      dsp(videoActions.getCompletedRelease(1))
 
       setModalContent('Video item was edited successfully!')
       openModal()
