@@ -6,6 +6,8 @@ import { useModal } from 'react-simple-hook-modal'
 // Components
 import VideoItem from '@/components/item/video'
 import Modal from '@/components/confirmModal/confirmModal'
+import Switcher from '@/components/getColumnSwitcher'
+import Search from '@/components/getColumnSearch'
 
 // Shared
 import { RootState, ReleaseState } from '@/common/types/state.d'
@@ -21,38 +23,34 @@ const GetColumn: FC<GetColumnProps> = (): JSX.Element => {
   const dsp = useDispatch()
 
   const [isCompleted, setIsCompleted] = useState<boolean>(true)
+  const [searchQuery, setSearchQuery] = useState<{ props: string | null; value: string | null }>({
+    props: null,
+    value: null,
+  })
 
   const [id, setId] = useState<string>('')
   const { isModalOpen, openModal, closeModal } = useModal()
 
   useEffect(() => {
-    fetchingRelease(1)
+    if (searchQuery.props !== null && searchQuery.value !== null) {
+      fetchingRelease(1, { props: searchQuery.props, value: searchQuery.value })
+    } else {
+      fetchingRelease(1)
+    }
   }, [isCompleted])
+
+  useEffect(() => {
+    console.log(searchQuery)
+    if (searchQuery.props !== null && searchQuery.value !== null) {
+      fetchingRelease(1, { props: searchQuery.props, value: searchQuery.value })
+    }
+  }, [searchQuery])
 
   return (
     <>
-      <div className="btn-group btn-group-toggle" data-toggle="buttons">
-        <label className={`${isCompleted ? 'btn btn-secondary active' : 'btn btn-secondary'}`} key="completed">
-          <input
-            type="radio"
-            name="options"
-            onClick={() => {
-              onSwitchChange('true')
-            }}
-          />
-          Completed
-        </label>
-        <label className={`${isCompleted ? 'btn btn-secondary' : 'btn btn-secondary active'}`} key="InProcess">
-          <input
-            type="radio"
-            name="options"
-            onClick={() => {
-              onSwitchChange('false')
-            }}
-          />
-          In Process
-        </label>
-      </div>
+      <Switcher isCompleted={isCompleted} setIsCompleted={setIsCompleted} />
+
+      <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
       <span className="video-counter">{releaseState.details.totalDocs}</span>
 
@@ -107,13 +105,13 @@ const GetColumn: FC<GetColumnProps> = (): JSX.Element => {
     </>
   )
 
-  function fetchingRelease(page: number | null) {
+  function fetchingRelease(page: number | null, query?: Record<string, string | RegExp>) {
     if (!page) return
 
     if (isCompleted) {
-      getCompletedRelease(page)
+      getCompletedRelease(page, query)
     } else {
-      getInprocessRelease(page)
+      getInprocessRelease(page, query)
     }
   }
   function scrollToTop() {
@@ -123,11 +121,11 @@ const GetColumn: FC<GetColumnProps> = (): JSX.Element => {
     })
   }
 
-  function getCompletedRelease(page: number) {
-    dsp(videoActions.getCompletedRelease(page))
+  function getCompletedRelease(page: number, query?: Record<string, string | RegExp>) {
+    dsp(videoActions.getCompletedRelease(page, query))
   }
-  function getInprocessRelease(page: number) {
-    dsp(videoActions.getInprocessRelease(page))
+  function getInprocessRelease(page: number, query?: Record<string, string | RegExp>) {
+    dsp(videoActions.getInprocessRelease(page, query))
   }
 
   function onTrueButtonClick() {
@@ -142,18 +140,6 @@ const GetColumn: FC<GetColumnProps> = (): JSX.Element => {
   function customCloseModal() {
     closeModal()
     document.body.classList.remove('no-scroll')
-  }
-
-  function onSwitchChange(status: 'true' | 'false') {
-    switch (status) {
-      case 'true':
-        setIsCompleted(true)
-        break
-      case 'false':
-        setIsCompleted(false)
-        break
-      default:
-    }
   }
 }
 
