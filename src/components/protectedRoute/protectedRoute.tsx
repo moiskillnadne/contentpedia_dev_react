@@ -10,7 +10,10 @@ type ProtectedRouteProps = {
 const ProtectedRoute: FC<ProtectedRouteProps> = (props): JSX.Element => {
   const Component = props.component
 
-  const isAuthenticated = localStorage.getItem('token')
+  const email = localStorage.getItem('email')
+  const token = localStorage.getItem('token')
+
+  const isAuthenticated = !!(!!email && !!token)
   return isAuthenticated ? <Component /> : <Redirect to={{ pathname: '/auth' }} />
 }
 
