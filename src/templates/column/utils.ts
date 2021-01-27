@@ -21,17 +21,3 @@ export const makeColumnTitle = (type: string): string => {
       return 'Undefined column'
   }
 }
-
-export const debounce = (fn: (e: any) => void, timems: number) => {
-  let timeout: NodeJS.Timeout
-  return function () {
-    // eslint-disable-next-line func-names
-    const fnCall = function (this: any, arg: any) {
-      // eslint-disable-next-line prefer-rest-params
-      fn.apply(this, arg)
-    }
-    clearTimeout(timeout)
-
-    timeout = setTimeout(fnCall, timems)
-  }
-}

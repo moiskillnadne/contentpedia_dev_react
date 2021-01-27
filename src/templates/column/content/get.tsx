@@ -40,7 +40,6 @@ const GetColumn: FC<GetColumnProps> = (): JSX.Element => {
   }, [isCompleted])
 
   useEffect(() => {
-    console.log(searchQuery)
     if (searchQuery.props !== null && searchQuery.value !== null) {
       fetchingRelease(1, { props: searchQuery.props, value: searchQuery.value })
     }

@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import React, { ChangeEvent, FC } from 'react'
 import { debounce } from 'lodash'
 
 type SearchProps = {
   searchQuery: { value: string | null; props: string | null }
-  setSearchQuery: (e: any) => void
+  setSearchQuery: (e: { value: string | null; props: string | null }) => void
 }
 
 const Search: FC<SearchProps> = ({ searchQuery, setSearchQuery }): JSX.Element => {
@@ -33,7 +33,7 @@ const Search: FC<SearchProps> = ({ searchQuery, setSearchQuery }): JSX.Element =
     </div>
   )
 
-  function onSearchSelect(e: any) {
+  function onSearchSelect(e: ChangeEvent<HTMLSelectElement>) {
     const value = e.target.value === 'null' ? null : e.target.value
     setSearchQuery({ ...searchQuery, props: value })
   }
