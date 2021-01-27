@@ -55,6 +55,7 @@ const Auth = (): JSX.Element => {
     )
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function onLoginSuccess(response: any) {
     const { data } = response.body
     localStorage.setItem('firstName', data.firstName)
